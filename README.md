@@ -1,4 +1,4 @@
-# inet-lisp-st
+# inet-lisp
 
 This project is a **single-threaded** implementation of
 [interaction nets](https://en.wikipedia.org/wiki/Interaction_nets)
@@ -148,17 +148,17 @@ Dependencies:
 Compile:
 
 ```
-git clone https://github.com/cicada-lang/inet-lisp-st
-cd inet-lisp-st
+git clone https://github.com/cicada-lang/inet-lisp
+cd inet-lisp
 make -j
 make test
 ```
 
-The compiled binary `./bin/inet-lisp-st` is the command-line program.
+The compiled binary `./bin/inet-lisp` is the command-line program.
 
 ```sh
-$ ./bin/inet-lisp-st
-inet-lisp-st 0.1.0
+$ ./bin/inet-lisp
+inet-lisp 0.1.0
 
 commands:
   run -- run files
@@ -173,7 +173,7 @@ commands:
 For examples:
 
 ```sh
-./bin/inet-lisp-st run examples/readme/nat.test.lisp
+./bin/inet-lisp run examples/readme/nat.test.lisp
 ```
 
 ## Development
@@ -197,7 +197,7 @@ make clean && TSAN=true make -j
 - [inet-cute](https://github.com/cicada-lang/inet-cute)
 - [inet-js](https://github.com/cicada-lang/inet-js)
 - [inet-forth](https://github.com/cicada-lang/inet-forth)
-- [inet-lisp-st](https://github.com/cicada-lang/inet-lisp-st)
+- [inet-lisp](https://github.com/cicada-lang/inet-lisp)
 
 ## References
 

@@ -1,3 +1,5 @@
+rename project back to inet-lisp
+
 remove multi principal port support
 
 # example
