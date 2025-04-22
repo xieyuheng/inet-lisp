@@ -1,3 +1,17 @@
+remove multi principal port support
+
+# example
+
+[example] more exampels from the paper
+
+# deque
+
+[deque] `deque_t` -- use mod queue for real -- not just list + lock
+
+# core
+
+[core] `node_t` -- use `spinlock_t`
+
 # player
 
 [player] use real physics force
