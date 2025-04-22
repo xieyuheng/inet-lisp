@@ -1,5 +1,5 @@
-rename project back to inet-lisp
-
+remove player
+copy net/ & core/ from inet-forth
 remove multi principal port support
 
 # example
@@ -16,6 +16,7 @@ remove multi principal port support
 
 # player
 
+[player] bring back player
 [player] use real physics force
 [player] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [player] remove `node_physics_fake_simulate`
