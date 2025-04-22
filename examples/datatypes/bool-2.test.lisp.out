@@ -1,0 +1,54 @@
+<net>
+:root -<>-z-(disj₁₅)
+(disj₁₅
+ :x! -<>-z-(conj₇)
+ :y -<>-z-(disj₁₄)
+ :z -<>-)
+(disj₁₄
+ :x! -<>-z-(disj₁₀)
+ :y -<>-z-(disj₁₃)
+ :z -<>-y-(disj₁₅))
+(disj₁₃
+ :x! -<>-!value-(f₁₁)
+ :y -<>-!value-(t₁₂)
+ :z -<>-y-(disj₁₄))
+(t₁₂
+ :value! -<>-y-(disj₁₃))
+(f₁₁
+ :value! -<>-!x-(disj₁₃))
+(disj₁₀
+ :x! -<>-!value-(t₈)
+ :y -<>-!value-(t₉)
+ :z -<>-!x-(disj₁₄))
+(t₉
+ :value! -<>-y-(disj₁₀))
+(t₈
+ :value! -<>-!x-(disj₁₀))
+(conj₇
+ :x! -<>-z-(conj₃)
+ :y -<>-z-(conj₆)
+ :z -<>-!x-(disj₁₅))
+(conj₆
+ :x! -<>-!value-(f₄)
+ :y -<>-!value-(t₅)
+ :z -<>-y-(conj₇))
+(t₅
+ :value! -<>-y-(conj₆))
+(f₄
+ :value! -<>-!x-(conj₆))
+(conj₃
+ :x! -<>-!value-(t₁)
+ :y -<>-!value-(t₂)
+ :z -<>-!x-(conj₇))
+(t₂
+ :value! -<>-y-(conj₃))
+(t₁
+ :value! -<>-!x-(conj₃))
+</net>
+
+<net>
+:root -<>-!value-(t₂₉)
+(t₂₉
+ :value! -<>-)
+</net>
+
