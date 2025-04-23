@@ -1,4 +1,3 @@
-remove player
 copy net/ & core/ from inet-forth
 remove multi principal port support
 

@@ -10,7 +10,6 @@ main(int argc, char *argv[]) {
     commander_t *commander = commander_new("inet-lisp", INET_LISP_ST_VERSION, argc, argv);
 
     commander_use(commander, run_command);
-    commander_use(commander, play_command);
     commander_use(commander, info_command);
     commander_use(commander, test_self_command);
     commander_use(commander, test_modules_command);
