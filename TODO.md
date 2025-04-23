@@ -1,9 +1,10 @@
-copy net/ & core/ from inet-forth
+remove primitive support
 remove multi principal port support
+copy net/ & core/ from inet-forth
 
 # example
 
-[example] more exampels from the paper
+[example] more examples from the paper
 
 # deque
 
