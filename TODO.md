@@ -1,5 +1,3 @@
-[lang] do not run top level exp on `--no-run-top-level-exp` (`no_run_top_level_exp`)
-
 [net] `node_neighborhood_t` -- replace `node_adjacency` + `node_adjacency_array`
 
 - [net] `node_print_connected` print sorted port

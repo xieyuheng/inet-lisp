@@ -123,7 +123,7 @@ print_connected(worker_t *worker, value_t value) {
 static void
 print_top_connected(worker_t *worker) {
     if (DEBUG_NODE_ALLOCATOR_DISABLED) {
-        who_printf("can not print when DEBUG_NODE_ALLOCATOR_DISABLED");
+        who_printf("can not print when compiled with DEBUG_NODE_ALLOCATOR_DISABLED");
         exit(1);
     }
 
@@ -154,7 +154,9 @@ static void
 compute_exp(worker_t *worker, exp_t *exp) {
     build_net(worker, exp);
 
-    worker_work(worker);
+    if (!no_run_top_level_exp) {
+        worker_work(worker);
+    }
 
     if (print_top_level_exp_flag) {
         print_top_connected(worker);

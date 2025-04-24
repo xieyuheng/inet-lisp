@@ -22,11 +22,16 @@ run(commander_t *commander) {
 
         if (string_equal(arg, "--print-top-level-exp") || string_equal(arg, "-p")) {
             if (DEBUG_NODE_ALLOCATOR_DISABLED) {
-                printf("[run] can not print when DEBUG_NODE_ALLOCATOR_DISABLED");
+                printf("[run] can not print when compiled with DEBUG_NODE_ALLOCATOR_DISABLED");
                 exit(1);
             }
 
             print_top_level_exp_flag = true;
+            continue;
+        }
+
+        if (string_equal(arg, "--no-run-top-level-exp")) {
+            no_run_top_level_exp = true;
             continue;
         }
 
