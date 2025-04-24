@@ -27,8 +27,9 @@ static void
 take_node(connected_node_iter_t *self, node_t *node) {
     set_add(self->occurred_node_set, node);
     node_neighborhood_t *node_neighborhood = hash_get(self->node_neighborhood_hash, node);
-    for (size_t i = 0; i < array_length(node_neighborhood->node_neighbor_array); i++) {
-        node_neighbor_t *node_neighbor = array_get(node_neighborhood->node_neighbor_array, i);
+    size_t length = node_neighborhood_node(node_neighborhood)->ctor->arity;
+    for (size_t i = 0; i < length; i++) {
+        node_neighbor_t *node_neighbor = node_neighborhood_get(node_neighborhood, i);
         if (node_neighbor) {
             list_push(self->remaining_node_list, node_neighbor->end_node);
         }

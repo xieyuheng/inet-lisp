@@ -1,6 +1,3 @@
-[net] `node_neighborhood_get`
-[net] `node_neighborhood_set`
-
 [net] `node_neighborhood_print` -- fix ending `)`
 [net] `node_neighborhood_print` -- be more lispy
 
