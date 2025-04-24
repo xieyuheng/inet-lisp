@@ -1,4 +1,8 @@
-[net] `node_print_connected` print sorted port
+[net] `node_neighborhood_t` -- replace `node_adjacency` + `node_adjacency_array`
+
+- [net] `node_print_connected` print sorted port
+
+[lang] `run` top level exp by default
 [lang] refactor `define_rule_star`
 [core] fix `worker_apply` for function
 
