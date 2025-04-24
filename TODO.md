@@ -1,3 +1,6 @@
+[core] remove primitive support
+
+[core] simple `task_t` -- remove remove primitive support
 remove multi principal port support
 copy net/ & core/ from inet-forth
 
