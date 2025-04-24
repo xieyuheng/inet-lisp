@@ -122,6 +122,11 @@ print_connected(worker_t *worker, value_t value) {
 
 static void
 print_top_connected(worker_t *worker) {
+    if (DEBUG_NODE_ALLOCATOR_DISABLED) {
+        who_printf("can not print when DEBUG_NODE_ALLOCATOR_DISABLED");
+        exit(1);
+    }
+
     value_t value = stack_top(worker->value_stack);
     if (!value) {
         who_printf("expect top value\n");
