@@ -10,4 +10,4 @@
 
 (define (two) (add1 (add1 (zero))))
 
-(inspect-run (add (two) (two)))
+(add (two) (two))

@@ -1,51 +1,4 @@
 <net>
-:root (add₁₅)
-(add₁₅
- :target! -<>-result-(add₇)
- :addend -<>-result-(add₁₄))
-(add₁₄
- :target! -<>-!value-(add1₁₀)
- :addend -<>-!value-(add1₁₃)
- :result -<>-addend-(add₁₅))
-(add1₁₃
- :prev -<>-!value-(add1₁₂)
- :value! -<>-addend-(add₁₄))
-(add1₁₂
- :prev -<>-!value-(zero₁₁)
- :value! -<>-prev-(add1₁₃))
-(zero₁₁
- :value! -<>-prev-(add1₁₂))
-(add1₁₀
- :prev -<>-!value-(add1₉)
- :value! -<>-!target-(add₁₄))
-(add1₉
- :prev -<>-!value-(zero₈)
- :value! -<>-prev-(add1₁₀))
-(zero₈
- :value! -<>-prev-(add1₉))
-(add₇
- :target! -<>-!value-(add1₃)
- :addend -<>-!value-(add1₆)
- :result -<>-!target-(add₁₅))
-(add1₆
- :prev -<>-!value-(add1₅)
- :value! -<>-addend-(add₇))
-(add1₅
- :prev -<>-!value-(zero₄)
- :value! -<>-prev-(add1₆))
-(zero₄
- :value! -<>-prev-(add1₅))
-(add1₃
- :prev -<>-!value-(add1₂)
- :value! -<>-!target-(add₇))
-(add1₂
- :prev -<>-!value-(zero₁)
- :value! -<>-prev-(add1₃))
-(zero₁
- :value! -<>-prev-(add1₂))
-</net>
-
-<net>
 :root (add1₁₅)
 (add1₁₅
  :prev -<>-!value-(add1₇))
@@ -75,63 +28,20 @@
 </net>
 
 <net>
-:root (mul₂₂)
-(mul₂₂
- :target! -<>-!value-(add1₁₈)
- :mulend -<>-!value-(add1₂₁))
-(add1₂₁
- :prev -<>-!value-(add1₂₀)
- :value! -<>-mulend-(mul₂₂))
-(add1₂₀
- :prev -<>-!value-(zero₁₉)
- :value! -<>-prev-(add1₂₁))
-(zero₁₉
- :value! -<>-prev-(add1₂₀))
-(add1₁₈
- :prev -<>-!value-(add1₁₇)
- :value! -<>-!target-(mul₂₂))
-(add1₁₇
- :prev -<>-!value-(zero₁₆)
- :value! -<>-prev-(add1₁₈))
-(zero₁₆
- :value! -<>-prev-(add1₁₇))
-</net>
-
-<net>
 :root (add1₁₀₂₅)
 (add1₁₀₂₅
- :prev -<>-!value-(add1₃₀₇₄))
-(add1₃₀₇₄
+ :prev -<>-!value-(add1₄₀₉₇))
+(add1₄₀₉₇
  :prev -<>-!value-(add1₁₈)
  :value! -<>-prev-(add1₁₀₂₅))
 (add1₁₈
  :prev -<>-!value-(add1₂₁)
- :value! -<>-prev-(add1₃₀₇₄))
+ :value! -<>-prev-(add1₄₀₉₇))
 (add1₂₁
  :value! -<>-prev-(add1₁₈)
  :prev -<>-!value-(zero₁₉))
 (zero₁₉
  :value! -<>-prev-(add1₂₁))
-</net>
-
-<net>
-:root (nat-max₂₈)
-(nat-max₂₈
- :first! -<>-!value-(add1₂₄)
- :second -<>-!value-(add1₂₇))
-(add1₂₇
- :prev -<>-!value-(add1₂₆)
- :value! -<>-second-(nat-max₂₈))
-(add1₂₆
- :prev -<>-!value-(zero₂₅)
- :value! -<>-prev-(add1₂₇))
-(zero₂₅
- :value! -<>-prev-(add1₂₆))
-(add1₂₄
- :prev -<>-!value-(zero₂₃)
- :value! -<>-!first-(nat-max₂₈))
-(zero₂₃
- :value! -<>-prev-(add1₂₄))
 </net>
 
 <net>

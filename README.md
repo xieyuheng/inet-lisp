@@ -113,7 +113,7 @@ The whole program with test:
 
 (define (two) (add1 (add1 (zero))))
 
-(inspect-run (add (two) (two)))
+(add (two) (two))
 ```
 
 ### List
@@ -131,10 +131,9 @@ The whole program with test:
 
 (define-node sole value!)
 
-(inspect-run
-  (append
-    (cons (sole) (cons (sole) (cons (sole) (null))))
-    (cons (sole) (cons (sole) (cons (sole) (null))))))
+(append
+ (cons (sole) (cons (sole) (cons (sole) (null))))
+ (cons (sole) (cons (sole) (cons (sole) (null)))))
 ```
 
 ### More

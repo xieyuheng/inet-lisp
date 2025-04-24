@@ -8,7 +8,6 @@
   (cons (sole) (cons (sole) back) front-op)
   value)
 
-(inspect-run
- (diff-append
-  (sole-diff-list)
-  (sole-diff-list)))
+(diff-append
+ (sole-diff-list)
+ (sole-diff-list))

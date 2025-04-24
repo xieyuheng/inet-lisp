@@ -1,43 +1,4 @@
 <net>
-:root (diff-append₁₁)
-(diff-append₁₁
- :target! -<>-!value-(diff₁)
- :rest -<>-!value-(diff₆))
-(diff₆
- :back -<>-tail-(cons₉)
- :front -<>-!value-(cons₁₀)
- :value! -<>-rest-(diff-append₁₁))
-(cons₁₀
- :value! -<>-front-(diff₆)
- :head -<>-!value-(sole₇)
- :tail -<>-!value-(cons₉))
-(cons₉
- :tail -<>-back-(diff₆)
- :head -<>-!value-(sole₈)
- :value! -<>-tail-(cons₁₀))
-(sole₈
- :value! -<>-head-(cons₉))
-(sole₇
- :value! -<>-head-(cons₁₀))
-(diff₁
- :back -<>-tail-(cons₄)
- :front -<>-!value-(cons₅)
- :value! -<>-!target-(diff-append₁₁))
-(cons₅
- :value! -<>-front-(diff₁)
- :head -<>-!value-(sole₂)
- :tail -<>-!value-(cons₄))
-(cons₄
- :tail -<>-back-(diff₁)
- :head -<>-!value-(sole₃)
- :value! -<>-tail-(cons₅))
-(sole₃
- :value! -<>-head-(cons₄))
-(sole₂
- :value! -<>-head-(cons₅))
-</net>
-
-<net>
 :root (diff₁)
 (diff₁
  :front -<>-!value-(cons₅)

@@ -3,4 +3,4 @@
 
 (define (sixteen) (mul (four) (four)))
 
-(inspect-run (mul (sixteen) (sixteen)))
+(mul (sixteen) (sixteen))

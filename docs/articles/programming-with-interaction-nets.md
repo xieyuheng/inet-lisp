@@ -283,7 +283,7 @@ and use `--` to comment a line.
 
 (define (two) (add1 (add1 (zero))))
 
-(inspect-run (add (two) (two)))
+(add (two) (two))
 ```
 
 # 7
@@ -491,7 +491,7 @@ Rule definition:
 (define-rule (nat-max-add1 (add1 prev) first result)
   (add1 (nat-max first prev) result))
 
-(inspect-run (nat-max (one) (two)))
+(nat-max (one) (two))
 ```
 
 # 9
@@ -554,7 +554,7 @@ there will be no complicated syntax preventing us from doing so.
        mulend-first
        result))
 
-(inspect-run (mul (two) (two)))
+(mul (two) (two))
 ```
 
 # 10
@@ -584,10 +584,9 @@ while the `(cons)` of list add one node and link to an extra node.
 
 (define-node sole value!)
 
-(inspect-run
-  (append
-    (cons (sole) (cons (sole) (cons (sole) (null))))
-    (cons (sole) (cons (sole) (cons (sole) (null))))))
+(append
+ (cons (sole) (cons (sole) (cons (sole) (null))))
+ (cons (sole) (cons (sole) (cons (sole) (null)))))
 ```
 
 # 11
@@ -639,10 +638,9 @@ the relationship between all nodes is symmetric.
   (cons (sole) (cons (sole) back) front-op)
   value)
 
-(inspect-run
- (diff-append
-  (sole-diff-list)
-  (sole-diff-list)))
+(diff-append
+ (sole-diff-list)
+ (sole-diff-list))
 ```
 
 # 12
@@ -681,4 +679,4 @@ We can make the language a practical programming language,
 by extending it with primitive datatypes like int and float.
 
 How to design such extension?
-Please wait for my next report :)
+Please wait for my next report!

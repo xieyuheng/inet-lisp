@@ -41,8 +41,7 @@ type node 和自身反应会消除自身并且形成 unification，
 
 (define-node sole value!)
 
-(inspect-run
- (append
-  (cons (sole) (cons (sole) (cons (sole) (null))))
-  (cons (sole) (cons (sole) (cons (sole) (null))))))
+(append
+ (cons (sole) (cons (sole) (cons (sole) (null))))
+ (cons (sole) (cons (sole) (cons (sole) (null)))))
 ```

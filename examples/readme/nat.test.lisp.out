@@ -1,27 +1,4 @@
 <net>
-:root (add₇)
-(add₇
- :target! -<>-!value-(add1₃)
- :addend -<>-!value-(add1₆))
-(add1₆
- :prev -<>-!value-(add1₅)
- :value! -<>-addend-(add₇))
-(add1₅
- :prev -<>-!value-(zero₄)
- :value! -<>-prev-(add1₆))
-(zero₄
- :value! -<>-prev-(add1₅))
-(add1₃
- :prev -<>-!value-(add1₂)
- :value! -<>-!target-(add₇))
-(add1₂
- :prev -<>-!value-(zero₁)
- :value! -<>-prev-(add1₃))
-(zero₁
- :value! -<>-prev-(add1₂))
-</net>
-
-<net>
 :root (add1₇)
 (add1₇
  :prev -<>-!value-(add1₃))
