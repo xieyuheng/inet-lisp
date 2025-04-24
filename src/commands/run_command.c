@@ -14,10 +14,19 @@ int
 run(commander_t *commander) {
     char **argv = commander_rest_argv(commander);
     while (*argv) {
-        char *src = *argv++;
-        char *cwd = getcwd(NULL, 0);
-        path_t *path = path_new(cwd);
-        path_join(path, src);
+        char *arg = *argv++;
+        if (string_equal(arg, "--single-threaded") || string_equal(arg, "-s")) {
+            single_threaded_flag = true;
+            continue;
+        }
+
+        if (string_equal(arg, "--print-top-level-exp") || string_equal(arg, "-p")) {
+            print_top_level_exp_flag = true;
+            continue;
+        }
+
+        path_t *path = path_new_cwd();
+        path_join(path, arg);
         load_mod(path);
     }
 

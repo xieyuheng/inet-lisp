@@ -1,5 +1,5 @@
-[lang] print top level exp on `--print` (`print_flag`)
-[lang] print top level exp on `--no-run` (`no_run_flag`)
+[lang] print top level exp on `-p` `--print-top-level-exp` (`print_top_level_exp_flag`)
+[lang] do not run top level exp on `--no-run-top-level-exp` (`no_run_top_level_exp`)
 
 [lang] `compute_exp` -- handle `DEBUG_NODE_ALLOCATOR_DISABLED`
 
