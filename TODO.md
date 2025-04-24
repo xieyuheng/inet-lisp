@@ -1,6 +1,5 @@
-[lang] move `node_pattern_t` to `lang/`
 copy `net/` & `core/` from inet-forth
-
+[lang] fix net printer
 [lang] refactor `define_rule_star`
 
 # example
