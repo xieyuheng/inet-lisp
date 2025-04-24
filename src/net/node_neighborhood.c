@@ -45,6 +45,18 @@ node_neighborhood_maybe_add_node(node_neighborhood_t *self, node_t *node) {
     }
 }
 
+static void
+node_neighbor_print_end_port(const node_neighbor_t *self, file_t *file) {
+    port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
+
+    if (end_port_info->is_principal)
+        fprintf(file, "-<>-!%s-", end_port_info->name);
+    else
+        fprintf(file, "-<>-%s-", end_port_info->name);
+
+    node_print(self->end_node, file);
+}
+
 void
 node_neighborhood_print(node_neighborhood_t *self, file_t *file) {
     fprintf(file, "(");
@@ -52,12 +64,21 @@ node_neighborhood_print(node_neighborhood_t *self, file_t *file) {
     fprintf(file, "\n");
     size_t length = self->node->ctor->arity;
     for (size_t i = 0; i < length; i++) {
+        port_info_t *port_info = node_get_port_info(self->node, i);
+        if (port_info->is_principal)
+            fprintf(file, " :%s! ", port_info->name);
+        else
+            fprintf(file, " :%s ", port_info->name);
+
         node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
         if (node_neighbor) {
-            node_neighbor_print(node_neighbor, file);
-            if (i < length - 1) {
-                fprintf(file, "\n");
-            }
+            node_neighbor_print_end_port(node_neighbor, file);
+        } else {
+            fprintf(file, "empty");
+        }
+
+        if (i < length - 1) {
+            fprintf(file, "\n");
         }
     }
 

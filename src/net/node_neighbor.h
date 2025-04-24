@@ -9,5 +9,3 @@ struct node_neighbor_t {
 
 node_neighbor_t *node_neighbor_new_maybe(node_t *start_node, node_t *end_node);
 void node_neighbor_destroy(node_neighbor_t **self_pointer);
-
-void node_neighbor_print(const node_neighbor_t *self, file_t *file);

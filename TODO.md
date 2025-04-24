@@ -1,4 +1,3 @@
-[net] `node_neighborhood_print` -- fix ending `)`
 [net] `node_neighborhood_print` -- be more lispy
 
 [lang] refactor `define_rule_star`

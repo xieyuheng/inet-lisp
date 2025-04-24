@@ -3,7 +3,7 @@
 (cons₁₅
  :head -<>-!value-(sole₁)
  :tail -<>-!value-(cons₇)
-)
+ :value! empty)
 (cons₇
  :head -<>-!value-(sole₂)
  :tail -<>-!value-(cons₆)

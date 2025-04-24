@@ -2,7 +2,7 @@
 :root (add1₁₅)
 (add1₁₅
  :prev -<>-!value-(add1₇)
-)
+ :value! empty)
 (add1₇
  :prev -<>-!value-(add1₃)
  :value! -<>-prev-(add1₁₅))
@@ -32,7 +32,7 @@
 :root (add1₁₀₂₅)
 (add1₁₀₂₅
  :prev -<>-!value-(add1₃₀₇₄)
-)
+ :value! empty)
 (add1₃₀₇₄
  :prev -<>-!value-(add1₁₈)
  :value! -<>-prev-(add1₁₀₂₅))
@@ -50,7 +50,7 @@
 :root (add1₂₄)
 (add1₂₄
  :prev -<>-!value-(add1₂₆)
-)
+ :value! empty)
 (add1₂₆
  :prev -<>-!value-(zero₂₅)
  :value! -<>-prev-(add1₂₄))
