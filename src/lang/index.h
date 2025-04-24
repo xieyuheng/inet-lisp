@@ -8,5 +8,6 @@
 #include "compile.h"
 #include "node_pattern.h"
 #include "define.h"
+#include "run_exp.h"
 #include "execute.h"
 #include "load.h"

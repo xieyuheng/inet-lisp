@@ -1,4 +1,3 @@
-[lang] extract `execute_run_exp`
 [lang] `print_connected` -- be more lispy
 [lang] refactor `define_rule_star`
 
