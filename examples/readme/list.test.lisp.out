@@ -2,19 +2,20 @@
 :root (cons₁₅)
 (cons₁₅
  :head -<>-!value-(sole₁)
- :tail -<>-!value-(cons₇))
+ :tail -<>-!value-(cons₇)
+)
 (cons₇
  :head -<>-!value-(sole₂)
  :tail -<>-!value-(cons₆)
  :value! -<>-tail-(cons₁₅))
 (cons₆
  :head -<>-!value-(sole₃)
- :value! -<>-tail-(cons₇)
- :tail -<>-!value-(cons₁₄))
+ :tail -<>-!value-(cons₁₄)
+ :value! -<>-tail-(cons₇))
 (cons₁₄
- :value! -<>-tail-(cons₆)
  :head -<>-!value-(sole₈)
- :tail -<>-!value-(cons₁₃))
+ :tail -<>-!value-(cons₁₃)
+ :value! -<>-tail-(cons₆))
 (cons₁₃
  :head -<>-!value-(sole₉)
  :tail -<>-!value-(cons₁₂)

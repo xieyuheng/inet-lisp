@@ -38,25 +38,6 @@ node_neighbor_print(const node_neighbor_t *self, file_t *file) {
     port_info_t *start_port_info = node_get_port_info(self->start_node, self->start_port_index);
     port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
 
-    node_print(self->start_node, file);
-
-    if (start_port_info->is_principal)
-        fprintf(file, "-%s!-<", start_port_info->name);
-    else
-        fprintf(file, "-%s-<", start_port_info->name);
-
-    if (end_port_info->is_principal)
-        fprintf(file, ">-!%s-", end_port_info->name);
-    else
-        fprintf(file, ">-%s-", end_port_info->name);
-
-    node_print(self->end_node, file);
-}
-
-void node_neighbor_print_as_neighbor(const node_neighbor_t *self, file_t *file) {
-    port_info_t *start_port_info = node_get_port_info(self->start_node, self->start_port_index);
-    port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
-
     if (start_port_info->is_principal)
         fprintf(file, " :%s! ", start_port_info->name);
     else

@@ -1,11 +1,8 @@
 [net] `node_neighborhood_get`
 [net] `node_neighborhood_set`
 
-[net] `node_neighborhood_t` -- replace `node_adjacency_array`
-
-- [net] `node_print_connected` -- print sorted port
-
-[net] `node_print_connected` -- be more lispy
+[net] `node_neighborhood_print` -- fix ending `)`
+[net] `node_neighborhood_print` -- be more lispy
 
 [lang] refactor `define_rule_star`
 

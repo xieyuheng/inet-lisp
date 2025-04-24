@@ -22,21 +22,23 @@ node_neighborhood_destroy(node_neighborhood_t **self_pointer) {
 hash_t *
 build_node_neighborhood_hash(node_allocator_t *node_allocator) {
     hash_t *node_neighborhood_hash = hash_new();
-    hash_set_destroy_fn(node_neighborhood_hash, (destroy_fn_t *) array_destroy);
+    hash_set_destroy_fn(node_neighborhood_hash, (destroy_fn_t *) node_neighborhood_destroy);
 
     array_t *node_array = allocated_node_array(node_allocator);
     size_t length = array_length(node_array);
     for (size_t i = 0; i < length; i++) {
         node_t *x = array_get(node_array, i);
-        array_t *node_neighbor_array =
-            array_new_auto_with((destroy_fn_t *) node_neighbor_destroy);
-        hash_set(node_neighborhood_hash, x, node_neighbor_array);
+        node_neighborhood_t *node_neighborhood = node_neighborhood_new(x);
+        hash_set(node_neighborhood_hash, x, node_neighborhood);
 
         for (size_t j = 0; j < length; j++) {
             node_t *y = array_get(node_array, j);
             node_neighbor_t *node_neighbor = node_neighbor_new_maybe(x, y);
             if (node_neighbor) {
-                array_push(node_neighbor_array, node_neighbor);
+                array_set(
+                    node_neighborhood->node_neighbor_array,
+                    node_neighbor->start_port_index,
+                    node_neighbor);
             }
         }
     }
@@ -46,11 +48,21 @@ build_node_neighborhood_hash(node_allocator_t *node_allocator) {
 }
 
 void
-node_neighbor_array_print(array_t *node_neighbor_array, file_t *file) {
-    assert(node_neighbor_array);
-    size_t length = array_length(node_neighbor_array);
+node_neighborhood_print(node_neighborhood_t *self, file_t *file) {
+    fprintf(file, "(");
+    node_print_name(self->node, file);
+    fprintf(file, "\n");
+    size_t length = self->node->ctor->arity;
     for (size_t i = 0; i < length; i++) {
-        node_neighbor_t *node_neighbor = array_get(node_neighbor_array, i);        node_neighbor_print(node_neighbor, file);
-        fprintf(file, "\n");
+        node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
+        if (node_neighbor) {
+            node_neighbor_print(node_neighbor, file);
+            if (i < length - 1) {
+                fprintf(file, "\n");
+            }
+        }
     }
+
+    fprintf(file, ")");
+    fprintf(file, "\n");
 }
