@@ -151,7 +151,7 @@ build_net(worker_t *worker, exp_t *exp) {
 }
 
 static void
-compute_exp(worker_t *worker, exp_t *exp) {
+run_exp(worker_t *worker, exp_t *exp) {
     build_net(worker, exp);
 
     if (!no_run_top_level_exp) {
@@ -167,7 +167,7 @@ void
 execute(worker_t *worker, stmt_t *stmt) {
     switch (stmt->kind) {
     case STMT_DEFINE: {
-        compute_exp(worker, stmt->define.exp);
+        run_exp(worker, stmt->define.exp);
         value_t value = stack_pop(worker->value_stack);
         define(worker->mod, stmt->define.name, value);
         return;
@@ -207,8 +207,8 @@ execute(worker_t *worker, stmt_t *stmt) {
         return;
     }
 
-    case STMT_COMPUTE_EXP: {
-        compute_exp(worker, stmt->compute_exp.exp);
+    case STMT_RUN_EXP: {
+        run_exp(worker, stmt->run_exp.exp);
         return;
     }
 
