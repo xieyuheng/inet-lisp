@@ -1,10 +1,7 @@
-[lang] `compute_exp` -- handle `DEBUG_NODE_ALLOCATOR_DISABLED`
-
-[main] extract flags.h and flags.c from config.h and inet-lisp.c
 [lang] print top level exp on `--print` (`print_flag`)
 [lang] print top level exp on `--no-run` (`no_run_flag`)
 
-
+[lang] `compute_exp` -- handle `DEBUG_NODE_ALLOCATOR_DISABLED`
 
 [net] `node_neighborhood_t` -- replace `node_adjacency` + `node_adjacency_array`
 

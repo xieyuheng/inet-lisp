@@ -13,4 +13,5 @@
 #include <pthread.h>
 
 #include "config.h"
+#include "flags.h"
 #include "modules/index.h"
