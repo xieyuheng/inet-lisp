@@ -1,5 +1,3 @@
-[prelude] remove `x_wire_print_net`
-
 remove multi principal port support
 copy net/ & core/ from inet-forth
 

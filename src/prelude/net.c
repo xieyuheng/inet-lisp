@@ -21,7 +21,7 @@ x_connect(worker_t *worker) {
     }
 }
 
-void
+static void
 x_wire_print_net(worker_t *worker) {
     wire_t *wire = as_wire(stack_top(worker->value_stack));
     wire_print_net(wire, stdout);
