@@ -3,6 +3,7 @@
 - [net] `node_print_connected` print sorted port
 
 [lang] `run` top level exp by default
+[lang] print top level exp on `--print` (`print_flag`)
 [lang] refactor `define_rule_star`
 [core] fix `worker_apply` for function
 
