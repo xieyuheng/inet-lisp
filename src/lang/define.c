@@ -14,23 +14,35 @@ define_rule(mod_t *self, const char *name, rule_t *rule) {
 
 void
 define_rule_star(worker_t *worker, list_t *node_pattern_list, list_t *exp_list) {
-    net_pattern_t *net_pattern = net_pattern_new(node_pattern_list);
-    array_t *local_name_array = net_pattern_local_name_array(net_pattern);
-    size_t arity = array_length(local_name_array);
+    assert(list_length(node_pattern_list) == 2);
+    node_pattern_t *left_node_pattern = list_first(node_pattern_list);
+    node_pattern_t *right_node_pattern = list_next(node_pattern_list);
+    
+    list_t *local_name_list = list_new();
+
+    for (size_t i = 0; i < left_node_pattern->ctor->arity; i++) {
+        port_info_t *port_info = left_node_pattern->port_infos[i];
+        if (!port_info->is_principal) {
+            list_push(local_name_list, port_info->name);
+        }
+    }
+
+    for (size_t i = 0; i < right_node_pattern->ctor->arity; i++) {
+        port_info_t *port_info = right_node_pattern->port_infos[i];
+        if (!port_info->is_principal) {
+            list_push(local_name_list, port_info->name);
+        }        
+    }    
+
+    size_t arity = list_length(local_name_list);
     function_t *function = function_new(arity);
-    list_t *local_name_list = list_from_array(local_name_array);
+    
     compile_set_variable_list(worker, function, local_name_list);
     compile_exp_list(worker, function, exp_list);
 
-    node_pattern_t *node_pattern = list_first(node_pattern_list);
-    size_t index = 0;
-    while (node_pattern) {
-        rule_t *rule = rule_new(index, net_pattern, function);
-        define_rule(worker->mod, node_pattern->ctor->name, rule);
-        node_pattern = list_next(node_pattern_list);
-        index++;
-    }
-
+    rule_t *rule = rule_new(left_node_pattern->ctor, right_node_pattern->ctor, function);
+    define_rule(worker->mod, left_node_pattern->ctor->name, rule);
+    define_rule(worker->mod, right_node_pattern->ctor->name, rule);
     return;
 }
 

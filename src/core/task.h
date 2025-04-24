@@ -1,14 +1,12 @@
 #pragma once
 
 struct task_t {
+    wire_t *left;
+    wire_t *right;
     const rule_t *rule;
-    net_matcher_t *net_matcher;
 };
 
-task_t *task_new(const rule_t *rule, net_matcher_t *net_matcher);
+task_t *task_new(wire_t *left, wire_t *right, const rule_t *rule);
 void task_destroy(task_t **self_pointer);
-
-void maybe_return_task_by_node(worker_t *worker, node_t *node);
-void maybe_return_task_by_node_and_neighbor(worker_t *worker, node_t *node);
 
 void task_print(task_t *self, file_t *file);

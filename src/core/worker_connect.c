@@ -15,10 +15,7 @@ connect_wire(worker_t* worker, wire_t *first_wire, wire_t *second_wire) {
         wire_destroy(&first_wire);
         wire_destroy(&second_wire);
 
-        if (first_opposite_wire->node)
-            maybe_return_task_by_node(worker, first_opposite_wire->node);
-        if (second_opposite_wire->node)
-            maybe_return_task_by_node(worker, second_opposite_wire->node);
+        worker_maybe_add_active_wire(worker, first_opposite_wire);
 
         return first_opposite_wire;
     } else if (is_wire(first_opposite)) {
@@ -28,9 +25,8 @@ connect_wire(worker_t* worker, wire_t *first_wire, wire_t *second_wire) {
         wire_destroy(&first_wire);
         wire_destroy(&second_wire);
 
-        if (first_opposite_wire->node)
-            maybe_return_task_by_node(worker, first_opposite_wire->node);
-
+        worker_maybe_add_active_wire(worker, first_opposite_wire);
+        
         return first_opposite_wire;
     } else if (is_wire(second_opposite)) {
         wire_t *second_opposite_wire = as_wire(second_opposite);
@@ -39,9 +35,8 @@ connect_wire(worker_t* worker, wire_t *first_wire, wire_t *second_wire) {
         wire_destroy(&first_wire);
         wire_destroy(&second_wire);
 
-        if (second_opposite_wire->node)
-            maybe_return_task_by_node(worker, second_opposite_wire->node);
-
+        worker_maybe_add_active_wire(worker, second_opposite_wire);
+        
         return second_opposite_wire;
     } else {
         fprintf(stderr, "[connect_wire] can not connect wires with non-wire opposite\n");
@@ -68,9 +63,8 @@ worker_connect(worker_t* worker, wire_t *wire, value_t value) {
 
         wire_destroy(&wire);
 
-         if (opposite_wire->node)
-             maybe_return_task_by_node(worker, opposite_wire->node);
-
+        worker_maybe_add_active_wire(worker, opposite_wire);
+         
          return opposite_wire;
      } else {
         fprintf(stderr, "[worker_connect] can not connect wire with non-wire opposite to value\n");

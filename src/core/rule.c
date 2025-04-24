@@ -1,10 +1,14 @@
 #include "index.h"
 
 rule_t *
-rule_new(size_t starting_index, net_pattern_t *net_pattern, function_t *function) {
+rule_new(
+    const node_ctor_t *left_node_ctor,
+    const node_ctor_t *right_node_ctor,
+    const function_t *function
+) {
     rule_t *self = new(rule_t);
-    self->starting_index = starting_index;
-    self->net_pattern = net_pattern;
+    self->left_node_ctor = left_node_ctor;
+    self->right_node_ctor = right_node_ctor;
     self->function = function;
     return self;
 }
@@ -15,9 +19,8 @@ rule_destroy(rule_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     rule_t *self = *self_pointer;
-    // NOTE A rule dose not own `net_pattern` and `function`.
+    // NOTE A rule dose not own `function`.
     //   because they might be shared.
-    // net_pattern_destroy(&self->net_pattern);
     // function_destroy(&self->function);
     free(self);
     *self_pointer = NULL;
@@ -25,8 +28,8 @@ rule_destroy(rule_t **self_pointer) {
 
 void
 rule_print(const rule_t *self, file_t *file) {
-    fprintf(file, "<rule starting-index=\"%lu\">\n", self->starting_index);
-    net_pattern_print(self->net_pattern, file);
+    fprintf(file, "! (%s)-(%s) ",
+            self->left_node_ctor->name,
+            self->right_node_ctor->name);
     function_print(self->function, file);
-    fprintf(file, "</rule>\n");
 }

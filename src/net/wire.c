@@ -66,6 +66,7 @@ wire_is_free(const wire_t *self) {
 bool
 wire_is_principal(const wire_t *self) {
     if (!self->node) return false;
+    if (!self->node->ctor) return false;
 
     port_info_t *port_info = self->node->ctor->port_infos[self->index];
     return port_info->is_principal;

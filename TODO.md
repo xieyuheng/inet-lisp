@@ -1,5 +1,8 @@
-[net] remove `net_matcher_t` -- to remove multi principal port support
-copy net/ & core/ from inet-forth
+[net] remove `net_pattern_t`
+[lang] move `node_pattern_t` to `lang/`
+copy `net/` & `core/` from inet-forth
+
+[lang] refactor `define_rule_star`
 
 # example
 

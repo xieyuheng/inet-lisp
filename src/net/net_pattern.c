@@ -3,7 +3,6 @@
 struct net_pattern_t {
     array_t *node_pattern_array;
     set_t *local_name_set;
-    array_t *local_name_array;
 };
 
 static void
@@ -32,7 +31,6 @@ net_pattern_new(list_t *node_pattern_list) {
 
     self->local_name_set = string_set_new();
     init_local_name_set(self->local_name_set, self->node_pattern_array);
-    self->local_name_array = set_to_array(self->local_name_set);
     return self;
 }
 
@@ -44,7 +42,6 @@ net_pattern_destroy(net_pattern_t **self_pointer) {
     net_pattern_t *self = *self_pointer;
     array_destroy(&self->node_pattern_array);
     set_destroy(&self->local_name_set);
-    array_destroy(&self->local_name_array);
     free(self);
     *self_pointer = NULL;
 }
@@ -59,11 +56,6 @@ net_pattern_get(const net_pattern_t *self, size_t index) {
     return array_get(self->node_pattern_array, index);
 }
 
-array_t *
-net_pattern_local_name_array(const net_pattern_t *self) {
-    return self->local_name_array;
-}
-
 void
 net_pattern_print(const net_pattern_t *self, file_t *file) {
     fprintf(file, "<net-pattern>\n");
@@ -75,10 +67,6 @@ net_pattern_print(const net_pattern_t *self, file_t *file) {
         printf("\n");
     }
     fprintf(file, "</node-pattern-list>\n");
-
-    fprintf(file, "<local-name-array>");
-    string_array_print(self->local_name_array, ", ", file);
-    fprintf(file, "</local-name-array>\n");
 
     fprintf(file, "</net-pattern>\n");
 }
