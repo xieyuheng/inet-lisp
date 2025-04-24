@@ -1,4 +1,5 @@
-[net] `node_neighborhood_destroy`
+[net] `node_neighborhood_get`
+[net] `node_neighborhood_set`
 
 [net] `node_neighborhood_t` -- replace `node_adjacency_array`
 

@@ -7,3 +7,6 @@ struct node_neighborhood_t {
 
 node_neighborhood_t *node_neighborhood_new(node_t *node);
 void node_neighborhood_destroy(node_neighborhood_t **self_pointer);
+
+hash_t *build_node_neighborhood_hash(node_allocator_t *node_allocator);
+void node_neighbor_array_print(array_t *node_neighbor_array, file_t *file);
