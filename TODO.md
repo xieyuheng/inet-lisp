@@ -1,4 +1,3 @@
-[net] remove `net_pattern_t`
 [lang] move `node_pattern_t` to `lang/`
 copy `net/` & `core/` from inet-forth
 
