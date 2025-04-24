@@ -79,13 +79,29 @@ node_adjacency_print(const node_adjacency_t *self, file_t *file) {
     node_print(self->end_node, file);
 }
 
+void node_adjacency_print_as_neighbor(const node_adjacency_t *self, file_t *file) {
+    port_info_t *start_port_info = node_get_port_info(self->start_node, self->start_port_index);
+    port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
+
+    if (start_port_info->is_principal)
+        fprintf(file, " :%s! ", start_port_info->name);
+    else
+        fprintf(file, " :%s ", start_port_info->name);
+
+    if (end_port_info->is_principal)
+        fprintf(file, "-<>-!%s-", end_port_info->name);
+    else
+        fprintf(file, "-<>-%s-", end_port_info->name);
+
+    node_print(self->end_node, file);
+}
+
 void
 node_adjacency_array_print(array_t *node_adjacency_array, file_t *file) {
     assert(node_adjacency_array);
     size_t length = array_length(node_adjacency_array);
     for (size_t i = 0; i < length; i++) {
-        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
-        node_adjacency_print(node_adjacency, file);
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);        node_adjacency_print(node_adjacency, file);
         fprintf(file, "\n");
     }
 }

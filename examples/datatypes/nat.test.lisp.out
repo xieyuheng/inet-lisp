@@ -1,9 +1,8 @@
 <net>
-:root -<>-result-(add₁₅)
+:root (add₁₅)
 (add₁₅
  :target! -<>-result-(add₇)
- :addend -<>-result-(add₁₄)
- :result -<>-)
+ :addend -<>-result-(add₁₄))
 (add₁₄
  :target! -<>-!value-(add1₁₀)
  :addend -<>-!value-(add1₁₃)
@@ -47,28 +46,27 @@
 </net>
 
 <net>
-:root -<>-!value-(add1₂₃)
-(add1₂₃
- :prev -<>-!value-(add1₂₇)
- :value! -<>-)
-(add1₂₇
- :prev -<>-!value-(add1₂₉)
- :value! -<>-prev-(add1₂₃))
-(add1₂₉
- :prev -<>-!value-(add1₃₁)
- :value! -<>-prev-(add1₂₇))
-(add1₃₁
- :prev -<>-!value-(add1₁₇)
- :value! -<>-prev-(add1₂₉))
-(add1₁₇
- :prev -<>-!value-(add1₁₉)
- :value! -<>-prev-(add1₃₁))
-(add1₁₉
+:root (add1₁₅)
+(add1₁₅
+ :prev -<>-!value-(add1₇))
+(add1₇
+ :prev -<>-!value-(add1₃)
+ :value! -<>-prev-(add1₁₅))
+(add1₃
+ :prev -<>-!value-(add1₆)
+ :value! -<>-prev-(add1₇))
+(add1₆
+ :value! -<>-prev-(add1₃)
+ :prev -<>-!value-(add1₁₄))
+(add1₁₄
+ :value! -<>-prev-(add1₆)
+ :prev -<>-!value-(add1₁₀))
+(add1₁₀
  :prev -<>-!value-(add1₁₃)
- :value! -<>-prev-(add1₁₇))
+ :value! -<>-prev-(add1₁₄))
 (add1₁₃
- :prev -<>-!value-(add1₁₂)
- :value! -<>-prev-(add1₁₉))
+ :value! -<>-prev-(add1₁₀)
+ :prev -<>-!value-(add1₁₂))
 (add1₁₂
  :prev -<>-!value-(zero₁₁)
  :value! -<>-prev-(add1₁₃))
@@ -77,77 +75,73 @@
 </net>
 
 <net>
-:root -<>-result-(mul₃₈)
-(mul₃₈
- :target! -<>-!value-(add1₃₄)
- :mulend -<>-!value-(add1₃₇)
- :result -<>-)
-(add1₃₇
- :prev -<>-!value-(add1₃₆)
- :value! -<>-mulend-(mul₃₈))
-(add1₃₆
- :prev -<>-!value-(zero₃₅)
- :value! -<>-prev-(add1₃₇))
-(zero₃₅
- :value! -<>-prev-(add1₃₆))
-(add1₃₄
- :prev -<>-!value-(add1₃₃)
- :value! -<>-!target-(mul₃₈))
-(add1₃₃
- :prev -<>-!value-(zero₃₂)
- :value! -<>-prev-(add1₃₄))
-(zero₃₂
- :value! -<>-prev-(add1₃₃))
+:root (mul₂₂)
+(mul₂₂
+ :target! -<>-!value-(add1₁₈)
+ :mulend -<>-!value-(add1₂₁))
+(add1₂₁
+ :prev -<>-!value-(add1₂₀)
+ :value! -<>-mulend-(mul₂₂))
+(add1₂₀
+ :prev -<>-!value-(zero₁₉)
+ :value! -<>-prev-(add1₂₁))
+(zero₁₉
+ :value! -<>-prev-(add1₂₀))
+(add1₁₈
+ :prev -<>-!value-(add1₁₇)
+ :value! -<>-!target-(mul₂₂))
+(add1₁₇
+ :prev -<>-!value-(zero₁₆)
+ :value! -<>-prev-(add1₁₈))
+(zero₁₆
+ :value! -<>-prev-(add1₁₇))
 </net>
 
 <net>
-:root -<>-!value-(add1₇₂)
-(add1₇₂
- :prev -<>-!value-(add1₇₈)
- :value! -<>-)
-(add1₇₈
- :prev -<>-!value-(add1₄₃)
- :value! -<>-prev-(add1₇₂))
-(add1₄₃
- :prev -<>-!value-(add1₅₇)
- :value! -<>-prev-(add1₇₈))
-(add1₅₇
- :prev -<>-!value-(zero₇₃)
- :value! -<>-prev-(add1₄₃))
-(zero₇₃
- :value! -<>-prev-(add1₅₇))
+:root (add1₁₀₂₅)
+(add1₁₀₂₅
+ :prev -<>-!value-(add1₅₁₂₁))
+(add1₅₁₂₁
+ :prev -<>-!value-(add1₁₈)
+ :value! -<>-prev-(add1₁₀₂₅))
+(add1₁₈
+ :prev -<>-!value-(add1₂₁)
+ :value! -<>-prev-(add1₅₁₂₁))
+(add1₂₁
+ :value! -<>-prev-(add1₁₈)
+ :prev -<>-!value-(zero₁₉))
+(zero₁₉
+ :value! -<>-prev-(add1₂₁))
 </net>
 
 <net>
-:root -<>-result-(nat-max₈₄)
-(nat-max₈₄
- :first! -<>-!value-(add1₈₀)
- :second -<>-!value-(add1₈₃)
- :result -<>-)
-(add1₈₃
- :prev -<>-!value-(add1₈₂)
- :value! -<>-second-(nat-max₈₄))
-(add1₈₂
- :prev -<>-!value-(zero₈₁)
- :value! -<>-prev-(add1₈₃))
-(zero₈₁
- :value! -<>-prev-(add1₈₂))
-(add1₈₀
- :prev -<>-!value-(zero₇₉)
- :value! -<>-!first-(nat-max₈₄))
-(zero₇₉
- :value! -<>-prev-(add1₈₀))
+:root (nat-max₂₈)
+(nat-max₂₈
+ :first! -<>-!value-(add1₂₄)
+ :second -<>-!value-(add1₂₇))
+(add1₂₇
+ :prev -<>-!value-(add1₂₆)
+ :value! -<>-second-(nat-max₂₈))
+(add1₂₆
+ :prev -<>-!value-(zero₂₅)
+ :value! -<>-prev-(add1₂₇))
+(zero₂₅
+ :value! -<>-prev-(add1₂₆))
+(add1₂₄
+ :prev -<>-!value-(zero₂₃)
+ :value! -<>-!first-(nat-max₂₈))
+(zero₂₃
+ :value! -<>-prev-(add1₂₄))
 </net>
 
 <net>
-:root -<>-!value-(add1₈₇)
-(add1₈₇
- :prev -<>-!value-(add1₈₂)
- :value! -<>-)
-(add1₈₂
- :prev -<>-!value-(zero₈₁)
- :value! -<>-prev-(add1₈₇))
-(zero₈₁
- :value! -<>-prev-(add1₈₂))
+:root (add1₂₄)
+(add1₂₄
+ :prev -<>-!value-(add1₂₆))
+(add1₂₆
+ :value! -<>-prev-(add1₂₄)
+ :prev -<>-!value-(zero₂₅))
+(zero₂₅
+ :value! -<>-prev-(add1₂₆))
 </net>
 

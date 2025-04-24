@@ -28,14 +28,8 @@ x_run(worker_t *worker) {
 }
 
 static void
-value_print_connected(worker_t *worker) {
-    value_t value = stack_top(worker->value_stack);
-    if (!value) {
-        printf("[value_print_connected] expect top value\n");
-        return;
-    }
-
-    node_t *node;
+print_connected(worker_t *worker, value_t value) {
+    node_t *node = NULL;
 
     if (is_wire(value)) {
         wire_t *wire = as_wire(value);
@@ -55,14 +49,25 @@ value_print_connected(worker_t *worker) {
     fprintf(stdout, "\n");
 }
 
+static void
+print_top_connected(worker_t *worker) {
+    value_t value = stack_top(worker->value_stack);
+    if (!value) {
+        who_printf("expect top value\n");
+        return;
+    }
+
+    print_connected(worker, value);
+}
+
 void
 x_inspect_run(worker_t *worker) {
 #if DEBUG_NODE_ALLOCATOR_DISABLED
-    (void) value_print_connected;
+    (void) print_top_connected;
     worker_work(worker);
 #else
-    value_print_connected(worker);
+    print_top_connected(worker);
     worker_work(worker);
-    value_print_connected(worker);
+    print_top_connected(worker);
 #endif
 }

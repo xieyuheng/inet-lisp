@@ -1,9 +1,8 @@
 <net>
-:root -<>-result-(append₁₅)
+:root (append₁₅)
 (append₁₅
  :target! -<>-!value-(cons₇)
- :rest -<>-!value-(cons₁₄)
- :result -<>-)
+ :rest -<>-!value-(cons₁₄))
 (cons₁₄
  :head -<>-!value-(sole₈)
  :tail -<>-!value-(cons₁₃)
@@ -47,23 +46,22 @@
 </net>
 
 <net>
-:root -<>-!value-(cons₁₇)
-(cons₁₇
+:root (cons₁₅)
+(cons₁₅
  :head -<>-!value-(sole₁)
- :tail -<>-!value-(cons₁₉)
- :value! -<>-)
-(cons₁₉
+ :tail -<>-!value-(cons₇))
+(cons₇
  :head -<>-!value-(sole₂)
- :tail -<>-!value-(cons₂₁)
- :value! -<>-tail-(cons₁₇))
-(cons₂₁
+ :tail -<>-!value-(cons₆)
+ :value! -<>-tail-(cons₁₅))
+(cons₆
  :head -<>-!value-(sole₃)
- :tail -<>-!value-(cons₁₄)
- :value! -<>-tail-(cons₁₉))
+ :value! -<>-tail-(cons₇)
+ :tail -<>-!value-(cons₁₄))
 (cons₁₄
+ :value! -<>-tail-(cons₆)
  :head -<>-!value-(sole₈)
- :tail -<>-!value-(cons₁₃)
- :value! -<>-tail-(cons₂₁))
+ :tail -<>-!value-(cons₁₃))
 (cons₁₃
  :head -<>-!value-(sole₉)
  :tail -<>-!value-(cons₁₂)
@@ -81,10 +79,10 @@
 (sole₈
  :value! -<>-head-(cons₁₄))
 (sole₃
- :value! -<>-head-(cons₂₁))
+ :value! -<>-head-(cons₆))
 (sole₂
- :value! -<>-head-(cons₁₉))
+ :value! -<>-head-(cons₇))
 (sole₁
- :value! -<>-head-(cons₁₇))
+ :value! -<>-head-(cons₁₅))
 </net>
 

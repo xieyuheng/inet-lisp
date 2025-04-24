@@ -1,5 +1,4 @@
-[lang] fix net printer
-
+[net] `node_print_connected` print sorted port
 [lang] refactor `define_rule_star`
 [core] fix `worker_apply` for function
 

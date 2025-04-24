@@ -70,6 +70,24 @@ node_print(const node_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
+static void
+node_print_neighbor(node_t *node, array_t *node_adjacency_array, file_t *file) {
+    fprintf(file, "(");
+    node_print_name(node, file);
+    fprintf(file, "\n");
+    size_t length = array_length(node_adjacency_array);
+    for (size_t i = 0; i < length; i++) {
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
+        node_adjacency_print_as_neighbor(node_adjacency, file);
+        if (i < length - 1) {
+            fprintf(file, "\n");
+        }
+    }
+
+    fprintf(file, ")");
+    fprintf(file, "\n");
+}
+
 void
 node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     fprintf(file, "<net>\n");
@@ -78,16 +96,12 @@ node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     node_print(self, file);
     fprintf(file, "\n");
 
-    fprintf(file, "\n");
-
     array_t *node_array = connected_node_array(self, node_adjacency_hash);
     for (size_t i = 0; i < array_length(node_array); i++) {
         node_t *node = array_get(node_array, i);
         array_t *node_adjacency_array = hash_get(node_adjacency_hash, node);
         assert(node_adjacency_array);
-        node_adjacency_array_print(node_adjacency_array, file);
-        if (i != array_length(node_array) - 1)
-            fprintf(file, "\n");
+        node_print_neighbor(node, node_adjacency_array, file);
     }
 
     array_destroy(&node_array);
