@@ -1,11 +1,11 @@
 #include "index.h"
 
 connected_node_iter_t *
-connected_node_iter_new(node_t *root, hash_t *node_adjacency_hash) {
+connected_node_iter_new(node_t *root, hash_t *node_neighborhood_hash) {
     assert(root);
     connected_node_iter_t *self = new(connected_node_iter_t);
     self->root = root;
-    self->node_adjacency_hash = node_adjacency_hash;
+    self->node_neighborhood_hash = node_neighborhood_hash;
     self->occurred_node_set = set_new();
     self->remaining_node_list = list_new();
     return self;
@@ -26,10 +26,10 @@ connected_node_iter_destroy(connected_node_iter_t **self_pointer) {
 static void
 take_node(connected_node_iter_t *self, node_t *node) {
     set_add(self->occurred_node_set, node);
-    array_t *node_adjacency_array = hash_get(self->node_adjacency_hash, node);
-    for (size_t i = 0; i < array_length(node_adjacency_array); i++) {
-        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
-        list_push(self->remaining_node_list, node_adjacency->end_node);
+    array_t *node_neighbor_array = hash_get(self->node_neighborhood_hash, node);
+    for (size_t i = 0; i < array_length(node_neighbor_array); i++) {
+        node_neighbor_t *node_neighbor = array_get(node_neighbor_array, i);
+        list_push(self->remaining_node_list, node_neighbor->end_node);
     }
 }
 
@@ -52,10 +52,10 @@ connected_node_iter_next(connected_node_iter_t *self) {
 }
 
 array_t *
-connected_node_array(node_t *root, hash_t *node_adjacency_hash) {
+connected_node_array(node_t *root, hash_t *node_neighborhood_hash) {
     array_t *node_array = array_new_auto();
     connected_node_iter_t *connected_node_iter =
-        connected_node_iter_new(root, node_adjacency_hash);
+        connected_node_iter_new(root, node_neighborhood_hash);
     node_t *node = connected_node_iter_first(connected_node_iter);
     while (node) {
         array_push(node_array, node);

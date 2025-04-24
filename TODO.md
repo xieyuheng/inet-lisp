@@ -1,11 +1,14 @@
-quit using `stderr` -- keep it simple
+[net] `node_neighborhood_t` -- setup
+[net] `node_neighborhood_new`
+[net] `node_neighborhood_destroy`
 
-[net] `node_neighborhood_t` -- replace `node_adjacency` + `node_adjacency_array`
+[net] `node_neighborhood_t` -- replace `node_adjacency_array`
 
-- [net] `node_print_connected` print sorted port
+- [net] `node_print_connected` -- print sorted port
+
+[net] `node_print_connected` -- be more lispy
 
 [lang] refactor `define_rule_star`
-[core] fix `worker_apply` for function
 
 # example
 
@@ -22,6 +25,7 @@ quit using `stderr` -- keep it simple
 # primitive
 
 [primitive] bring back player support
+[core] fix `worker_apply` for function
 
 # player
 

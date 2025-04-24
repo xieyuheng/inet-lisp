@@ -114,9 +114,9 @@ print_connected(worker_t *worker, value_t value) {
 
     assert(node);
 
-    hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
-    node_print_connected(node, node_adjacency_hash, stdout);
-    hash_destroy(&node_adjacency_hash);
+    hash_t *node_neighborhood_hash = build_node_neighborhood_hash(worker->node_allocator);
+    node_print_connected(node, node_neighborhood_hash, stdout);
+    hash_destroy(&node_neighborhood_hash);
     fprintf(stdout, "\n");
 }
 
