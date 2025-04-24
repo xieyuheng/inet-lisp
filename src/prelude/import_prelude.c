@@ -10,7 +10,7 @@ import_prelude(mod_t *mod) {
 
     define_primitive_fn(mod, "connect", 2, 0, x_connect);
     define_primitive_fn(mod, "link", 0, 2, x_link);
-    define_primitive_fn(mod, "run", 0, 0, x_run);
+    define_primitive_fn(mod, "run", 1, 1, x_run);
     define_primitive_fn(mod, "inspect-run", 1, 1, x_inspect_run);
 
     // console

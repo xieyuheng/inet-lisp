@@ -1,16 +1,11 @@
 #include "index.h"
 
-struct connected_node_iter_t {
-    node_t *root;
-    set_t *occurred_node_set;
-    list_t *remaining_node_list;
-};
-
 connected_node_iter_t *
-connected_node_iter_new(node_t *root) {
+connected_node_iter_new(node_t *root, hash_t *node_adjacency_hash) {
     assert(root);
     connected_node_iter_t *self = new(connected_node_iter_t);
     self->root = root;
+    self->node_adjacency_hash = node_adjacency_hash;
     self->occurred_node_set = set_new();
     self->remaining_node_list = list_new();
     return self;
@@ -28,29 +23,20 @@ connected_node_iter_destroy(connected_node_iter_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+static void
+take_node(connected_node_iter_t *self, node_t *node) {
+    set_add(self->occurred_node_set, node);
+    array_t *node_adjacency_array = hash_get(self->node_adjacency_hash, node);
+    for (size_t i = 0; i < array_length(node_adjacency_array); i++) {
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
+        list_push(self->remaining_node_list, node_adjacency->end_node);
+    }
+}
+
 node_t *
 connected_node_iter_first(connected_node_iter_t *self) {
-    node_t *node = self->root;
-    set_add(self->occurred_node_set, node);
-
-    for (size_t i = 0; i < node->ctor->arity; i++) {
-        if (!is_wire(node_get_value(node, i))) continue;
-
-        wire_t *wire = as_wire(node_get_value(node, i));
-        if (wire->opposite && is_wire(wire->opposite)) {
-            wire_t *opposite_wire = as_wire(wire->opposite);
-            if (opposite_wire->node == NULL)
-                continue;
-
-            if (set_has(self->occurred_node_set, opposite_wire->node) ||
-                list_has(self->remaining_node_list, opposite_wire->node))
-                continue;
-
-            list_push(self->remaining_node_list, opposite_wire->node);
-        }
-    }
-
-    return node;
+    take_node(self, self->root);
+    return self->root;
 }
 
 node_t *
@@ -58,22 +44,24 @@ connected_node_iter_next(connected_node_iter_t *self) {
     node_t *node = list_pop(self->remaining_node_list);
     if (!node) return NULL;
 
-    set_add(self->occurred_node_set, node);
+    if (set_has(self->occurred_node_set, node))
+        return connected_node_iter_next(self);
 
-    for (size_t i = 0; i < node->ctor->arity; i++) {
-        if (!is_wire(node_get_value(node, i))) continue;
+    take_node(self, node);
+    return node;
+}
 
-        wire_t *wire = as_wire(node_get_value(node, i));
-        if (wire->opposite && is_wire(wire->opposite)) {
-            wire_t *opposite_wire = as_wire(wire->opposite);
-            if (opposite_wire->node == NULL ||
-                set_has(self->occurred_node_set, opposite_wire->node) ||
-                list_has(self->remaining_node_list, opposite_wire->node))
-                continue;
-
-            list_push(self->remaining_node_list, opposite_wire->node);
-        }
+array_t *
+connected_node_array(node_t *root, hash_t *node_adjacency_hash) {
+    array_t *node_array = array_new_auto();
+    connected_node_iter_t *connected_node_iter =
+        connected_node_iter_new(root, node_adjacency_hash);
+    node_t *node = connected_node_iter_first(connected_node_iter);
+    while (node) {
+        array_push(node_array, node);
+        node = connected_node_iter_next(connected_node_iter);
     }
 
-    return node;
+    connected_node_iter_destroy(&connected_node_iter);
+    return node_array;
 }

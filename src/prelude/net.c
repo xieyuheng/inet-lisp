@@ -5,39 +5,21 @@ x_connect(worker_t *worker) {
     value_t second = stack_pop(worker->value_stack);
     value_t first = stack_pop(worker->value_stack);
 
-    if (is_wire(first)) {
-        worker_connect(worker, as_wire(first), second);
-    } else if (is_wire(second)) {
-        worker_connect(worker, as_wire(second), first);
-    } else {
-        fprintf(stderr, "[x_connect] can not connect value to value\n");
-        fprintf(stderr, "[x_connect] first: ");
-        value_print(first, stderr);
-        fprintf(stderr, "\n");
-        fprintf(stderr, "[x_connect] second: ");
-        value_print(second, stderr);
-        fprintf(stderr, "\n");
-        exit(1);
-    }
-}
+    assert(second);
+    assert(first);
 
-static void
-x_wire_print_net(worker_t *worker) {
-    wire_t *wire = as_wire(stack_top(worker->value_stack));
-    wire_print_net(wire, stdout);
-    fprintf(stdout, "\n");
+    task_t *task = connect(first, second);
+    if (task) {
+        worker_add_task(worker, task);
+    }
 }
 
 void
 x_link(worker_t *worker) {
-    wire_t *first_wire = wire_new();
-    wire_t *second_wire = wire_new();
+    wire_t *wire = wire_new();
 
-    first_wire->opposite = second_wire;
-    second_wire->opposite = first_wire;
-
-    stack_push(worker->value_stack, first_wire);
-    stack_push(worker->value_stack, second_wire);
+    stack_push(worker->value_stack, wire);
+    stack_push(worker->value_stack, wire);
 }
 
 void
@@ -45,9 +27,42 @@ x_run(worker_t *worker) {
     worker_work(worker);
 }
 
+static void
+value_print_connected(worker_t *worker) {
+    value_t value = stack_top(worker->value_stack);
+    if (!value) {
+        printf("[value_print_connected] expect top value\n");
+        return;
+    }
+
+    node_t *node;
+
+    if (is_wire(value)) {
+        wire_t *wire = as_wire(value);
+        node = worker_lookup_node_by_wire(worker, wire);
+    }
+
+    if (is_principal_wire(value)) {
+        principal_wire_t *principal_wire = as_principal_wire(value);
+        node = principal_wire->node;
+    }
+
+    assert(node);
+
+    hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
+    node_print_connected(node, node_adjacency_hash, stdout);
+    hash_destroy(&node_adjacency_hash);
+    fprintf(stdout, "\n");
+}
+
 void
 x_inspect_run(worker_t *worker) {
-    x_wire_print_net(worker);
-    x_run(worker);
-    x_wire_print_net(worker);
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+    (void) value_print_connected;
+    worker_work(worker);
+#else
+    value_print_connected(worker);
+    worker_work(worker);
+    value_print_connected(worker);
+#endif
 }

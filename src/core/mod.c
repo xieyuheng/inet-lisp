@@ -31,6 +31,32 @@ mod_find(const mod_t *self, const char *name) {
 }
 
 void
+mod_define_rule(
+    mod_t *self,
+    const char *first_name,
+    const char *second_name,
+    function_t *function
+) {
+    value_t first = mod_find(self, first_name);
+    value_t second = mod_find(self, second_name);
+
+    assert(is_node_ctor(first));
+    assert(is_node_ctor(second));
+
+    const node_ctor_t *left_node_ctor = as_node_ctor(first);
+    const node_ctor_t *right_node_ctor = as_node_ctor(second);
+
+    rule_t *rule = rule_new(left_node_ctor, right_node_ctor, function);
+
+    if (left_node_ctor == right_node_ctor) {
+        array_push(left_node_ctor->rule_array, rule);
+    } else {
+        array_push(left_node_ctor->rule_array, rule);
+        array_push(right_node_ctor->rule_array, rule);
+    }
+}
+
+void
 mod_print(const mod_t *self, file_t *file) {
     fprintf(file, "<mod value-count=\"%lu\">\n", hash_length(self->value_hash));
 

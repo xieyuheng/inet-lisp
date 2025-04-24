@@ -19,10 +19,6 @@ port_info_destroy(port_info_t **self_pointer) {
     *self_pointer = NULL;
 }
 
-array_t *
-port_info_array_new(size_t size) {
-    return array_new_with(size, (destroy_fn_t *) port_info_destroy);
-}
 
 port_info_t *
 port_info_from_name(char *name) {

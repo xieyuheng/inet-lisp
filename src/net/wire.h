@@ -4,9 +4,8 @@ extern object_spec_t wire_object_spec;
 
 struct wire_t {
     object_spec_t *spec;
-    node_t *node;
-    size_t index;
-    value_t opposite;
+    // might be `wire_t` or `principal_wire_t`
+    atomic_value_t atomic_fuzed_value;
 };
 
 wire_t *wire_new(void);
@@ -15,14 +14,5 @@ void wire_destroy(wire_t **self_pointer);
 bool is_wire(value_t value);
 wire_t *as_wire(value_t value);
 
-const char *wire_name(const wire_t *self);
-const char *wire_node_name(const wire_t *self);
-
-void wire_free_from_node(wire_t *self);
-
-bool wire_is_free(const wire_t *self);
-bool wire_is_principal(const wire_t *self);
-
-void wire_print(const wire_t *self, file_t *file);
-
-void wire_print_net(wire_t *self, file_t *file);
+bool is_fuzed(value_t x, value_t y);
+bool is_connected(value_t x, value_t y);

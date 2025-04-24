@@ -5,10 +5,10 @@ typedef enum {
     OPCODE_LITERAL,
     OPCODE_GET_VARIABLE,
     OPCODE_SET_VARIABLE,
-} op_kind_t;
+} opcode_kind_t;
 
 struct opcode_t {
-    op_kind_t kind;
+    opcode_kind_t kind;
     union {
         struct { size_t arity; } apply;
         struct { value_t value; } literal;

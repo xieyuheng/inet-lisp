@@ -1,4 +1,4 @@
-#pragma once
+#include "index.h"
 
 extern object_spec_t node_ctor_object_spec;
 

@@ -1,6 +1,7 @@
-copy `net/` & `core/` from inet-forth
 [lang] fix net printer
+
 [lang] refactor `define_rule_star`
+[core] fix `worker_apply` for function
 
 # example
 

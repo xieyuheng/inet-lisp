@@ -1,14 +1,31 @@
 #include "index.h"
 
+static list_t *
+lex_code(const char *code) {
+    lexer_t *lexer = lexer_new();
+    lexer->enable_int = true;
+    lexer->enable_float = true;
+    lexer->enable_string = true;
+    lexer->line_comment = "//";
+    lexer->string = code;
+    lexer_run(lexer);
+
+    list_t *token_list = lexer->token_list;
+    lexer_destroy(&lexer);
+    return token_list;
+}
+
 worker_t *
-worker_new(mod_t *mod) {
-    worker_t *self = new_page_aligned(worker_t);
+worker_new(mod_t *mod, node_allocator_t *node_allocator) {
+    worker_t *self = new(worker_t);
     self->mod = mod;
-    self->task_list = list_new_with((destroy_fn_t *) task_destroy);
+    self->token_list = lex_code(mod->code);
+    self->task_deque = deque_new();
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
-    self->node_id_count = 0;
+    self->node_allocator = node_allocator;
+    self->free_node_stack = stack_new();
     return self;
 }
 
@@ -18,51 +35,59 @@ worker_destroy(worker_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     worker_t *self = *self_pointer;
-    list_destroy(&self->task_list);
+    list_destroy(&self->token_list);
+    deque_destroy(&self->task_deque);
     stack_destroy(&self->value_stack);
     stack_destroy(&self->return_stack);
     free(self);
     *self_pointer = NULL;
 }
 
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+atomic_size_t atomic_node_count = 0;
+#endif
+
 node_t *
 worker_new_node(worker_t* self, const node_ctor_t *ctor) {
-    node_t *node = node_new(ctor, ++self->node_id_count);
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+    (void) self;
+    node_t *node = node_new();
+    node->ctor = ctor;
+    node->id = atomic_fetch_add(&atomic_node_count, 1);
     return node;
+#else
+    node_t *node = node_allocator_allocate(self->node_allocator, self->free_node_stack);
+    node->ctor = ctor;
+    return node;
+#endif
 }
 
 void
 worker_recycle_node(worker_t* self, node_t *node) {
+#if DEBUG_NODE_ALLOCATOR_DISABLED
     (void) self;
-    node_destroy(&node);
+    node_clean(node);
+
+    // NOTE To exclude ABA problem
+    // we do not even free the memory of node.
+    // node_destroy(&node);
+#else
+    node_clean(node);
+    node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
+#endif
 }
 
-char *
-worker_fresh_name(worker_t* self) {
-    size_t max_string_length = 256;
-    char *buffer = allocate(max_string_length);
-    sprintf(buffer, "%lu", self->fresh_name_count++);
-    char *string = string_copy(buffer);
-    free(buffer);
-    return string;
-}
+node_t *
+worker_lookup_node_by_wire(worker_t* self, wire_t *wire) {
+    array_t *node_array = allocated_node_array(self->node_allocator);
+    for (size_t i = 0; i < array_length(node_array); i++) {
 
-void
-worker_print(const worker_t *self, file_t *file) {
-    fprintf(file, "<worker>\n");
-
-    size_t task_count = list_length(self->task_list);
-    fprintf(file, "<task-queue length=\"%lu\">\n", task_count);
-    for (size_t i = 0; i < task_count; i++) {
-        task_t *task = list_get(self->task_list, i);
-        task_print(task, file);
+        node_t *node = array_get(node_array, i);
+        if (node_has_wire(node, wire))
+            return node;
     }
-    fprintf(file, "</task-queue>\n");
 
-    worker_print_return_stack(self, file);
-    worker_print_value_stack(self, file);
-
-    fprintf(file, "</worker>\n");
+    return NULL;
 }
 
 void
@@ -88,4 +113,23 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
     }
 
     fprintf(file, "</value-stack>\n");
+}
+
+void
+worker_print(const worker_t *self, file_t *file) {
+    fprintf(file, "<worker>\n");
+
+    // size_t task_queue_length = queue_length(self->task_queue);
+    // fprintf(file, "<task-queue length=\"%lu\">\n", task_queue_length);
+    // for (size_t i = 0; i < task_queue_length; i++) {
+    //     task_t *task = queue_get(self->task_queue, i);
+    //     task_print(task, file);
+    //     fprintf(file, "\n");
+    // }
+    // fprintf(file, "</task-queue>\n");
+
+    worker_print_return_stack(self, file);
+    worker_print_value_stack(self, file);
+
+    fprintf(file, "</worker>\n");
 }

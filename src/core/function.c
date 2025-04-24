@@ -9,6 +9,8 @@ function_t *
 function_new(size_t arity) {
     function_t *self = new(function_t);
     self->spec = &function_object_spec;
+    // function always has arity zero
+    // to use apply instead of call.
     self->arity = arity;
     self->local_index_hash = hash_of_string_key();
     self->opcode_array = array_new_auto_with((destroy_fn_t *) opcode_destroy);
@@ -62,17 +64,14 @@ function_print_name(const function_t *self, file_t *file) {
 
 void
 function_print(const function_t *self, file_t *file) {
-    fprintf(file, "<function %s>\n", self->name);
     for (size_t i = 0; i < function_length(self); i++) {
         opcode_print(function_get_opcode(self, i), file);
         fprintf(file, "\n");
     }
-    fprintf(file, "</function>\n");
 }
 
 void
 function_print_with_cursor(const function_t *self, file_t *file, size_t cursor) {
-    fprintf(file, "<function %s>\n", self->name);
     for (size_t i = 0; i < function_length(self); i++) {
         if (i == cursor) {
             opcode_print(function_get_opcode(self, i), file);
@@ -83,5 +82,4 @@ function_print_with_cursor(const function_t *self, file_t *file, size_t cursor) 
             fprintf(file, "\n");
         }
     }
-    fprintf(file, "</function>\n");
 }

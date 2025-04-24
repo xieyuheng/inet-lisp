@@ -5,16 +5,16 @@ object_spec_t node_ctor_object_spec = {
     .print_fn = (print_fn_t *) node_ctor_print,
 };
 
-extern destroy_fn_t rule_destroy;
-
 node_ctor_t *
 node_ctor_new(const char *name, size_t arity) {
     node_ctor_t *self = new(node_ctor_t);
     self->spec = &node_ctor_object_spec;
     self->name = string_copy(name);
     self->arity = arity;
-    self->port_infos = allocate_pointers(arity);
-    self->rule_array = array_new_auto_with(rule_destroy);
+    self->port_infos = allocate_pointers(self->arity);
+    // does not own the rules in the array,
+    // because a rule might be shared by many (two) node ctors.
+    self->rule_array = array_new_auto();
     return self;
 }
 
@@ -24,16 +24,15 @@ node_ctor_destroy(node_ctor_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     node_ctor_t *self = *self_pointer;
-
     for (size_t i = 0; i < self->arity; i++) {
         port_info_t *port_info = self->port_infos[i];
         if (port_info) {
             port_info_destroy(&port_info);
         }
     }
+
     free(self->port_infos);
 
-    // does not own `self->primitive`
     array_destroy(&self->rule_array);
     free(self->name);
     free(self);
@@ -56,7 +55,7 @@ size_t
 node_ctor_find_port_index(
     const node_ctor_t *node_ctor,
     const char *port_name
-    ) {
+) {
     for (size_t i = 0; i < node_ctor->arity; i++) {
         port_info_t *port_info = node_ctor->port_infos[i];
         if (string_equal(port_info->name, port_name))

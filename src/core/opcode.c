@@ -16,6 +16,7 @@ opcode_literal(value_t value) {
     return self;
 }
 
+
 opcode_t *
 opcode_get_variable(size_t index) {
     opcode_t *self = new(opcode_t);

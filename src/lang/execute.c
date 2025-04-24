@@ -63,9 +63,7 @@ translate_pattern_arg_list(
         if (arg_exp->kind == EXP_VAR) {
             list_push(new_arg_list, exp_copy(arg_exp));
         } else {
-            char *fresh_name = worker_fresh_name(worker);
-            char *name = string_append(fresh_name, "!");
-            string_destroy(&fresh_name);
+            char *name = string_copy("!");
             translate_pattern_sub_tree(worker, arg_exp, name, pattern_exp_list);
             list_push(new_arg_list, exp_var(name));
         }

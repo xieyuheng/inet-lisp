@@ -1,11 +1,14 @@
 #include "index.h"
 
 task_t *
-task_new(wire_t *left, wire_t *right, const rule_t *rule) {
+task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     task_t *self = new(task_t);
     self->left = left;
     self->right = right;
     self->rule = rule;
+#if DEBUG_TASK_LOCK
+    self->mutex = mutex_new();
+#endif
     return self;
 }
 
@@ -20,7 +23,7 @@ task_destroy(task_t **self_pointer) {
 }
 
 void
-task_print(task_t *self, file_t *file) {
-    (void) self;
-    (void) file;
+task_print(const task_t *self, file_t *file) {
+    principal_wire_print_left(self->left, file);
+    principal_wire_print_right(self->right, file);
 }

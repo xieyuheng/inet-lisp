@@ -1,6 +1,7 @@
 #include "index.h"
 
 hash_t *global_mod_hash = NULL;
+node_allocator_t *global_node_allocator = NULL;
 
 extern void import_prelude(mod_t *mod);
 
@@ -9,6 +10,10 @@ load_mod(path_t *path) {
     if (!global_mod_hash) {
         global_mod_hash = hash_of_string_key();
     }
+
+    if (!global_node_allocator) {
+        global_node_allocator = node_allocator_new();
+     }
 
     mod_t *found_mod = hash_get(global_mod_hash, path_string(path));
     if (found_mod) {
@@ -22,7 +27,7 @@ load_mod(path_t *path) {
 
     mod_t *mod = mod_new(path, code);
     import_prelude(mod);
-    worker_t *loader_worker = worker_new(mod);
+    worker_t *loader_worker = worker_new(mod, global_node_allocator);
 
     list_t *sexp_list = sexp_parse_list(code) ;
     list_t *stmt_list = parse_stmt_list(sexp_list);
