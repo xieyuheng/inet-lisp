@@ -100,13 +100,13 @@
 <net>
 :root (add1₁₀₂₅)
 (add1₁₀₂₅
- :prev -<>-!value-(add1₅₁₂₁))
-(add1₅₁₂₁
+ :prev -<>-!value-(add1₃₀₇₄))
+(add1₃₀₇₄
  :prev -<>-!value-(add1₁₈)
  :value! -<>-prev-(add1₁₀₂₅))
 (add1₁₈
  :prev -<>-!value-(add1₂₁)
- :value! -<>-prev-(add1₅₁₂₁))
+ :value! -<>-prev-(add1₃₀₇₄))
 (add1₂₁
  :value! -<>-prev-(add1₁₈)
  :prev -<>-!value-(zero₁₉))
