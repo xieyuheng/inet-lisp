@@ -1,7 +1,7 @@
 #include "index.h"
 
 static void
-print_connected(worker_t *worker, value_t value) {
+print_connected(worker_t *worker, value_t value, file_t *file) {
     node_t *node = NULL;
 
     if (is_wire(value)) {
@@ -17,13 +17,27 @@ print_connected(worker_t *worker, value_t value) {
     assert(node);
 
     hash_t *node_neighborhood_hash = build_node_neighborhood_hash(worker->node_allocator);
-    node_print_connected(node, node_neighborhood_hash, stdout);
+    fprintf(file, "<net>\n");
+    fprintf(file, ":root "); node_print(node, file); fprintf(file, "\n");
+
+    array_t *node_array = connected_node_array(node, node_neighborhood_hash);
+    for (size_t i = 0; i < array_length(node_array); i++) {
+        node_t *node = array_get(node_array, i);
+        node_neighborhood_t *node_neighborhood = hash_get(node_neighborhood_hash, node);
+        assert(node_neighborhood);
+        node_neighborhood_print(node_neighborhood, file);
+    }
+
+    array_destroy(&node_array);
     hash_destroy(&node_neighborhood_hash);
+
+    fprintf(file, "</net>\n");
     fprintf(stdout, "\n");
+
 }
 
 static void
-print_top_connected(worker_t *worker) {
+print_top(worker_t *worker, file_t *file) {
     if (DEBUG_NODE_ALLOCATOR_DISABLED) {
         who_printf("can not print when compiled with DEBUG_NODE_ALLOCATOR_DISABLED");
         exit(1);
@@ -35,7 +49,7 @@ print_top_connected(worker_t *worker) {
         return;
     }
 
-    print_connected(worker, value);
+    print_connected(worker, value, file);
 }
 
 static void
@@ -61,6 +75,6 @@ run_exp(worker_t *worker, exp_t *exp) {
     }
 
     if (print_top_level_exp_flag) {
-        print_top_connected(worker);
+        print_top(worker, stdout);
     }
 }

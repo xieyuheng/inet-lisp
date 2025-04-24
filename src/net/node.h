@@ -19,6 +19,5 @@ port_info_t *node_get_port_info(const node_t *self, size_t index);
 
 void node_print_name(const node_t *self, file_t *file);
 void node_print(const node_t *self, file_t *file);
-void node_print_connected(node_t *self, hash_t *node_neighborhood_hash, file_t *file);
 
 bool node_has_wire(node_t *node, wire_t *wire);

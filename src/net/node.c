@@ -70,26 +70,6 @@ node_print(const node_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
-void
-node_print_connected(node_t *self, hash_t *node_neighborhood_hash, file_t *file) {
-    fprintf(file, "<net>\n");
-
-    fprintf(file, ":root ");
-    node_print(self, file);
-    fprintf(file, "\n");
-
-    array_t *node_array = connected_node_array(self, node_neighborhood_hash);
-    for (size_t i = 0; i < array_length(node_array); i++) {
-        node_t *node = array_get(node_array, i);
-        node_neighborhood_t *node_neighborhood = hash_get(node_neighborhood_hash, node);
-        assert(node_neighborhood);
-        node_neighborhood_print(node_neighborhood, file);
-    }
-
-    array_destroy(&node_array);
-    fprintf(file, "</net>\n");
-}
-
 bool
 node_has_wire(node_t *node, wire_t *wire) {
     for (size_t i = 0; i < node->ctor->arity; i++) {
