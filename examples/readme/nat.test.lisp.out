@@ -1,18 +1,18 @@
 <net>
 :root (add1₇)
 (add1₇
- :prev -<>-!value-(add1₃)
+ :prev (:value! (add1₃))
  :value! empty)
 (add1₃
- :prev -<>-!value-(add1₆)
- :value! -<>-prev-(add1₇))
+ :prev (:value! (add1₆))
+ :value! (:prev (add1₇)))
 (add1₆
- :prev -<>-!value-(add1₅)
- :value! -<>-prev-(add1₃))
+ :prev (:value! (add1₅))
+ :value! (:prev (add1₃)))
 (add1₅
- :prev -<>-!value-(zero₄)
- :value! -<>-prev-(add1₆))
+ :prev (:value! (zero₄))
+ :value! (:prev (add1₆)))
 (zero₄
- :value! -<>-prev-(add1₅))
+ :value! (:prev (add1₅)))
 </net>
 

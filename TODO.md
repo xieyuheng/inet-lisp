@@ -1,5 +1,4 @@
-[net] `node_neighborhood_print` -- be more lispy
-
+[lang] `print_connected` -- be more lispy
 [lang] refactor `define_rule_star`
 
 # example
