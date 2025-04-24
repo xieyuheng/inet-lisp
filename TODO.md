@@ -1,5 +1,3 @@
-[net] `node_neighborhood_t` -- setup
-[net] `node_neighborhood_new`
 [net] `node_neighborhood_destroy`
 
 [net] `node_neighborhood_t` -- replace `node_adjacency_array`
