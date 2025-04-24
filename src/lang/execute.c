@@ -147,10 +147,13 @@ build_net(worker_t *worker, exp_t *exp) {
 
 static void
 compute_exp(worker_t *worker, exp_t *exp) {
-    // TODO handle `DEBUG_NODE_ALLOCATOR_DISABLED`
     build_net(worker, exp);
+
     worker_work(worker);
-    print_top_connected(worker);
+
+    if (print_top_level_exp_flag) {
+        print_top_connected(worker);
+    }
 }
 
 void
