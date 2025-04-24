@@ -18,6 +18,10 @@
 
 [core] `node_t` -- use `spinlock_t`
 
+# primitive
+
+[primitive] bring back player support
+
 # player
 
 [player] bring back player
