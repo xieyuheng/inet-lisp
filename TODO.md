@@ -1,7 +1,5 @@
-[core] remove primitive support
-
-[core] simple `task_t` -- remove remove primitive support
-remove multi principal port support
+ambr task_from_rule task_new
+[net] remove `net_matcher_t` -- to remove multi principal port support
 copy net/ & core/ from inet-forth
 
 # example
