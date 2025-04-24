@@ -9,7 +9,7 @@ build_node_pattern(worker_t *worker, exp_t *pattern_exp) {
     assert(target->kind == EXP_VAR);
     value_t value = mod_find(worker->mod, target->var.name);
     if (!value) {
-        fprintf(stderr, "[build_node_pattern] undefined node: %s\n", target->var.name);
+        who_printf("undefined node: %s\n", target->var.name);
         exit(1);
     }
 
@@ -221,8 +221,8 @@ execute(worker_t *worker, stmt_t *stmt) {
         while (name) {
             value_t value = mod_find(imported_mod, name);
             if (value == NULL) {
-                fprintf(stderr, "[execute / import] unknown name: %s", name);
-                stmt_print(stmt, stderr);
+                who_printf("can not import unknown name: %s", name);
+                stmt_print(stmt, stdout);
                 exit(1);
             }
 

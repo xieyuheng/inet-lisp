@@ -51,7 +51,7 @@ xint_mod(value_t x, value_t y) {
 value_t
 xint_to_xfloat(value_t x) {
     if (!is_xint(x)) {
-        fprintf(stderr, "[xint_to_xfloat] type mismatch\n");
+        who_printf("type mismatch\n");
         exit(1);
     }
 

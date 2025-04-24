@@ -47,9 +47,9 @@ static void
 compile_literal(worker_t *worker, function_t *function, const char *name) {
     value_t value = mod_find(worker->mod, name);
     if (value == NULL) {
-        fprintf(stderr, "[compile_literal] undefined name: %s\n", name);
-        fprintf(stderr, "[compile_literal] function:\n");
-        function_print(function, stderr);
+        who_printf("undefined name: %s\n", name);
+        who_printf("function:\n");
+        function_print(function, stdout);
         exit(1);
     }
 

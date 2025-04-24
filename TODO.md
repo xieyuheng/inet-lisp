@@ -1,3 +1,5 @@
+quit using `stderr` -- keep it simple
+
 [net] `node_neighborhood_t` -- replace `node_adjacency` + `node_adjacency_array`
 
 - [net] `node_print_connected` print sorted port

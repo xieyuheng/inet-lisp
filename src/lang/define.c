@@ -17,7 +17,7 @@ define_rule_star(worker_t *worker, list_t *node_pattern_list, list_t *exp_list) 
     assert(list_length(node_pattern_list) == 2);
     node_pattern_t *left_node_pattern = list_first(node_pattern_list);
     node_pattern_t *right_node_pattern = list_next(node_pattern_list);
-    
+
     list_t *local_name_list = list_new();
 
     for (size_t i = 0; i < left_node_pattern->ctor->arity; i++) {
@@ -31,12 +31,12 @@ define_rule_star(worker_t *worker, list_t *node_pattern_list, list_t *exp_list) 
         port_info_t *port_info = right_node_pattern->port_infos[i];
         if (!port_info->is_principal) {
             list_push(local_name_list, port_info->name);
-        }        
-    }    
+        }
+    }
 
     size_t arity = list_length(local_name_list);
     function_t *function = function_new(arity);
-    
+
     compile_set_variable_list(worker, function, local_name_list);
     compile_exp_list(worker, function, exp_list);
 
@@ -98,8 +98,8 @@ void
 define_primitive_node(mod_t *mod, const char *name, const char *port_names[]) {
     value_t value = mod_find(mod, name);
     if (!is_primitive(value)) {
-        fprintf(stderr, "[define_primitive_node] expect value of name: %s to be a primitive, instead of: \n", name);
-        value_print(value, stderr);
+        who_printf("expect value of name: %s to be a primitive, instead of: \n", name);
+        value_print(value, stdout);
         exit(1);
     }
 
