@@ -144,10 +144,8 @@ parse_stmt(sexp_t *sexp) {
         return parse_define(sexp);
     else if (sexp_starts_with(sexp, "import"))
         return parse_import(sexp);
-    else if (is_list_sexp(sexp))
-        return parse_run_exp(sexp);
     else
-        assert(false && "[parse_stmt] can not handle atom sexp");
+        return parse_run_exp(sexp);
 }
 
 list_t *
