@@ -7,6 +7,8 @@ struct node_t {
     size_t id;
     bool is_allocated;
     value_t *values;
+    // for primitive node
+    atomic_size_t atomic_primitive_arg_count;
 };
 
 node_t *node_new(void);

@@ -5,6 +5,7 @@ node_new(void) {
     node_t *self = new(node_t);
     self->mutex = mutex_new();
     self->values = allocate_pointers(NODE_MAX_ARITY);
+    atomic_init(&self->atomic_primitive_arg_count, 0);
     return self;
 }
 
