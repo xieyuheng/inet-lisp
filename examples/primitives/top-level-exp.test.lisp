@@ -1,5 +1,5 @@
-true
-false
+;; true
+;; false
 
 (iadd 1 2)
 (iadd -1 -2)
@@ -9,5 +9,5 @@ false
 (fadd 1.0 2.0)
 (fadd 1.1 2.2)
 
-1.
-2.
+;; 1.
+;; 2.

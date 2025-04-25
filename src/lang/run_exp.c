@@ -41,16 +41,14 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
 }
 
 static void
-print_top_until(worker_t *worker, size_t base_length, file_t *file) {
+print_top(worker_t *worker, size_t value_count, file_t *file) {
     if (DEBUG_NODE_ALLOCATOR_DISABLED) {
         who_printf("can not print when compiled with DEBUG_NODE_ALLOCATOR_DISABLED");
         exit(1);
     }
 
-    size_t length = stack_length(worker->value_stack);
-    if (length <= base_length) return;
-    for (size_t count = 0; count < length - base_length; count++) {
-        size_t index = length - base_length - 1 - count;
+    for (size_t count = 0; count < value_count; count++) {
+        size_t index = value_count - 1 - count;
         value_t value = stack_pick(worker->value_stack, index);
         print_connected(worker, value, file);
     }
@@ -70,9 +68,9 @@ build_net(worker_t *worker, exp_t *exp) {
     function_destroy(&function);
 }
 
-void
+size_t
 run_exp(worker_t *worker, exp_t *exp) {
-    size_t base_length = stack_length(worker->value_stack);
+    size_t base_value_count = stack_length(worker->value_stack);
 
     build_net(worker, exp);
 
@@ -80,7 +78,32 @@ run_exp(worker_t *worker, exp_t *exp) {
         worker_work(worker);
     }
 
-    if (print_top_level_exp_flag) {
-        print_top_until(worker, base_length, stdout);
+    assert(stack_length(worker->value_stack) >= base_value_count);
+    size_t value_count = stack_length(worker->value_stack) - base_value_count;
+    list_t *value_list = list_new();
+    for (size_t count = 0; count < value_count; count++) {
+        size_t index = value_count - 1 - count;
+        value_t value = stack_pick(worker->value_stack, index);
+        list_push(value_list, value);
     }
+
+    value_t value = list_shift(value_list);
+    while (value) {
+        stack_push(worker->value_stack, defuze(value));
+        value = list_shift(value_list);
+    }
+
+    list_destroy(&value_list);
+    return value_count;
+}
+
+size_t
+run_exp_and_print(worker_t *worker, exp_t *exp) {
+    size_t value_count = run_exp(worker, exp);
+
+    if (print_top_level_exp_flag) {
+        print_top(worker, value_count, stdout);
+    }
+
+    return value_count;
 }

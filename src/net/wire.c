@@ -47,6 +47,20 @@ walk(value_t value) {
     return value;
 }
 
+value_t
+defuze(value_t value) {
+    while (is_wire(value)) {
+        wire_t *wire = as_wire(value);
+        value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
+        if (!fuzed_value) break;
+
+        wire_destroy(&wire);
+        value = fuzed_value;
+    }
+
+    return value;
+}
+
 bool
 is_fuzed(value_t x, value_t y) {
     x = walk(x);
