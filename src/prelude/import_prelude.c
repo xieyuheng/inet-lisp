@@ -2,6 +2,11 @@
 
 void
 import_prelude(mod_t *mod) {
+    // net
+
+    define_primitive_fn(mod, "connect", 2, 0, x_connect);
+    define_primitive_fn(mod, "link", 0, 2, x_link);
+
     // bool
 
     define(mod, "false", xfalse);
@@ -39,17 +44,6 @@ import_prelude(mod_t *mod) {
     define_primitive_node_ctor_2(mod, "fmod", xfloat_mod, (const char*[]) { "x!", "y!", "result" });
     define_primitive_node_ctor_1(mod, "float-to-int", xfloat_to_xint, (const char*[]) { "f!", "i" });
     define_primitive_node_ctor(mod, "float-dup", 1, 2, xfloat_dup, (const char*[]) { "target!", "first", "second" });
-
-    // net
-
-    define_primitive_fn(mod, "connect", 2, 0, x_connect);
-    define_primitive_fn(mod, "link", 0, 2, x_link);
-
-    // console
-
-    define_primitive_fn(mod, "newline", 0, 0, x_newline);
-    define_primitive_node_ctor(mod, "print", 1, 1, x_print, (const char*[]) { "value!", "result" });
-    define_primitive_node_ctor(mod, "println", 1, 1, x_println, (const char*[]) { "value!", "result" });
 
     // function
 

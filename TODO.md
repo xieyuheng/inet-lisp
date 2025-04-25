@@ -1,7 +1,5 @@
 # primitive
 
-[lang] `run_exp` -- top level define should not print
-[prelude] remove `print` `newline` and `println`
 [lang] support top level atom sexp -- fix top-level-exp.test.lisp
 [examples] bring more primitive examples back
 [core] fix `worker_apply` for function
