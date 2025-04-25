@@ -1,8 +1,5 @@
 # primitive
 
-[net] `node_t` -- has `atomic_primitive_arg_count` for `primitive`
-[net] `node_primitive_arg_count_add1` -- need to return new value atomicly
-
 [core] `task_t` can have `primitive` -- `task_is_primitive`
 [core] `task_new_primitve`
 
