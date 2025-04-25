@@ -16,7 +16,7 @@ import_prelude(mod_t *mod) {
 
     // testing
 
-    define_primitive_fn(mod, "assert", 1, 0, x_assert);
+    define_primitive_node_ctor(mod, "assert", 1, 0, x_assert, (const char*[]) { "value!" });
 
     // int
 

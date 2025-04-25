@@ -1,3 +1,2 @@
-(println true)
-;; (assert (eq? true true))
-;; (assert (not (eq? true false)))
+(assert (eq? true true))
+(assert (not (eq? true false)))
