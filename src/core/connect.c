@@ -14,10 +14,7 @@ rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) 
 }
 
 inline static task_t *
-connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
-    left->oppsite = right;
-    right->oppsite = left;
-
+create_task_if_find_rule(principal_wire_t *left, principal_wire_t *right) {
     for (size_t i = 0; i < array_length(left->node->ctor->rule_array); i++) {
         rule_t *rule = array_get(left->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
@@ -35,6 +32,14 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     }
 
     return NULL;
+}
+
+inline static task_t *
+connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
+    left->oppsite = right;
+    right->oppsite = left;
+
+    return create_task_if_find_rule(left, right);
 }
 
 inline static task_t *
