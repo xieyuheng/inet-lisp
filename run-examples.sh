@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bin="./bin/inet-lisp run -p"
+bin="./bin/inet-lisp run --print-top-level-exp"
 ext=lisp
 
 for example in $(find examples -name "*.${ext}" -not -name "*.test.${ext}" -not -name "*.error.${ext}" -not -name "*.play.${ext}"); do
