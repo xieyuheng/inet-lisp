@@ -36,7 +36,7 @@ run(commander_t *commander) {
         }
 
         path_t *path = path_new_cwd();
-        path_join(path, arg);
+        path_resolve(path, arg);
         load_mod(path);
     }
 
