@@ -1,6 +1,5 @@
 # primitive
 
-[core] `connect_active_pair` -- handle primitive node
 [core] `worker_handle_primitive_task`
 
 [examples] bring primitive examples back
