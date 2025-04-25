@@ -1,5 +1,3 @@
-[path] `path_resolve`
-
 # primitive
 
 [examples] bring more primitive examples back
