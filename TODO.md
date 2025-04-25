@@ -1,6 +1,11 @@
 [lang] `print_connected` -- be more lispy
 [lang] refactor `define_rule_star`
 
+# primitive
+
+[primitive] bring back player support
+[core] fix `worker_apply` for function
+
 # example
 
 [example] more examples from the paper
@@ -12,11 +17,6 @@
 # core
 
 [core] `node_t` -- use `spinlock_t`
-
-# primitive
-
-[primitive] bring back player support
-[core] fix `worker_apply` for function
 
 # player
 
