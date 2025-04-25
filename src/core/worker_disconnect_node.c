@@ -3,7 +3,7 @@
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_LOCK
-    while (!mutex_try_lock(node->mutex)) {
+    while (!node_try_lock(node)) {
         file_lock(stdout);
         who_printf("lock contention! ");
         printf("worker #%lu, ", worker->index);
@@ -13,7 +13,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         file_unlock(stdout);
     }
 #else
-    mutex_lock(node->mutex);
+    node_lock(node);
 #endif
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
@@ -26,11 +26,6 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         }
     }
 
-#if DEBUG_NODE_LOCK
-    mutex_unlock(node->mutex);
-#else
-    mutex_unlock(node->mutex);
-#endif
-
+    node_unlock(node);
     worker_recycle_node(worker, node);
 }

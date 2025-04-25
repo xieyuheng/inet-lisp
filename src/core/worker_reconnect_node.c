@@ -42,7 +42,7 @@ worker_reconnect_node(worker_t *worker, node_t *node, size_t arity) {
     // Due to this reason a lock in node is actually required.
 
 #if DEBUG_NODE_LOCK
-    while (!mutex_try_lock(node->mutex)) {
+    while (!node_try_lock(node)) {
         file_lock(stdout);
         who_printf("lock contention! ");
         who_printf("node: "); node_print(node, stdout); printf("\n");
@@ -51,7 +51,7 @@ worker_reconnect_node(worker_t *worker, node_t *node, size_t arity) {
 
     node->locked_by_worker = worker;
 #else
-    mutex_lock(node->mutex);
+    node_lock(node);
 #endif
 
     task_t *found_task = NULL;
@@ -72,11 +72,7 @@ worker_reconnect_node(worker_t *worker, node_t *node, size_t arity) {
         stack_push(worker->value_stack, value);
     }
 
-#if DEBUG_NODE_LOCK
-    mutex_unlock(node->mutex);
-#else
-    mutex_unlock(node->mutex);
-#endif
+    node_unlock(node);
 
     if (found_task) {
         worker_add_task(worker, found_task);

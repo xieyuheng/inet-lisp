@@ -93,3 +93,18 @@ node_primitive_arg_count_fetch_add1(node_t *self) {
         1,
         memory_order_release);
 }
+
+void
+node_lock(node_t *self) {
+    mutex_lock(self->mutex);
+}
+
+bool
+node_try_lock(node_t *self) {
+    return mutex_try_lock(self->mutex);
+}
+
+void
+node_unlock(node_t *self) {
+    mutex_unlock(self->mutex);
+}

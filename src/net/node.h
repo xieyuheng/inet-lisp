@@ -27,3 +27,7 @@ bool node_has_wire(node_t *node, wire_t *wire);
 
 bool node_is_primitive(const node_t *self);
 size_t node_primitive_arg_count_fetch_add1(node_t *self);
+
+void node_lock(node_t *self);
+bool node_try_lock(node_t *self);
+void node_unlock(node_t *self);
