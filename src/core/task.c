@@ -22,6 +22,11 @@ task_destroy(task_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+bool
+task_is_primitive(const task_t *self) {
+    return self->primitive_node != NULL;
+}
+
 void
 task_print(const task_t *self, file_t *file) {
     principal_wire_print_left(self->left, file);

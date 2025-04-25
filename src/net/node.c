@@ -88,7 +88,7 @@ node_is_primitive(const node_t *self) {
 
 size_t
 node_primitive_arg_count_fetch_add1(node_t *self) {
-    atomic_fetch_add_explicit(
+    return atomic_fetch_add_explicit(
         &self->atomic_primitive_arg_count,
         1,
         memory_order_release);

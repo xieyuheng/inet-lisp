@@ -1,9 +1,10 @@
 # primitive
 
-[core] `task_t` can have `primitive` -- `task_is_primitive`
 [core] `task_new_primitve`
 
 [core] `connect` -- handle primitive node
+
+[examples] bring primitive examples back
 
 [core] fix `worker_apply` for function
 
