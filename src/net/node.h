@@ -21,3 +21,5 @@ void node_print_name(const node_t *self, file_t *file);
 void node_print(const node_t *self, file_t *file);
 
 bool node_has_wire(node_t *node, wire_t *wire);
+
+bool node_is_primitive(const node_t *self);

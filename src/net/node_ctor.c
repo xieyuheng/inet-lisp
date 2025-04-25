@@ -62,9 +62,9 @@ node_ctor_find_port_index(
             return i;
     }
 
-    printf("[node_ctor_find_port_index] fail to find index of node_name: %s, port_name: %s\n",
-           node_ctor->name,
-           port_name);
+    who_printf("fail to find index of node_name: %s, port_name: %s\n",
+               node_ctor->name,
+               port_name);
 
     assert(false);
 }

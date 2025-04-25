@@ -79,3 +79,8 @@ node_has_wire(node_t *node, wire_t *wire) {
 
     return false;
 }
+
+bool
+node_is_primitive(const node_t *self) {
+    return self->ctor->primitive != NULL;
+}

@@ -1,9 +1,8 @@
-[lang] `print_connected` -- be more lispy
-[lang] refactor `define_rule_star`
-
 # primitive
 
-[primitive] bring back player support
+[net] `node_t` -- has `atomic_primitive_arg_count` for `primitive`
+
+[primitive] bring back primitive support
 [core] fix `worker_apply` for function
 
 # example
@@ -17,6 +16,11 @@
 # core
 
 [core] `node_t` -- use `spinlock_t`
+
+# lang
+
+[lang] `print_connected` -- be more lispy
+[lang] refactor `define_rule_star`
 
 # player
 
