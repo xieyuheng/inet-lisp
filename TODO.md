@@ -1,7 +1,5 @@
 # primitive
 
-[core] `task_new_primitve`
-
 [core] `connect` -- handle primitive node
 
 [examples] bring primitive examples back

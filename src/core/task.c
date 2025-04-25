@@ -12,6 +12,16 @@ task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     return self;
 }
 
+task_t *
+task_new_primitve(node_t *primitive_node) {
+    task_t *self = new(task_t);
+    self->primitive_node = primitive_node;
+#if DEBUG_TASK_LOCK
+    self->mutex = mutex_new();
+#endif
+    return self;
+}
+
 void
 task_destroy(task_t **self_pointer) {
     assert(self_pointer);
