@@ -1,7 +1,22 @@
-# primitive
+# bug
 
-[examples] bring more primitive examples back
-[core] fix `worker_apply` for function
+[bug] every time different result
+
+```
+./bin/inet-lisp run -p examples/datatypes/list-map.play.lisp
+```
+
+[bug] infinite loop with `-s`
+
+```
+./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
+```
+
+[bug] `--single-threaded` flag print extra top level
+
+```
+./bin/inet-lisp run -s -p examples/primitives/top-level-exp.test.lisp
+```
 
 # example
 

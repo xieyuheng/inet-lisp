@@ -1,4 +1,4 @@
-(import t f conj disj "bool-2.lisp")
+(import t f conj disj "bool.lisp")
 
 (disj
  (conj (conj (t) (t))

@@ -1,2 +1,6 @@
-[file_open_or_fail] file name: /home/xyh/projects/cicada-lang/inet-lisp/examples/datatypes/bool-2.lisp
-[file_open_or_fail] mode: r
+<net>
+:root (t₁₄)
+(t₁₄
+ :value! empty)
+</net>
+

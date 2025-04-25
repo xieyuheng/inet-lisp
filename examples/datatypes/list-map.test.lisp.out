@@ -1,0 +1,156 @@
+<net>
+:root (cons₁₀₂₇)
+(cons₁₀₂₇
+ :head (:value! (add1₁₀₂₅))
+ :tail (:value! (cons₂₀₅₁))
+ :value! empty)
+(cons₂₀₅₁
+ :head (:value! (add1₂₀₄₉))
+ :tail (:value! (cons₂₀₅₄))
+ :value! (:tail (cons₁₀₂₇)))
+(cons₂₀₅₄
+ :head (:value! (add1₂₀₅₂))
+ :tail (:value! (cons₃₀₇₄))
+ :value! (:tail (cons₂₀₅₁)))
+(cons₃₀₇₄
+ :head (:value! (add1₁₇))
+ :tail (:value! (cons₄₀₉₉))
+ :value! (:tail (cons₂₀₅₄)))
+(cons₄₀₉₉
+ :head (:value! (add1₄₀₉₇))
+ :tail (:value! (cons₅₁₂₂))
+ :value! (:tail (cons₃₀₇₄)))
+(cons₅₁₂₂
+ :head (:value! (add1₁₈))
+ :tail (:value! (cons₂₀₅₇))
+ :value! (:tail (cons₄₀₉₉)))
+(cons₂₀₅₇
+ :head (:value! (add1₂₀₅₅))
+ :tail (:value! (cons₆₁₄₆))
+ :value! (:tail (cons₅₁₂₂)))
+(cons₆₁₄₆
+ :head (:value! (add1₇))
+ :tail (:value! (cons₇₁₇₀))
+ :value! (:tail (cons₂₀₅₇)))
+(cons₇₁₇₀
+ :head (:value! (add1₁₁))
+ :tail (:value! (null₁))
+ :value! (:tail (cons₆₁₄₆)))
+(null₁
+ :value! (:tail (cons₇₁₇₀)))
+(add1₁₁
+ :prev (:value! (add1₆₁₄₅))
+ :value! (:head (cons₇₁₇₀)))
+(add1₆₁₄₅
+ :prev (:value! (zero₄))
+ :value! (:prev (add1₁₁)))
+(zero₄
+ :value! (:prev (add1₆₁₄₅)))
+(add1₇
+ :prev (:value! (add1₂₀₅₆))
+ :value! (:head (cons₆₁₄₆)))
+(add1₂₀₅₆
+ :prev (:value! (zero₃))
+ :value! (:prev (add1₇)))
+(zero₃
+ :value! (:prev (add1₂₀₅₆)))
+(add1₂₀₅₅
+ :prev (:value! (add1₅₁₂₁))
+ :value! (:head (cons₂₀₅₇)))
+(add1₅₁₂₁
+ :prev (:value! (zero₂))
+ :value! (:prev (add1₂₀₅₅)))
+(zero₂
+ :value! (:prev (add1₅₁₂₁)))
+(add1₁₈
+ :prev (:value! (add1₄₀₉₈))
+ :value! (:head (cons₅₁₂₂)))
+(add1₄₀₉₈
+ :prev (:value! (zero₁₀))
+ :value! (:prev (add1₁₈)))
+(zero₁₀
+ :value! (:prev (add1₄₀₉₈)))
+(add1₄₀₉₇
+ :prev (:value! (add1₃₀₇₃))
+ :value! (:head (cons₄₀₉₉)))
+(add1₃₀₇₃
+ :prev (:value! (zero₉))
+ :value! (:prev (add1₄₀₉₇)))
+(zero₉
+ :value! (:prev (add1₃₀₇₃)))
+(add1₁₇
+ :prev (:value! (add1₂₀₅₃))
+ :value! (:head (cons₃₀₇₄)))
+(add1₂₀₅₃
+ :prev (:value! (zero₈))
+ :value! (:prev (add1₁₇)))
+(zero₈
+ :value! (:prev (add1₂₀₅₃)))
+(add1₂₀₅₂
+ :prev (:value! (add1₂₀₅₀))
+ :value! (:head (cons₂₀₅₄)))
+(add1₂₀₅₀
+ :prev (:value! (zero₁₆))
+ :value! (:prev (add1₂₀₅₂)))
+(zero₁₆
+ :value! (:prev (add1₂₀₅₀)))
+(add1₂₀₄₉
+ :prev (:value! (add1₁₀₂₆))
+ :value! (:head (cons₂₀₅₁)))
+(add1₁₀₂₆
+ :prev (:value! (zero₁₅))
+ :value! (:prev (add1₂₀₄₉)))
+(zero₁₅
+ :value! (:prev (add1₁₀₂₆)))
+(add1₁₀₂₅
+ :prev (:value! (add1₂₀))
+ :value! (:head (cons₁₀₂₇)))
+(add1₂₀
+ :prev (:value! (zero₁₄))
+ :value! (:prev (add1₁₀₂₅)))
+(zero₁₄
+ :value! (:prev (add1₂₀)))
+</net>
+
+<net>
+:root (cons₈₁₉₄)
+(cons₈₁₉₄
+ :head (:head (cons₁₃₃₁₄))
+ :tail empty
+ :value! empty)
+(cons₁₃₃₁₄
+ :head (:head (cons₁₂₂₈₉))
+ :tail (:value! (null₂₁))
+ :value! (:tail (cons₁₁₂₆₆)))
+(cons₁₁₂₆₆
+ :head (:result (iadd₁₀₂₄₁))
+ :tail (:value! (cons₁₃₃₁₄))
+ :value! (:tail (cons₁₂₂₈₉)))
+(cons₁₂₂₈₉
+ :head (:head (cons₁₃₃₁₄))
+ :tail (:value! (cons₁₁₂₆₆))
+ :value! empty)
+(iadd₁₀₂₄₁
+ :x! (:x! (iadd₉₂₁₇))
+ :y! (:head (cons₁₃₃₁₄))
+ :result (:head (cons₁₁₂₆₆)))
+(iadd₉₂₁₇
+ :x! (:x! (iadd₁₀₂₄₁))
+ :y! (:head (cons₁₃₃₁₄))
+ :result (:head (cons₁₀₂₄₂)))
+(cons₁₀₂₄₂
+ :head (:result (iadd₉₂₁₇))
+ :tail (:value! (cons₃₁))
+ :value! (:tail (cons₂₈)))
+(cons₂₈
+ :head (:head (cons₁₃₃₁₄))
+ :tail (:value! (cons₁₀₂₄₂))
+ :value! empty)
+(cons₃₁
+ :head (:head (cons₁₃₃₁₄))
+ :tail empty
+ :value! (:tail (cons₁₀₂₄₂)))
+(null₂₁
+ :value! (:tail (cons₁₃₃₁₄)))
+</net>
+
