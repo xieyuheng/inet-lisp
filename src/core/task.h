@@ -1,11 +1,12 @@
 #pragma once
 
 struct task_t {
+    // normal task
     principal_wire_t *left;
     principal_wire_t *right;
     const rule_t *rule;
 
-    // for primitive task
+    // primitive task
     node_t *primitive_node;
 
 #if DEBUG_TASK_LOCK

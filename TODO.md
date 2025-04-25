@@ -1,7 +1,6 @@
 # primitive
 
-[core] `worker_handle_primitive_task`
-
+[core] fix `worker_apply` for primitive
 [examples] bring primitive examples back
 
 [core] fix `worker_apply` for function

@@ -1,6 +1,6 @@
 #include "index.h"
 
-static void
+inline void
 worker_apply_primitive(worker_t *worker, const primitive_t *primitive) {
     switch (primitive->fn_kind) {
     case PRIMITIVE_FN: {
@@ -57,14 +57,15 @@ worker_apply_primitive(worker_t *worker, const primitive_t *primitive) {
 
 void
 worker_apply(worker_t *worker, value_t target, size_t arity) {
-    (void) arity;
     if (is_node_ctor(target)) {
         node_t *node = worker_new_node(worker, as_node_ctor(target));
         worker_reconnect_node(worker, node, arity);
     } else if (is_function(target)) {
+        // TODO use `arity`
         frame_t *frame = frame_new(as_function(target));
         stack_push(worker->return_stack, frame);
     } else if (is_primitive(target)) {
+        // TODO use `arity`
         worker_apply_primitive(worker, as_primitive(target));
     } else {
         who_printf("unknown target: ");

@@ -14,8 +14,29 @@ worker_handle_normal_task(worker_t *worker, task_t *task) {
 
 static void
 worker_handle_primitive_task(worker_t *worker, task_t *task) {
-    (void) worker;
-    (void) task;
+    node_t *node = task->primitive_node;
+    assert(node_is_primitive(node));
+    primitive_t *primitive = node->ctor->primitive;
+
+    for (size_t count = 0; count < primitive->input_arity; count++) {
+        size_t index = count;
+        value_t value = node_get_value(node, index);
+        assert(is_non_wire(value));
+        stack_push(worker->value_stack, value);
+    }
+
+    worker_apply_primitive(worker, primitive);
+
+    size_t arity = primitive->input_arity + primitive->output_arity;
+    for (size_t count = 0; count < primitive->output_arity; count++) {
+        size_t index = arity - 1 - count;
+        wire_t *wire = as_wire(node_get_value(node, index));
+        value_t result = stack_pop(worker->value_stack);
+        fuze(wire, result);
+    }
+
+    worker_recycle_node(worker, node);
+    task_destroy(&task);
 }
 
 void

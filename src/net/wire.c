@@ -67,3 +67,8 @@ is_connected(value_t x, value_t y) {
         return x == y;
     }
 }
+
+bool
+is_non_wire(value_t value) {
+    return !is_wire(value) && !is_principal_wire(value);
+}

@@ -37,7 +37,7 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     return NULL;
 }
 
-inline static task_t *
+inline task_t *
 fuze(wire_t *wire, value_t value) {
     // expected `wire->atomic_fuzed_value` to be NULL
     value_t expected_fuzed_value = NULL;
