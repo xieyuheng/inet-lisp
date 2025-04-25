@@ -1,5 +1,23 @@
 #include "index.h"
 
+static void
+worker_handle_normal_task(worker_t *worker, task_t *task) {
+    worker_disconnect_node(worker, task->left->node);
+    worker_disconnect_node(worker, task->right->node);
+
+    size_t base_length = stack_length(worker->return_stack);
+    frame_t *frame = frame_new(task->rule->function);
+    task_destroy(&task);
+    stack_push(worker->return_stack, frame);
+    worker_run_until(worker, base_length);
+}
+
+static void
+worker_handle_primitive_task(worker_t *worker, task_t *task) {
+    (void) worker;
+    (void) task;
+}
+
 void
 worker_handle_task(worker_t *worker, task_t *task) {
 #if DEBUG_TASK_LOCK
@@ -21,23 +39,12 @@ worker_handle_task(worker_t *worker, task_t *task) {
     printf("\n");
     file_unlock(stdout);
 #endif
-    // NOTE The follow assertions can be used to verify that
-    // the oppsite node in a task can not be synchronized by the task queue.
-    // Thus lock on node (in `worker_disconnect_node`) is required.
 
-    // {
-    //     assert(acquire_load(&task->left->node->atomic_is_ready));
-    //     assert(acquire_load(&task->right->node->atomic_is_ready));
-    // }
-
-    worker_disconnect_node(worker, task->left->node);
-    worker_disconnect_node(worker, task->right->node);
-
-    size_t base_length = stack_length(worker->return_stack);
-    frame_t *frame = frame_new(task->rule->function);
-    task_destroy(&task);
-    stack_push(worker->return_stack, frame);
-    worker_run_until(worker, base_length);
+    if (task_is_primitive(task)) {
+        worker_handle_primitive_task(worker, task);
+    } else {
+        worker_handle_normal_task(worker, task);
+    }
 
 #if DEBUG_TASK_LOCK
     mutex_unlock(mutex);
