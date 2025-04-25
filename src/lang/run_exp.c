@@ -14,7 +14,11 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
         node = principal_wire->node;
     }
 
-    assert(node);
+    if (!node) {
+        value_print(value, file);
+        fprintf(file, "\n");
+        return;
+    }
 
     hash_t *node_neighborhood_hash = build_node_neighborhood_hash(worker->node_allocator);
     fprintf(file, "<net>\n");
@@ -37,19 +41,19 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
 }
 
 static void
-print_top(worker_t *worker, file_t *file) {
+print_top_until(worker_t *worker, size_t base_length, file_t *file) {
     if (DEBUG_NODE_ALLOCATOR_DISABLED) {
         who_printf("can not print when compiled with DEBUG_NODE_ALLOCATOR_DISABLED");
         exit(1);
     }
 
-    value_t value = stack_top(worker->value_stack);
-    if (!value) {
-        who_printf("expect top value\n");
-        return;
+    size_t length = stack_length(worker->value_stack);
+    if (length <= base_length) return;
+    for (size_t count = 0; count < length - base_length; count++) {
+        size_t index = length - base_length - 1 - count;
+        value_t value = stack_pick(worker->value_stack, index);
+        print_connected(worker, value, file);
     }
-
-    print_connected(worker, value, file);
 }
 
 static void
@@ -68,6 +72,8 @@ build_net(worker_t *worker, exp_t *exp) {
 
 void
 run_exp(worker_t *worker, exp_t *exp) {
+    size_t base_length = stack_length(worker->value_stack);
+
     build_net(worker, exp);
 
     if (!no_run_top_level_exp) {
@@ -75,6 +81,6 @@ run_exp(worker_t *worker, exp_t *exp) {
     }
 
     if (print_top_level_exp_flag) {
-        print_top(worker, stdout);
+        print_top_until(worker, base_length, stdout);
     }
 }
