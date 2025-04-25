@@ -14,6 +14,7 @@ void wire_destroy(wire_t **self_pointer);
 bool is_wire(value_t value);
 wire_t *as_wire(value_t value);
 
+value_t walk(value_t value);
 bool is_fuzed(value_t x, value_t y);
 bool is_connected(value_t x, value_t y);
 bool is_non_wire(value_t value);

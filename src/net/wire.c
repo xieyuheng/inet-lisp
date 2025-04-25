@@ -34,7 +34,7 @@ as_wire(value_t value) {
     return (wire_t *) value;
 }
 
-static value_t
+value_t
 walk(value_t value) {
     while (is_wire(value)) {
         wire_t *wire = as_wire(value);
