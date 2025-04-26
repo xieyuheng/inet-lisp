@@ -2,7 +2,7 @@
 
 object_spec_t principal_wire_object_spec = {
     .name = "principal-wire",
-    .print_fn = (print_fn_t *) principal_wire_print_left,
+    .print_fn = (print_fn_t *) principal_wire_print,
 };
 
 principal_wire_t *
@@ -35,6 +35,24 @@ principal_wire_t *
 as_principal_wire(value_t value) {
     assert(is_principal_wire(value));
     return (principal_wire_t *) value;
+}
+
+void
+principal_wire_print(const principal_wire_t *self, file_t *file) {
+    assert(self->node);
+
+    fprintf(file, "(");
+
+    if (self->node->ctor) {
+        port_info_t *port_info = self->node->ctor->port_infos[self->index];
+        fprintf(file, ":%s! ", port_info->name);
+    } else {
+        fprintf(file, ":%lu! ", self->index);
+    }
+
+    node_print(self->node, file);
+
+    fprintf(file, ")");
 }
 
 void

@@ -1,5 +1,3 @@
-[net] fix `node_neighborhood_print` on non-wire value
-
 # bug
 
 [bug] every time different result

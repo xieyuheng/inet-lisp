@@ -77,7 +77,12 @@ node_neighborhood_print(node_neighborhood_t *self, file_t *file) {
         if (node_neighbor) {
             node_neighbor_print_end_port(node_neighbor, file);
         } else {
-            fprintf(file, "empty");
+            value_t value = node_get_value(self->node, i);
+            if (value) {
+                value_print(defuze(value), file);
+            } else {
+                fprintf(file, "empty");
+            }
         }
 
         if (i < length - 1) {
