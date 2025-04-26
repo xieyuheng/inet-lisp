@@ -1,0 +1,42 @@
+<net>
+:root (cons₁₅)
+(cons₁₅
+ :head (:value! (sole₁))
+ :tail (:value! (cons₇))
+ :value! empty)
+(cons₇
+ :head (:value! (sole₂))
+ :tail (:value! (cons₆))
+ :value! (:tail (cons₁₅)))
+(cons₆
+ :head (:value! (sole₃))
+ :tail (:value! (cons₁₄))
+ :value! (:tail (cons₇)))
+(cons₁₄
+ :head (:value! (sole₈))
+ :tail (:value! (cons₁₃))
+ :value! (:tail (cons₆)))
+(cons₁₃
+ :head (:value! (sole₉))
+ :tail (:value! (cons₁₂))
+ :value! (:tail (cons₁₄)))
+(cons₁₂
+ :head (:value! (sole₁₀))
+ :tail (:value! (null₁₁))
+ :value! (:tail (cons₁₃)))
+(null₁₁
+ :value! (:tail (cons₁₂)))
+(sole₁₀
+ :value! (:head (cons₁₂)))
+(sole₉
+ :value! (:head (cons₁₃)))
+(sole₈
+ :value! (:head (cons₁₄)))
+(sole₃
+ :value! (:head (cons₆)))
+(sole₂
+ :value! (:head (cons₇)))
+(sole₁
+ :value! (:head (cons₁₅)))
+</net>
+

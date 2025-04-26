@@ -1,13 +1,13 @@
 # bug
 
-[bug] `DEBUG_STEP_LOG 1` can not pass tests
-[bug] `DEBUG_TASK_LOG 1` can not pass tests
-
 [bug] infinite loop with `-s`
 
 ```
 ./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
 ```
+
+[bug] `DEBUG_STEP_LOG 1` can not pass tests
+[bug] `DEBUG_TASK_LOG 1` can not pass tests
 
 [bug] `--single-threaded` flag print extra top level
 

@@ -29,32 +29,32 @@
 </net>
 
 <net>
-:root (add1₁₀₂₅)
-(add1₁₀₂₅
- :prev (:value! (add1₃₀₇₄))
+:root (add1₁₇)
+(add1₁₇
+ :prev (:value! (add1₂₀))
  :value! empty)
-(add1₃₀₇₄
- :prev (:value! (add1₁₈))
- :value! (:prev (add1₁₀₂₅)))
-(add1₁₈
- :prev (:value! (add1₂₁))
- :value! (:prev (add1₃₀₇₄)))
-(add1₂₁
- :prev (:value! (zero₁₉))
- :value! (:prev (add1₁₈)))
-(zero₁₉
- :value! (:prev (add1₂₁)))
+(add1₂₀
+ :prev (:value! (add1₈))
+ :value! (:prev (add1₁₇)))
+(add1₈
+ :prev (:value! (add1₂))
+ :value! (:prev (add1₂₀)))
+(add1₂
+ :prev (:value! (zero₉))
+ :value! (:prev (add1₈)))
+(zero₉
+ :value! (:prev (add1₂)))
 </net>
 
 <net>
-:root (add1₂₄)
-(add1₂₄
- :prev (:value! (add1₂₆))
+:root (add1₁₈)
+(add1₁₈
+ :prev (:value! (add1₂₁))
  :value! empty)
-(add1₂₆
- :prev (:value! (zero₂₅))
- :value! (:prev (add1₂₄)))
-(zero₂₅
- :value! (:prev (add1₂₆)))
+(add1₂₁
+ :prev (:value! (zero₁))
+ :value! (:prev (add1₁₈)))
+(zero₁
+ :value! (:prev (add1₂₁)))
 </net>
 
