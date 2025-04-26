@@ -66,6 +66,8 @@ collect_primitive_arg(principal_wire_t *principal_wire, value_t arg) {
     assert(node_is_primitive(principal_wire->node));
     primitive_t *primitive = node->ctor->primitive;
     size_t index = principal_wire->index;
+    principal_wire_destroy(&principal_wire);
+
     node_set_value(node, index, arg);
     size_t arg_count = node_primitive_arg_count_fetch_add1(node) + 1;
     if (arg_count == primitive->input_arity) {

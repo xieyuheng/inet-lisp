@@ -1,11 +1,5 @@
 # bug
 
-[bug] every time different result
-
-```
-./bin/inet-lisp run -p examples/datatypes/list-map.play.lisp
-```
-
 [bug] infinite loop with `-s`
 
 ```
