@@ -1,6 +1,6 @@
 # bug
 
-[bug] infinite loop with `-s`
+[bug] apply unfuzed wire
 
 ```
 ./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
