@@ -1,6 +1,5 @@
 (import null cons "list.lisp")
 (import list-map "list-map.lisp")
-(import sole "trivial.lisp")
 
 (define (iadd2 n)
   (iadd n 2))
