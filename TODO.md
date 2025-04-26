@@ -1,10 +1,9 @@
-# bug
+# printer
 
-[bug] apply unfuzed wire
+`node_ctor_t` should not print `()`
 
-```
-./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
-```
+`node_neighborhood_print` -- take `prefix` -- pure lispy style printer
+`worker_print` -- pure lispy style printer
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests
 [bug] `DEBUG_TASK_LOG 1` can not pass tests
@@ -13,6 +12,18 @@
 
 ```
 ./bin/inet-lisp run -s -p examples/primitives/top-level-exp.test.lisp
+```
+
+# bug
+
+primitive should not have `input_arity` and `output_arity` -- should only have `arity`
+`apply_n` as primitive node ctor
+support `(apply)`
+
+[bug] apply unfuzed wire
+
+```
+./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
 ```
 
 # example
