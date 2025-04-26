@@ -65,7 +65,10 @@ bool
 is_fuzed(value_t x, value_t y) {
     x = walk(x);
     y = walk(y);
-    return x == y;
+
+    return (is_wire(x) &&
+            is_wire(y) &&
+            x == y);
 }
 
 bool
@@ -78,7 +81,7 @@ is_connected(value_t x, value_t y) {
                 (as_principal_wire(x)->oppsite == y &&
                  as_principal_wire(y)->oppsite == x));
     } else {
-        return x == y;
+        return is_fuzed(x, y);
     }
 }
 
