@@ -73,15 +73,20 @@ node_neighborhood_print(node_neighborhood_t *self, file_t *file) {
             fprintf(file, " :%s ", port_info->name);
         }
 
-        value_t value = node_get_value(self->node, i);
-        if (value && is_non_wire(value)) {
-            value_print(defuze(value), file);
+        node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
+        if (node_neighbor) {
+            node_neighbor_print_end_port(node_neighbor, file);
         } else {
-            node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
-            if (node_neighbor) {
-                node_neighbor_print_end_port(node_neighbor, file);
-            } else {
+            value_t value = node_get_value(self->node, i);
+            if (!value) {
                 fprintf(file, "empty");
+            } else {
+                value = defuze(value);
+                if (is_non_wire(value)) {
+                    value_print(defuze(value), file);
+                } else {
+                    fprintf(file, "empty");
+                }
             }
         }
 
