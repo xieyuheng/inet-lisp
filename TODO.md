@@ -1,5 +1,8 @@
 # bug
 
+[bug] `DEBUG_STEP_LOG 1` can not pass tests
+[bug] `DEBUG_TASK_LOG 1` can not pass tests
+
 [bug] infinite loop with `-s`
 
 ```
