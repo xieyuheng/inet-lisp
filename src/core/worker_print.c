@@ -8,7 +8,10 @@ worker_print_return_stack(const worker_t *self, file_t *file) {
     fprintf(file, " (");
     for (size_t i = 0; i < length; i++) {
         frame_t *frame = stack_get(self->return_stack, i);
-        frame_print(frame, file);
+        if (i > 0) frame_print(frame, "", file);
+        else frame_print(frame, "  ", file);
+
+        if (i != length - 1) fprintf(file, "\n");
     }
     fprintf(file, ")");
 }
