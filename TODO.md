@@ -1,7 +1,6 @@
 # printer
 
 `frame_print` -- pure lispy printer
-`worker_print` -- pure lispy printer
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race
 
