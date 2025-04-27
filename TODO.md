@@ -1,6 +1,5 @@
 # printer
 
-`task_t` use tagged union
 `task_print` -- pure lispy printer
 `task_print` -- show args of primitive task
 

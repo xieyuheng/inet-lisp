@@ -1,12 +1,8 @@
-
 #include "index.h"
 
-task_t *
-task_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
+static task_t *
+task_new(void) {
     task_t *self = new(task_t);
-    self->left = left;
-    self->right = right;
-    self->rule = rule;
 #if DEBUG_TASK_LOCK
     self->mutex = mutex_new();
 #endif
@@ -14,12 +10,20 @@ task_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *
 }
 
 task_t *
-task_primitve(node_t *primitive_node) {
+task_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
+    task_t *self = task_new();
+    self->kind = TASK_ACTIVE_PAIR;
+    self->active_pair.left = left;
+    self->active_pair.right = right;
+    self->active_pair.rule = rule;
+    return self;
+}
+
+task_t *
+task_primitive(node_t *node) {
     task_t *self = new(task_t);
-    self->primitive_node = primitive_node;
-#if DEBUG_TASK_LOCK
-    self->mutex = mutex_new();
-#endif
+    self->kind = TASK_PRIMITIVE;
+    self->primitive.node = node;
     return self;
 }
 
@@ -29,22 +33,26 @@ task_destroy(task_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     task_t *self = *self_pointer;
+#if DEBUG_TASK_LOCK
+    mutex_destroy(&self->mutex);
+#endif
     free(self);
     *self_pointer = NULL;
 }
 
-bool
-task_is_primitive(const task_t *self) {
-    return self->primitive_node != NULL;
-}
-
 void
 task_print(const task_t *self, file_t *file) {
-    if (task_is_primitive(self)) {
-        node_print(self->primitive_node, file);
-    } else {
-        principal_wire_print_left(self->left, file);
+    switch (self->kind) {
+    case TASK_ACTIVE_PAIR: {
+        principal_wire_print_left(self->active_pair.left, file);
         fprintf(file, " ");
-        principal_wire_print_right(self->right, file);
+        principal_wire_print_right(self->active_pair.right, file);
+        return;
+    }
+
+    case TASK_PRIMITIVE: {
+        node_print(self->primitive.node, file);
+        return;
+    }
     }
 }

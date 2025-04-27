@@ -71,7 +71,7 @@ collect_primitive_arg(principal_wire_t *principal_wire, value_t arg) {
     node_set_value(node, index, arg);
     size_t arg_count = node_primitive_arg_count_fetch_add1(node) + 1;
     if (arg_count == primitive->input_arity) {
-        return task_primitve(node);
+        return task_primitive(node);
     } else {
         return NULL;
     }
