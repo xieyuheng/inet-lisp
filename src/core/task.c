@@ -44,14 +44,18 @@ void
 task_print(const task_t *self, file_t *file) {
     switch (self->kind) {
     case TASK_ACTIVE_PAIR: {
+        fprintf(file, "(task-active-pair ");
         principal_wire_print_left(self->active_pair.left, file);
         fprintf(file, " ");
         principal_wire_print_right(self->active_pair.right, file);
+        fprintf(file, ")");
         return;
     }
 
     case TASK_PRIMITIVE: {
+        fprintf(file, "(task-primitive ");
         node_print(self->primitive.node, file);
+        fprintf(file, ")");
         return;
     }
     }
