@@ -5,7 +5,10 @@ worker_steal_task(worker_t *worker) {
     scheduler_t *scheduler = worker->scheduler;
     size_t worker_count = scheduler_worker_count(scheduler);
 
-    while (scheduler_no_more_tasks(scheduler)) {
+    while (atomic_load_explicit(
+               &scheduler->atomic_task_count,
+               memory_order_acquire) > 0)
+    {
         size_t victim_id = ++worker->victim_cursor % worker_count;
         if (victim_id == worker->worker_id)
             victim_id = ++worker->victim_cursor % worker_count;
@@ -23,7 +26,10 @@ worker_thread_fn(void *arg) {
     worker_t *worker = arg;
     scheduler_t *scheduler = worker->scheduler;
 
-    while (scheduler_no_more_tasks(scheduler)) {
+    while (atomic_load_explicit(
+               &scheduler->atomic_task_count,
+               memory_order_acquire) > 0)
+    {
         task_t *task = deque_pop_front(worker->task_deque);
 
 #if DEBUG_WORK_STEALING_DISABLED

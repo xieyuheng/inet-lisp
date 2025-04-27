@@ -61,12 +61,3 @@ scheduler_wait(scheduler_t *scheduler) {
         thread_wait(tid);
     }
 }
-
-bool
-scheduler_no_more_tasks(scheduler_t *scheduler) {
-    size_t *task_count = atomic_load_explicit(
-        &self->atomic_task_count,
-        memory_order_acquire);
-
-    return task_count == 0;
-}
