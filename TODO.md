@@ -1,7 +1,6 @@
 # bug
 
-[bug] `x_assert` is not called
-[bug] `x_apply1` is not called
+[bug] `x_apply1` not effective
 
 `apply_n` as primitive node ctor
 support explicit `(apply)`

@@ -36,7 +36,10 @@ worker_handle_task_primitive(worker_t *worker, node_t *node) {
         // output position of a primitive node ctor must be wire.
         wire_t *wire = as_wire(value);
         value_t result = stack_pop(worker->value_stack);
-        fuze(wire, result);
+        task_t *task = connect(wire, result);
+        if (task) {
+            worker_add_task(worker, task);
+        }
     }
 
     worker_recycle_node(worker, node);
