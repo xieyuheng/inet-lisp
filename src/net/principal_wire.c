@@ -40,6 +40,7 @@ as_principal_wire(value_t value) {
 void
 principal_wire_print_left(const principal_wire_t *self, file_t *file) {
     assert(self->node);
+
     fprintf(file, "(");
     node_print(self->node, file);
     fprintf(file, " ");
@@ -50,6 +51,7 @@ principal_wire_print_left(const principal_wire_t *self, file_t *file) {
 void
 principal_wire_print_right(const principal_wire_t *self, file_t *file) {
     assert(self->node);
+
     fprintf(file, "(");
     node_print_port_info(self->node, self->index, file);
     fprintf(file, " ");

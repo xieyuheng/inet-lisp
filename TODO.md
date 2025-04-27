@@ -1,11 +1,10 @@
 # printer
 
+[bug] `DEBUG_STEP_LOG 1` can not pass tests
+
 `frame_print` -- pure lispy printer
 `task_print` -- pure lispy printer
 `worker_print` -- pure lispy printer
-
-[bug] `DEBUG_STEP_LOG 1` can not pass tests
-[bug] `DEBUG_TASK_LOG 1` can not pass tests
 
 [bug] `--single-threaded` flag print extra top level
 
