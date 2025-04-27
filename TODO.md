@@ -1,6 +1,5 @@
 # bug
 
-`test_print` -- print less `()`
 `worker_connect` -- handle returned task -- i often forget handle the returned task
 
 `x_apply<n>` as primitive node ctor
@@ -26,7 +25,6 @@ support explicit `(apply)`
 
 # lang
 
-[lang] `print_connected` -- be more lispy
 [lang] refactor `define_rule_star`
 
 # player
