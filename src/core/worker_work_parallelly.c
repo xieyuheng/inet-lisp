@@ -34,10 +34,7 @@ worker_thread_fn(void *arg) {
         if (!task) return NULL;
 
         worker_handle_task(worker, task);
-        atomic_fetch_sub_explicit(
-            &scheduler->atomic_task_count,
-            1,
-            memory_order_release);
+        scheduler_task_count_sub1(scheduler);
     }
 
     return NULL;
@@ -51,10 +48,7 @@ scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = scheduler_get_worker(scheduler, index);
         deque_push_back(worker->task_deque, task);
-        atomic_fetch_add_explicit(
-            &scheduler->atomic_task_count,
-            1,
-            memory_order_release);
+        scheduler_task_count_add1(scheduler);
         cursor++;
     }
 }

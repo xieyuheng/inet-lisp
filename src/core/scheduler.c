@@ -62,6 +62,22 @@ scheduler_wait(scheduler_t *self) {
     }
 }
 
+void
+scheduler_task_count_add1(scheduler_t *self) {
+    atomic_fetch_add_explicit(
+        &self->atomic_task_count,
+        1,
+        memory_order_release);
+}
+
+void
+scheduler_task_count_sub1(scheduler_t *self) {
+    atomic_fetch_sub_explicit(
+        &self->atomic_task_count,
+        1,
+        memory_order_release);
+}
+
 bool
 scheduler_no_more_tasks(scheduler_t *self) {
     size_t task_count = atomic_load_explicit(

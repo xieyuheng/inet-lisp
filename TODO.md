@@ -1,6 +1,5 @@
 # printer
 
-`scheduler_task_count_add1` & `scheduler_task_count_sub1`
 `worker_print` -- print worker id
 `frame_print` -- print local variables
 

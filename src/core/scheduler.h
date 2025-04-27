@@ -18,4 +18,6 @@ void scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker)
 void scheduler_start(scheduler_t *self, thread_fn_t *worker_thread_fn);
 void scheduler_wait(scheduler_t *self);
 
+void scheduler_task_count_add1(scheduler_t *self);
+void scheduler_task_count_sub1(scheduler_t *self);
 bool scheduler_no_more_tasks(scheduler_t *self);
