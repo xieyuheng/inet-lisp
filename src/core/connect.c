@@ -4,10 +4,10 @@ inline static task_t *
 rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) {
     if ((rule->left_node_ctor == left->node->ctor) &&
         (rule->right_node_ctor == right->node->ctor)) {
-        return task_new_active_pair(left, right, rule);
+        return task_active_pair(left, right, rule);
     } else if ((rule->left_node_ctor == right->node->ctor) &&
                (rule->right_node_ctor == left->node->ctor)) {
-        return task_new_active_pair(right, left, rule);
+        return task_active_pair(right, left, rule);
     } else {
         return NULL;
     }
@@ -71,7 +71,7 @@ collect_primitive_arg(principal_wire_t *principal_wire, value_t arg) {
     node_set_value(node, index, arg);
     size_t arg_count = node_primitive_arg_count_fetch_add1(node) + 1;
     if (arg_count == primitive->input_arity) {
-        return task_new_primitve(node);
+        return task_primitve(node);
     } else {
         return NULL;
     }

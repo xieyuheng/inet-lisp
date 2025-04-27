@@ -2,7 +2,7 @@
 #include "index.h"
 
 task_t *
-task_new_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
+task_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     task_t *self = new(task_t);
     self->left = left;
     self->right = right;
@@ -14,7 +14,7 @@ task_new_active_pair(principal_wire_t *left, principal_wire_t *right, const rule
 }
 
 task_t *
-task_new_primitve(node_t *primitive_node) {
+task_primitve(node_t *primitive_node) {
     task_t *self = new(task_t);
     self->primitive_node = primitive_node;
 #if DEBUG_TASK_LOCK
