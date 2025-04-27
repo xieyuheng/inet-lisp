@@ -1,1 +1,172 @@
-[worker_apply] can not apply unfuzed wire
+(net
+ :root (cons₁₀₂₆)
+ :node-count 28
+ (cons₁₀₂₆
+  :head (:result (apply1₂₀))
+  :tail (:value! (cons₁₀₂₈))
+  :value! ____)
+ (cons₁₀₂₈
+  :head (:result (apply1₁₀₂₅))
+  :tail (:value! (cons₁₀₃₀))
+  :value! (:tail (cons₁₀₂₆)))
+ (cons₁₀₃₀
+  :head (:result (apply1₁₀₂₇))
+  :tail (:value! (cons₁₀₃₁))
+  :value! (:tail (cons₁₀₂₈)))
+ (cons₁₀₃₁
+  :head (:result (apply1₁₀₂₉))
+  :tail (:value! (cons₁₀₃₂))
+  :value! (:tail (cons₁₀₃₀)))
+ (cons₁₀₃₂
+  :head (:result (apply1₁₇))
+  :tail (:value! (cons₁₀₃₃))
+  :value! (:tail (cons₁₀₃₁)))
+ (cons₁₀₃₃
+  :head (:result (apply1₁₃))
+  :tail (:value! (cons₁₀₃₄))
+  :value! (:tail (cons₁₀₃₂)))
+ (cons₁₀₃₄
+  :head (:result (apply1₁₂))
+  :tail (:value! (cons₁₀₃₅))
+  :value! (:tail (cons₁₀₃₃)))
+ (cons₁₀₃₅
+  :head (:result (apply1₁₁))
+  :tail (:value! (cons₁₀₃₆))
+  :value! (:tail (cons₁₀₃₄)))
+ (cons₁₀₃₆
+  :head (:result (apply1₇))
+  :tail (:value! (null₁))
+  :value! (:tail (cons₁₀₃₅)))
+ (null₁
+  :value! (:tail (cons₁₀₃₆)))
+ (apply1₇
+  :target! add2
+  :arg (:value! (zero₄))
+  :result (:head (cons₁₀₃₆)))
+ (zero₄
+  :value! (:arg (apply1₇)))
+ (apply1₁₁
+  :target! add2
+  :arg (:value! (zero₃))
+  :result (:head (cons₁₀₃₅)))
+ (zero₃
+  :value! (:arg (apply1₁₁)))
+ (apply1₁₂
+  :target! add2
+  :arg (:value! (zero₂))
+  :result (:head (cons₁₀₃₄)))
+ (zero₂
+  :value! (:arg (apply1₁₂)))
+ (apply1₁₃
+  :target! add2
+  :arg (:value! (zero₁₀))
+  :result (:head (cons₁₀₃₃)))
+ (zero₁₀
+  :value! (:arg (apply1₁₃)))
+ (apply1₁₇
+  :target! add2
+  :arg (:value! (zero₉))
+  :result (:head (cons₁₀₃₂)))
+ (zero₉
+  :value! (:arg (apply1₁₇)))
+ (apply1₁₀₂₉
+  :target! add2
+  :arg (:value! (zero₈))
+  :result (:head (cons₁₀₃₁)))
+ (zero₈
+  :value! (:arg (apply1₁₀₂₉)))
+ (apply1₁₀₂₇
+  :target! add2
+  :arg (:value! (zero₁₆))
+  :result (:head (cons₁₀₃₀)))
+ (zero₁₆
+  :value! (:arg (apply1₁₀₂₇)))
+ (apply1₁₀₂₅
+  :target! add2
+  :arg (:value! (zero₁₅))
+  :result (:head (cons₁₀₂₈)))
+ (zero₁₅
+  :value! (:arg (apply1₁₀₂₅)))
+ (apply1₂₀
+  :target! add2
+  :arg (:value! (zero₁₄))
+  :result (:head (cons₁₀₂₆)))
+ (zero₁₄
+  :value! (:arg (apply1₂₀))))
+(net
+ :root (cons₂₀₅₀)
+ :node-count 19
+ (cons₂₀₅₀
+  :head (:result (apply1₃₁))
+  :tail (:value! (cons₂₀₅₂))
+  :value! ____)
+ (cons₂₀₅₂
+  :head (:result (apply1₂₀₄₉))
+  :tail (:value! (cons₂₀₅₃))
+  :value! (:tail (cons₂₀₅₀)))
+ (cons₂₀₅₃
+  :head (:result (apply1₂₀₅₁))
+  :tail (:value! (cons₂₀₅₄))
+  :value! (:tail (cons₂₀₅₂)))
+ (cons₂₀₅₄
+  :head (:result (apply1₂₉))
+  :tail (:value! (cons₂₀₅₅))
+  :value! (:tail (cons₂₀₅₃)))
+ (cons₂₀₅₅
+  :head (:result (apply1₂₈))
+  :tail (:value! (cons₂₀₅₇))
+  :value! (:tail (cons₂₀₅₄)))
+ (cons₂₀₅₇
+  :head (:result (apply1₂₇))
+  :tail (:value! (cons₂₀₅₈))
+  :value! (:tail (cons₂₀₅₅)))
+ (cons₂₀₅₈
+  :head (:result (apply1₂₀₅₆))
+  :tail (:value! (cons₂₀₅₉))
+  :value! (:tail (cons₂₀₅₇)))
+ (cons₂₀₅₉
+  :head (:result (apply1₂₅))
+  :tail (:value! (cons₂₀₆₀))
+  :value! (:tail (cons₂₀₅₈)))
+ (cons₂₀₆₀
+  :head (:result (apply1₂₄))
+  :tail (:value! (null₂₁))
+  :value! (:tail (cons₂₀₅₉)))
+ (null₂₁
+  :value! (:tail (cons₂₀₆₀)))
+ (apply1₂₄
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₆₀)))
+ (apply1₂₅
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₉)))
+ (apply1₂₀₅₆
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₈)))
+ (apply1₂₇
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₇)))
+ (apply1₂₈
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₅)))
+ (apply1₂₉
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₄)))
+ (apply1₂₀₅₁
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₃)))
+ (apply1₂₀₄₉
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₂)))
+ (apply1₃₁
+  :target! iadd2
+  :arg 0
+  :result (:head (cons₂₀₅₀))))

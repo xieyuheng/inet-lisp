@@ -7,4 +7,4 @@
 
 (define-rule (list-map (cons head tail) fn result)
   (= fn fn* (fn-dup fn))
-  (cons (fn head) (list-map tail fn*) result))
+  (cons (apply1 fn head) (list-map tail fn*) result))

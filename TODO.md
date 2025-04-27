@@ -1,7 +1,10 @@
 # bug
 
+[bug] `x_assert` is not called
+[bug] `x_apply1` is not called
+
 `apply_n` as primitive node ctor
-support `(apply)`
+support explicit `(apply)`
 
 [bug] apply unfuzed wire
 
