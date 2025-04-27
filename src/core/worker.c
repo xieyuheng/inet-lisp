@@ -1,25 +1,9 @@
 #include "index.h"
 
-static list_t *
-lex_code(const char *code) {
-    lexer_t *lexer = lexer_new();
-    lexer->enable_int = true;
-    lexer->enable_float = true;
-    lexer->enable_string = true;
-    lexer->line_comment = "//";
-    lexer->string = code;
-    lexer_run(lexer);
-
-    list_t *token_list = lexer->token_list;
-    lexer_destroy(&lexer);
-    return token_list;
-}
-
 worker_t *
 worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     worker_t *self = new(worker_t);
     self->mod = mod;
-    self->token_list = lex_code(mod->code);
     self->task_deque = deque_new();
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
@@ -35,7 +19,6 @@ worker_destroy(worker_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     worker_t *self = *self_pointer;
-    list_destroy(&self->token_list);
     deque_destroy(&self->task_deque);
     stack_destroy(&self->value_stack);
     stack_destroy(&self->return_stack);

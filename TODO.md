@@ -1,5 +1,6 @@
 # printer
 
+`worker_t` -- rename index to `worker_id`
 `worker_print` -- print worker id
 `frame_print` -- print local variables
 

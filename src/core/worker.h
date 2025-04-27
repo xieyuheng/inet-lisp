@@ -4,7 +4,6 @@
 
 struct worker_t {
     mod_t *mod;
-    list_t *token_list;
     deque_t *task_deque;
     stack_t *value_stack;
     stack_t *return_stack;
