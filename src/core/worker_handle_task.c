@@ -1,19 +1,23 @@
 #include "index.h"
 
 static void
-worker_handle_active_pair_task(worker_t *worker, task_t *task) {
-    worker_disconnect_node(worker, task->active_pair.left->node);
-    worker_disconnect_node(worker, task->active_pair.right->node);
+worker_handle_task_active_pair(
+    worker_t *worker,
+    principal_wire_t *left,
+    principal_wire_t *right,
+    const rule_t *rule
+) {
+    worker_disconnect_node(worker, left->node);
+    worker_disconnect_node(worker, right->node);
 
     size_t return_stack_base = stack_length(worker->return_stack);
-    frame_t *frame = frame_new(task->active_pair.rule->function);
+    frame_t *frame = frame_new(rule->function);
     stack_push(worker->return_stack, frame);
     worker_run_until(worker, return_stack_base);
 }
 
 static void
-worker_handle_primitive_task(worker_t *worker, task_t *task) {
-    node_t *node = task->primitive.node;
+worker_handle_task_primitive(worker_t *worker, node_t *node) {
     assert(node_is_primitive(node));
     primitive_t *primitive = node->ctor->primitive;
 
@@ -60,12 +64,18 @@ worker_handle_task(worker_t *worker, task_t *task) {
 
     switch (task->kind) {
     case TASK_ACTIVE_PAIR: {
-        worker_handle_active_pair_task(worker, task);
+        worker_handle_task_active_pair(
+            worker,
+            task->active_pair.left,
+            task->active_pair.right,
+            task->active_pair.rule);
         break;
     }
 
     case TASK_PRIMITIVE: {
-        worker_handle_primitive_task(worker, task);
+        worker_handle_task_primitive(
+            worker,
+            task->primitive.node);
         break;
     }
     }
