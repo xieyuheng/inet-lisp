@@ -17,3 +17,5 @@ void scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker)
 
 void scheduler_start(scheduler_t *scheduler, thread_fn_t *worker_thread_fn);
 void scheduler_wait(scheduler_t *scheduler);
+
+bool scheduler_no_more_tasks(scheduler_t *scheduler);
