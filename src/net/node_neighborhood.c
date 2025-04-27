@@ -80,7 +80,7 @@ node_neighborhood_print_one(node_neighborhood_t *self, size_t i, file_t *file) {
 }
 
 void
-node_neighborhood_print(node_neighborhood_t *self, file_t *file, const char *prefix) {
+node_neighborhood_print(node_neighborhood_t *self, const char *prefix, file_t *file) {
     fprintf(file, "%s", prefix);
     fprintf(file, "(");
     node_print_name(self->node, file);

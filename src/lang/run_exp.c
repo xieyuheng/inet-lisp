@@ -41,7 +41,7 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
         node_t *node = array_get(node_array, i);
         node_neighborhood_t *node_neighborhood = hash_get(node_neighborhood_hash, node);
         assert(node_neighborhood);
-        node_neighborhood_print(node_neighborhood, file, prefix);
+        node_neighborhood_print(node_neighborhood, prefix, file);
 
         if (i == array_length(node_array) - 1) {
             fprintf(file, ")");
