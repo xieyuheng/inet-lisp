@@ -3,7 +3,7 @@
  :node-count 9
  (add1₁₅
   :prev (:value! (add1₇))
-  :value! empty)
+  :value! ____)
  (add1₇
   :prev (:value! (add1₃))
   :value! (:prev (add1₁₅)))
@@ -32,7 +32,7 @@
  :node-count 5
  (add1₁₇
   :prev (:value! (add1₂₀))
-  :value! empty)
+  :value! ____)
  (add1₂₀
   :prev (:value! (add1₈))
   :value! (:prev (add1₁₇)))
@@ -49,7 +49,7 @@
  :node-count 3
  (add1₁₈
   :prev (:value! (add1₂₁))
-  :value! empty)
+  :value! ____)
  (add1₂₁
   :prev (:value! (zero₁))
   :value! (:prev (add1₁₈)))

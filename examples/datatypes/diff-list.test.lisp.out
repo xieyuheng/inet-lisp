@@ -4,7 +4,7 @@
  (diff₁
   :front (:value! (cons₅))
   :back (:tail (cons₉))
-  :value! empty)
+  :value! ____)
  (cons₉
   :head (:value! (sole₈))
   :tail (:back (diff₁))

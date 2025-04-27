@@ -3,7 +3,7 @@
  :node-count 257
  (add1₃₆
   :prev (:value! (add1₄₆))
-  :value! empty)
+  :value! ____)
  (add1₄₆
   :prev (:value! (add1₄₄))
   :value! (:prev (add1₃₆)))

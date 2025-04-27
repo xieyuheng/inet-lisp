@@ -3,7 +3,7 @@
  :node-count 5
  (add1₇
   :prev (:value! (add1₃))
-  :value! empty)
+  :value! ____)
  (add1₃
   :prev (:value! (add1₆))
   :value! (:prev (add1₇)))
