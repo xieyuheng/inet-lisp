@@ -9,7 +9,7 @@ worker_print_return_stack(const worker_t *self, file_t *file) {
     for (size_t i = 0; i < length; i++) {
         frame_t *frame = stack_get(self->return_stack, i);
         if (i > 0) fprintf(file, "  ");
-        frame_print(frame, file);
+        frame_print_within_worker(frame, self, file);
         if (i != length - 1) fprintf(file, "\n");
     }
     fprintf(file, ")");
@@ -24,7 +24,7 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
     for (size_t i = 0; i < length; i++) {
         value_t value = stack_get(self->value_stack, i);
         if (i > 0) fprintf(file, "  ");
-        value_print(walk(value), file);
+        worker_print_value(self, value, file);
         if (i != length - 1) fprintf(file, "\n");
     }
     fprintf(file, ")");

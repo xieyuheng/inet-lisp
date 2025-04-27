@@ -32,8 +32,8 @@ void worker_work_sequentially(worker_t *worker);
 void worker_work_parallelly(worker_t *worker);
 void worker_work(worker_t *worker);
 
-node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);
+node_t *worker_lookup_node_by_wire(const worker_t* self, wire_t *wire);
+void worker_print_value(const worker_t *self, value_t value, file_t *file);
+void worker_print(const worker_t *self, file_t *file);
 
 bool worker_is_loader(const worker_t *self);
-
-void worker_print(const worker_t *self, file_t *file);

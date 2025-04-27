@@ -93,6 +93,16 @@ node_has_wire(node_t *node, wire_t *wire) {
     return false;
 }
 
+size_t
+node_wire_index(node_t *node, wire_t *wire) {
+    for (size_t i = 0; i < node->ctor->arity; i++) {
+        if (is_fuzed(node_get_value(node, i), wire))
+            return i;
+    }
+
+    assert(false);
+}
+
 bool
 node_is_primitive(const node_t *self) {
     return self->ctor->primitive != NULL;

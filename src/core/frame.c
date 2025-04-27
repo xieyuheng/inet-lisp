@@ -51,13 +51,33 @@ frame_print(const frame_t *self, file_t *file) {
     for (size_t i = 0; i < length; i++) {
         value_t value = array_get(self->variable_array, i);
         if (value) value_print(walk(value), file);
-        else fprintf(file, "empty");
+        else fprintf(file, "____");
 
         if (i != length - 1) fprintf(file, " ");
     }
 
     fprintf(file, ")");
+    fprintf(file, ")");
+}
 
+void
+frame_print_within_worker(const frame_t *self, const worker_t *worker, file_t *file) {
+    fprintf(file, "(frame ");
+    function_print_with_cursor(self->function, file, self->cursor);
+
+    fprintf(file, "\n   ");
+    fprintf(file, ":local-variable-array ");
+    fprintf(file, "(");
+    size_t length = array_length(self->variable_array);
+    for (size_t i = 0; i < length; i++) {
+        value_t value = array_get(self->variable_array, i);
+        if (value) worker_print_value(worker, value, file);
+        else fprintf(file, "____");
+
+        if (i != length - 1) fprintf(file, " ");
+    }
+
+    fprintf(file, ")");
     fprintf(file, ")");
 }
 

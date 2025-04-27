@@ -67,7 +67,7 @@ node_neighborhood_print_one(node_neighborhood_t *self, size_t i, file_t *file) {
 
     value_t value = node_get_value(self->node, i);
     if (!value) {
-        fprintf(file, "empty");
+        fprintf(file, "____");
         return;
     }
 
@@ -75,7 +75,7 @@ node_neighborhood_print_one(node_neighborhood_t *self, size_t i, file_t *file) {
     if (is_non_wire(value)) {
         value_print(value, file);
     } else {
-        fprintf(file, "empty");
+        fprintf(file, "____");
     }
 }
 

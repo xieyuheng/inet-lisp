@@ -66,7 +66,7 @@ worker_is_loader(const worker_t *self) {
 }
 
 node_t *
-worker_lookup_node_by_wire(worker_t* self, wire_t *wire) {
+worker_lookup_node_by_wire(const worker_t* self, wire_t *wire) {
     array_t *node_array = allocated_node_array(self->node_allocator);
     for (size_t i = 0; i < array_length(node_array); i++) {
 
