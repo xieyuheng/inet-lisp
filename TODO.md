@@ -1,5 +1,6 @@
 # printer
 
+`frame_print` -- take `prefix`
 `frame_print` -- print local variables
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race

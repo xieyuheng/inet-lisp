@@ -40,8 +40,7 @@ frame_fetch_opcode(frame_t *self) {
 }
 
 void
-frame_print(const frame_t *self, const char *prefix, file_t *file) {
-    fprintf(file, "%s", prefix);
+frame_print(const frame_t *self, file_t *file) {
     function_print_with_cursor(self->function, file, self->cursor);
 }
 
