@@ -41,7 +41,24 @@ frame_fetch_opcode(frame_t *self) {
 
 void
 frame_print(const frame_t *self, file_t *file) {
+    fprintf(file, "(frame ");
     function_print_with_cursor(self->function, file, self->cursor);
+
+    fprintf(file, "\n   ");
+    fprintf(file, ":local-variable-array ");
+    fprintf(file, "(");
+    size_t length = array_length(self->variable_array);
+    for (size_t i = 0; i < length; i++) {
+        value_t value = array_get(self->variable_array, i);
+        if (value) value_print(walk(value), file);
+        else fprintf(file, "empty");
+
+        if (i != length - 1) fprintf(file, " ");
+    }
+
+    fprintf(file, ")");
+
+    fprintf(file, ")");
 }
 
 value_t
