@@ -60,6 +60,11 @@ worker_recycle_node(worker_t* self, node_t *node) {
 #endif
 }
 
+bool
+worker_is_loader(const worker_t *self) {
+    return self->scheduler;
+}
+
 node_t *
 worker_lookup_node_by_wire(worker_t* self, wire_t *wire) {
     array_t *node_array = allocated_node_array(self->node_allocator);

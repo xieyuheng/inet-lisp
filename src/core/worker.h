@@ -34,4 +34,6 @@ void worker_work(worker_t *worker);
 
 node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);
 
+bool worker_is_loader(const worker_t *self);
+
 void worker_print(const worker_t *self, file_t *file);

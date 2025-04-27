@@ -9,11 +9,11 @@ worker_steal_task(worker_t *worker) {
                &scheduler->atomic_task_count,
                memory_order_acquire) > 0)
     {
-        size_t victim_index = ++worker->victim_cursor % worker_count;
-        if (victim_index == worker->worker_id)
-            victim_index = ++worker->victim_cursor % worker_count;
+        size_t victim_id = ++worker->victim_cursor % worker_count;
+        if (victim_id == worker->worker_id)
+            victim_id = ++worker->victim_cursor % worker_count;
 
-        worker_t *victim = array_get(scheduler->worker_array, victim_index);
+        worker_t *victim = array_get(scheduler->worker_array, victim_id);
         task_t *task = deque_pop_front(victim->task_deque);
         if (task) return task;
     }
