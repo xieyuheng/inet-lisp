@@ -1,7 +1,8 @@
+
 #include "index.h"
 
 task_t *
-task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
+task_new_active_pair(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     task_t *self = new(task_t);
     self->left = left;
     self->right = right;

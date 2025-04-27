@@ -4,10 +4,10 @@ inline static task_t *
 rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) {
     if ((rule->left_node_ctor == left->node->ctor) &&
         (rule->right_node_ctor == right->node->ctor)) {
-        return task_new(left, right, rule);
+        return task_new_active_pair(left, right, rule);
     } else if ((rule->left_node_ctor == right->node->ctor) &&
                (rule->right_node_ctor == left->node->ctor)) {
-        return task_new(right, left, rule);
+        return task_new_active_pair(right, left, rule);
     } else {
         return NULL;
     }

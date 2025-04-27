@@ -1,7 +1,7 @@
 #include "index.h"
 
 static void
-worker_handle_normal_task(worker_t *worker, task_t *task) {
+worker_handle_active_pair_task(worker_t *worker, task_t *task) {
     worker_disconnect_node(worker, task->left->node);
     worker_disconnect_node(worker, task->right->node);
 
@@ -64,7 +64,7 @@ worker_handle_task(worker_t *worker, task_t *task) {
     if (task_is_primitive(task)) {
         worker_handle_primitive_task(worker, task);
     } else {
-        worker_handle_normal_task(worker, task);
+        worker_handle_active_pair_task(worker, task);
     }
 
 #if DEBUG_TASK_LOCK

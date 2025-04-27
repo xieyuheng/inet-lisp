@@ -1,10 +1,14 @@
 # printer
 
-[bug] `DEBUG_STEP_LOG 1` can not pass tests
-
 `frame_print` -- pure lispy printer
 `task_print` -- pure lispy printer
 `worker_print` -- pure lispy printer
+
+[bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race
+
+```
+./bin/inet-lisp run -p examples/readme/nat.test.lisp
+```
 
 [bug] `--single-threaded` flag print extra top level
 
