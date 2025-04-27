@@ -35,6 +35,16 @@ scheduler_worker_count(scheduler_t *self) {
     return array_length(self->worker_array);
 }
 
+worker_t *
+scheduler_get_worker(scheduler_t *self, size_t worker_id) {
+    return array_get(self->worker_array, worker_id);
+}
+
+void
+scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker) {
+    array_set(self->worker_array, worker_id, worker);
+}
+
 void
 scheduler_start(scheduler_t *scheduler, thread_fn_t *worker_thread_fn) {
     for (size_t i = 0; i < array_length(scheduler->worker_array); i++) {

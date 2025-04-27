@@ -1,6 +1,6 @@
 # printer
 
-`scheduler_get_worker` & `scheduler_set_worker`
+`scheduler_no_more_tasks`
 `worker_print` -- print worker id
 `frame_print` -- print local variables
 
