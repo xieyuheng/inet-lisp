@@ -51,16 +51,18 @@ worker_run_one_step(worker_t *worker) {
     if (finished) {
         frame_destroy(&frame);
     }
-
-#if DEBUG_STEP_LOG
-    worker_print(worker, stdout);
-    fprintf(stdout, "\n");
-#endif
 }
 
 void
 worker_run_until(worker_t *worker, size_t base_length) {
     while (stack_length(worker->return_stack) > base_length) {
         worker_run_one_step(worker);
+
+#if DEBUG_STEP_LOG
+        file_lock(stdout);
+        worker_print(worker, stdout);
+        fprintf(stdout, "\n");
+        file_unlock(stdout);        
+#endif
     }
 }

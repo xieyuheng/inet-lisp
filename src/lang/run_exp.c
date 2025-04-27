@@ -2,6 +2,8 @@
 
 static void
 print_connected(worker_t *worker, value_t value, file_t *file) {
+    value = walk(value);
+
     node_t *node = NULL;
 
     if (is_wire(value)) {
@@ -88,20 +90,6 @@ run_exp(worker_t *worker, exp_t *exp) {
 
     assert(stack_length(worker->value_stack) >= base_value_count);
     size_t value_count = stack_length(worker->value_stack) - base_value_count;
-    list_t *value_list = list_new();
-    for (size_t count = 0; count < value_count; count++) {
-        size_t index = value_count - 1 - count;
-        value_t value = stack_pick(worker->value_stack, index);
-        list_push(value_list, value);
-    }
-
-    value_t value = list_shift(value_list);
-    while (value) {
-        stack_push(worker->value_stack, defuze(value));
-        value = list_shift(value_list);
-    }
-
-    list_destroy(&value_list);
     return value_count;
 }
 

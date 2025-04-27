@@ -1,6 +1,6 @@
 # printer
 
-[bug] `DEBUG_STEP_LOG 1` can not pass tests
+[bug] `DEBUG_STEP_LOG 1` can not pass tests -- `run_exp` should not `defuze`
 
 `frame_print` -- pure lispy printer
 `task_print` -- pure lispy printer
