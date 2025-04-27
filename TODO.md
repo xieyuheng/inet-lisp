@@ -1,11 +1,3 @@
-# printer
-
-[bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race
-
-```
-./bin/inet-lisp run -p examples/readme/nat.test.lisp
-```
-
 # bug
 
 primitive should not have `input_arity` and `output_arity` -- should only have `arity`

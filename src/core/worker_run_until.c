@@ -55,6 +55,11 @@ worker_run_one_step(worker_t *worker) {
 
 static void
 worker_step_log(worker_t *worker, size_t return_stack_base, uint64_t start_at, size_t step) {
+    if (!single_threaded_flag) {
+        who_printf("can not do step log without single_threaded_flag");
+        exit(1);
+    }
+
     file_lock(stdout);
     who_printf("%s", "");
     printf("return_stack_base: %lu", return_stack_base); fprintf(stdout, ", ");
