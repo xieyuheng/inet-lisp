@@ -1,6 +1,9 @@
 # bug
 
-`apply_n` as primitive node ctor
+`test_print` -- print less `()`
+`worker_connect` -- handle returned task -- i often forget handle the returned task
+
+`x_apply<n>` as primitive node ctor
 support explicit `(apply)`
 
 [bug] apply unfuzed wire
