@@ -54,11 +54,12 @@ worker_run_one_step(worker_t *worker) {
 }
 
 static void
-worker_step_log(worker_t *worker, size_t return_stack_base, size_t step) {
+worker_step_log(worker_t *worker, size_t return_stack_base, uint64_t start_at, size_t step) {
     file_lock(stdout);
-    who_printf("return-stack-base: %lu, step: %lu\n",
-               return_stack_base,
-               step);
+    who_printf("%s", "");
+    printf("return_stack_base: %lu", return_stack_base); fprintf(stdout, ", ");
+    printf("start_at: %lu", start_at); fprintf(stdout, ", ");
+    printf("step: %lu", step); fprintf(stdout, "\n");
     worker_print(worker, stdout); fprintf(stdout, "\n");
     file_unlock(stdout);
 }
@@ -67,7 +68,8 @@ void
 worker_run_until(worker_t *worker, size_t return_stack_base) {
 #if DEBUG_STEP_LOG
     size_t step = 0;
-    worker_step_log(worker, return_stack_base, step++);
+    uint64_t start_at = time_nanosecond();
+    worker_step_log(worker, return_stack_base, start_at, step++);
 #else
     (void) worker_step_log;
 #endif
@@ -76,7 +78,7 @@ worker_run_until(worker_t *worker, size_t return_stack_base) {
         worker_run_one_step(worker);
 
 #if DEBUG_STEP_LOG
-        worker_step_log(worker, return_stack_base, step++);
+        worker_step_log(worker, return_stack_base, start_at, step++);
 #endif
     }
 }
