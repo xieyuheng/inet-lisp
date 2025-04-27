@@ -1,4 +1,5 @@
-[memory] `memory_clear` quit using `memset` directly
+[frame] remove limit on local variable number
+[node] remove limit on arity
 
 # printer
 

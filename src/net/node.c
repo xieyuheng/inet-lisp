@@ -26,7 +26,7 @@ node_clean(node_t *self) {
     self->ctor = NULL;
     self->locked_by_worker = NULL;
     self->is_allocated = false;
-    memset(self->values, 0, NODE_MAX_ARITY * sizeof(void *));
+    memory_clear(self->values, NODE_MAX_ARITY * sizeof(void *));
     atomic_init(&self->atomic_primitive_arg_count, 0);
 }
 

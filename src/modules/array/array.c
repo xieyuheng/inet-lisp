@@ -31,7 +31,7 @@ array_purge(array_t *self) {
             }
         }
     } else {
-        memset(self->values, 0, self->size * sizeof(void *));
+        memory_clear(self->values, self->size * sizeof(void *));
     }
 
     self->cursor = 0;
