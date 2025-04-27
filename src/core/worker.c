@@ -62,7 +62,7 @@ worker_recycle_node(worker_t* self, node_t *node) {
 
 bool
 worker_is_loader(const worker_t *self) {
-    return self->scheduler;
+    return !self->scheduler;
 }
 
 node_t *
