@@ -4,7 +4,7 @@ void
 test_vec(void) {
     test_start();
 
-    vec2_test();
+    test_vec2();
 
     test_end();
 }

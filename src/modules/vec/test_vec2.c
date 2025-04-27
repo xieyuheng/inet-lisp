@@ -3,7 +3,7 @@
 static double add1(double x) { return x + 1; }
 
 void
-vec2_test(void) {
+test_vec2(void) {
     test_start();
 
     assert(

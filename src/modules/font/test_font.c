@@ -2,7 +2,7 @@
 
 void
 test_font(void) {
-    glyph_test();
+    test_glyph();
 
     test_start();
 

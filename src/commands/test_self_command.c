@@ -14,7 +14,7 @@ int
 run(commander_t *commander) {
     (void) commander;
 
-    // TODO
+    test_node();
 
     return 0;
 }

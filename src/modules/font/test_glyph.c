@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-glyph_test(void) {
+test_glyph(void) {
     test_start();
 
     glyph_t *glyph = glyph_decode_hex("0041:0000000018242442427E424242420000");
