@@ -20,24 +20,32 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
         return;
     }
 
+    const char *prefix = " ";
     hash_t *node_neighborhood_hash = build_node_neighborhood_hash(worker->node_allocator);
-    fprintf(file, "<net>\n");
-    fprintf(file, ":root "); node_print(node, file); fprintf(file, "\n");
+    fprintf(file, "(net\n");
+
+    fprintf(file, "%s", prefix);
+    fprintf(file, ":root ");
+    node_print(node, file);
+    fprintf(file, "\n");
 
     array_t *node_array = connected_node_array(node, node_neighborhood_hash);
     for (size_t i = 0; i < array_length(node_array); i++) {
         node_t *node = array_get(node_array, i);
         node_neighborhood_t *node_neighborhood = hash_get(node_neighborhood_hash, node);
         assert(node_neighborhood);
-        node_neighborhood_print(node_neighborhood, file);
+        node_neighborhood_print(node_neighborhood, file, prefix);
+
+        if (i == array_length(node_array) - 1) {
+            fprintf(file, ")");
+            fprintf(stdout, "\n");
+        } else {
+            fprintf(stdout, "\n");
+        }
     }
 
     array_destroy(&node_array);
     hash_destroy(&node_neighborhood_hash);
-
-    fprintf(file, "</net>\n");
-    fprintf(stdout, "\n");
-
 }
 
 static void

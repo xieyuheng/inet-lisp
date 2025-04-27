@@ -1,6 +1,6 @@
 # printer
 
-`node_neighborhood_print` -- take `prefix` -- pure lispy style printer
+`node_neighborhood_print` -- refactor
 `worker_print` -- pure lispy style printer
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests

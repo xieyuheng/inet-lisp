@@ -1,32 +1,30 @@
-<net>
-:root (diff₁)
-(diff₁
- :front (:value! (cons₅))
- :back (:tail (cons₉))
- :value! empty)
-(cons₉
- :head (:value! (sole₈))
- :tail (:back (diff₁))
- :value! (:tail (cons₁₀)))
-(cons₁₀
- :head (:value! (sole₇))
- :tail (:value! (cons₉))
- :value! (:tail (cons₄)))
-(cons₄
- :head (:value! (sole₃))
- :tail (:value! (cons₁₀))
- :value! (:tail (cons₅)))
-(cons₅
- :head (:value! (sole₂))
- :tail (:value! (cons₄))
- :value! (:front (diff₁)))
-(sole₂
- :value! (:head (cons₅)))
-(sole₃
- :value! (:head (cons₄)))
-(sole₇
- :value! (:head (cons₁₀)))
-(sole₈
- :value! (:head (cons₉)))
-</net>
-
+(net
+ :root (diff₁)
+ (diff₁
+  :front (:value! (cons₅))
+  :back (:tail (cons₉))
+  :value! empty)
+ (cons₉
+  :head (:value! (sole₈))
+  :tail (:back (diff₁))
+  :value! (:tail (cons₁₀)))
+ (cons₁₀
+  :head (:value! (sole₇))
+  :tail (:value! (cons₉))
+  :value! (:tail (cons₄)))
+ (cons₄
+  :head (:value! (sole₃))
+  :tail (:value! (cons₁₀))
+  :value! (:tail (cons₅)))
+ (cons₅
+  :head (:value! (sole₂))
+  :tail (:value! (cons₄))
+  :value! (:front (diff₁)))
+ (sole₂
+  :value! (:head (cons₅)))
+ (sole₃
+  :value! (:head (cons₄)))
+ (sole₇
+  :value! (:head (cons₁₀)))
+ (sole₈
+  :value! (:head (cons₉))))

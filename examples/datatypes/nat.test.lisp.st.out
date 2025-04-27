@@ -1,60 +1,54 @@
-<net>
-:root (add1₁₅)
-(add1₁₅
- :prev (:value! (add1₇))
- :value! empty)
-(add1₇
- :prev (:value! (add1₃))
- :value! (:prev (add1₁₅)))
-(add1₃
- :prev (:value! (add1₆))
- :value! (:prev (add1₇)))
-(add1₆
- :prev (:value! (add1₁₄))
- :value! (:prev (add1₃)))
-(add1₁₄
- :prev (:value! (add1₁₀))
- :value! (:prev (add1₆)))
-(add1₁₀
- :prev (:value! (add1₁₃))
- :value! (:prev (add1₁₄)))
-(add1₁₃
- :prev (:value! (add1₁₂))
- :value! (:prev (add1₁₀)))
-(add1₁₂
- :prev (:value! (zero₁₁))
- :value! (:prev (add1₁₃)))
-(zero₁₁
- :value! (:prev (add1₁₂)))
-</net>
-
-<net>
-:root (add1₁₇)
-(add1₁₇
- :prev (:value! (add1₂₀))
- :value! empty)
-(add1₂₀
- :prev (:value! (add1₈))
- :value! (:prev (add1₁₇)))
-(add1₈
- :prev (:value! (add1₂))
- :value! (:prev (add1₂₀)))
-(add1₂
- :prev (:value! (zero₉))
- :value! (:prev (add1₈)))
-(zero₉
- :value! (:prev (add1₂)))
-</net>
-
-<net>
-:root (add1₁₈)
-(add1₁₈
- :prev (:value! (add1₂₁))
- :value! empty)
-(add1₂₁
- :prev (:value! (zero₁))
- :value! (:prev (add1₁₈)))
-(zero₁
- :value! (:prev (add1₂₁)))
-</net>
-
+(net
+ :root (add1₁₅)
+ (add1₁₅
+  :prev (:value! (add1₇))
+  :value! empty)
+ (add1₇
+  :prev (:value! (add1₃))
+  :value! (:prev (add1₁₅)))
+ (add1₃
+  :prev (:value! (add1₆))
+  :value! (:prev (add1₇)))
+ (add1₆
+  :prev (:value! (add1₁₄))
+  :value! (:prev (add1₃)))
+ (add1₁₄
+  :prev (:value! (add1₁₀))
+  :value! (:prev (add1₆)))
+ (add1₁₀
+  :prev (:value! (add1₁₃))
+  :value! (:prev (add1₁₄)))
+ (add1₁₃
+  :prev (:value! (add1₁₂))
+  :value! (:prev (add1₁₀)))
+ (add1₁₂
+  :prev (:value! (zero₁₁))
+  :value! (:prev (add1₁₃)))
+ (zero₁₁
+  :value! (:prev (add1₁₂))))
+(net
+ :root (add1₁₇)
+ (add1₁₇
+  :prev (:value! (add1₂₀))
+  :value! empty)
+ (add1₂₀
+  :prev (:value! (add1₈))
+  :value! (:prev (add1₁₇)))
+ (add1₈
+  :prev (:value! (add1₂))
+  :value! (:prev (add1₂₀)))
+ (add1₂
+  :prev (:value! (zero₉))
+  :value! (:prev (add1₈)))
+ (zero₉
+  :value! (:prev (add1₂))))
+(net
+ :root (add1₁₈)
+ (add1₁₈
+  :prev (:value! (add1₂₁))
+  :value! empty)
+ (add1₂₁
+  :prev (:value! (zero₁))
+  :value! (:prev (add1₁₈)))
+ (zero₁
+  :value! (:prev (add1₂₁))))
