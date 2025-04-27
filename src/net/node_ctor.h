@@ -22,3 +22,5 @@ node_ctor_t *as_node_ctor(value_t value);
 size_t node_ctor_find_port_index(const node_ctor_t *node_ctor, const char *port_name);
 
 void node_ctor_print(const node_ctor_t *self, file_t *file);
+
+size_t node_ctor_principal_port_count(const node_ctor_t *self);

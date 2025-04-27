@@ -112,6 +112,9 @@ define_primitive_node(mod_t *mod, const char *name, const char *port_names[]) {
             port_info_from_name(string_copy(port_names[i]));
     }
 
+    assert(node_ctor_principal_port_count(node_ctor) <=
+           primitive->input_arity);
+
     primitive->node_ctor = node_ctor;
     node_ctor->primitive = primitive;
 }

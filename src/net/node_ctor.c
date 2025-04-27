@@ -73,3 +73,16 @@ void
 node_ctor_print(const node_ctor_t *self, file_t *file) {
     fprintf(file, "%s", self->name);
 }
+
+size_t
+node_ctor_principal_port_count(const node_ctor_t *self) {
+    size_t principal_port_count = 0;
+    for (size_t i = 0; i < self->arity; i++) {
+        port_info_t *port_info = self->port_infos[i];
+        if (port_info->is_principal) {
+            principal_port_count++;
+        }
+    }
+
+    return principal_port_count;
+}
