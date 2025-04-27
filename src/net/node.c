@@ -4,7 +4,7 @@ node_t *
 node_new(void) {
     node_t *self = new(node_t);
     self->mutex = mutex_new();
-    self->values = allocate_pointers(NODE_MAX_ARITY);
+    self->value_array = array_new_auto();
     atomic_init(&self->atomic_primitive_arg_count, 0);
     return self;
 }
@@ -16,7 +16,7 @@ node_destroy(node_t **self_pointer) {
 
     node_t *self = *self_pointer;
     mutex_destroy(&self->mutex);
-    free(self->values);
+    array_destroy(&self->value_array);
     free(self);
     *self_pointer = NULL;
 }
@@ -26,23 +26,21 @@ node_clean(node_t *self) {
     self->ctor = NULL;
     self->locked_by_worker = NULL;
     self->is_allocated = false;
-    memory_clear(self->values, NODE_MAX_ARITY * sizeof(void *));
+    array_purge(self->value_array);
     atomic_init(&self->atomic_primitive_arg_count, 0);
 }
 
 void
 node_set_value(node_t *self, size_t index, value_t value) {
     assert(self);
-    assert(index < NODE_MAX_ARITY);
-    self->values[index] = value;
+    array_set(self->value_array, index, value);
 }
 
 value_t
 node_get_value(const node_t *self, size_t index) {
     assert(self);
     assert(self->ctor);
-    assert(index < NODE_MAX_ARITY);
-    return self->values[index];
+    return array_get(self->value_array, index);
 }
 
 port_info_t *

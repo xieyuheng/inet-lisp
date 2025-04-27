@@ -6,7 +6,7 @@ struct node_t {
     void *locked_by_worker;
     size_t id;
     bool is_allocated;
-    value_t *values;
+    array_t *value_array;
 
     // for primitive node
     atomic_size_t atomic_primitive_arg_count;

@@ -1,5 +1,3 @@
-[node] remove limit on arity
-
 # printer
 
 `worker_print` -- print worker id
