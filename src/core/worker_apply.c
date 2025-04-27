@@ -27,7 +27,7 @@ worker_apply(worker_t *worker, value_t target, size_t arity) {
             who_printf("can not apply unfuzed wire\n");
             exit(1);
         } else {
-            worker_apply(worker, defuze(target), arity);
+            worker_apply(worker, defuzed, arity);
         }
     } else {
         who_printf("unknown target: ");
