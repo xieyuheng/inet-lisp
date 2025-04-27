@@ -20,7 +20,7 @@ void worker_destroy(worker_t **self_pointer);
 
 void worker_apply_primitive(worker_t *worker, const primitive_t *primitive);
 void worker_apply(worker_t *worker, value_t target, size_t arity);
-void worker_run_until(worker_t *worker, size_t base_length);
+void worker_run_until(worker_t *worker, size_t return_stack_base);
 
 node_t *worker_new_node(worker_t* self, const node_ctor_t *ctor);
 void worker_recycle_node(worker_t* self, node_t *node);

@@ -75,10 +75,10 @@ build_net(worker_t *worker, exp_t *exp) {
     function_t *function = function_new(arity);
     compile_exp(worker, function, exp);
 
-    size_t base_length = stack_length(worker->return_stack);
+    size_t return_stack_base = stack_length(worker->return_stack);
     frame_t *frame = frame_new(function);
     stack_push(worker->return_stack, frame);
-    worker_run_until(worker, base_length);
+    worker_run_until(worker, return_stack_base);
 
     function_destroy(&function);
 }

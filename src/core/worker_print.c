@@ -31,7 +31,7 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 static void
 worker_print_task_deque(const worker_t *self, file_t *file) {
     size_t length = deque_length(self->task_deque);
-    fprintf(file, " :task-count %lu\n", length);
+    fprintf(file, " :task-deque-length %lu\n", length);
     fprintf(file, " :task-deque\n");
     fprintf(file, " (");
     for (size_t i = 0; i < length; i++) {

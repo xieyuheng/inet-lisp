@@ -9,12 +9,6 @@
 ./bin/inet-lisp run -p examples/readme/nat.test.lisp
 ```
 
-[bug] `--single-threaded` flag print extra top level
-
-```
-./bin/inet-lisp run -s -p examples/primitives/top-level-exp.test.lisp
-```
-
 # bug
 
 primitive should not have `input_arity` and `output_arity` -- should only have `arity`
