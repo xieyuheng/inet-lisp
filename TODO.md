@@ -1,3 +1,5 @@
+[memory] `memory_clear` quit using `memset` directly
+
 # printer
 
 `worker_print` -- print worker id
