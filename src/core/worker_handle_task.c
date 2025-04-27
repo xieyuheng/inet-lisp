@@ -27,7 +27,11 @@ worker_handle_task_primitive(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
+    // NOTE A primitive task might also push return stack,
+    // for example, by calling `worker_apply`.
+    size_t return_stack_base = stack_length(worker->return_stack);
     worker_apply_primitive(worker, primitive);
+    worker_run_until(worker, return_stack_base);
 
     size_t arity = primitive->input_arity + primitive->output_arity;
     for (size_t count = 0; count < primitive->output_arity; count++) {

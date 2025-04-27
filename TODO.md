@@ -1,7 +1,5 @@
 # bug
 
-[bug] `x_apply1` not effective
-
 `apply_n` as primitive node ctor
 support explicit `(apply)`
 

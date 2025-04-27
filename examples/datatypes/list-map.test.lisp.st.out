@@ -1,172 +1,154 @@
 (net
  :root (cons₂₂)
- :node-count 28
+ :node-count 37
  (cons₂₂
-  :head (:result (apply1₂₀))
+  :head (:value! (add1₂₅))
   :tail (:value! (cons₂₃))
   :value! ____)
  (cons₂₃
-  :head (:result (apply1₂₁))
-  :tail (:value! (cons₂₄))
+  :head (:value! (add1₂₇))
+  :tail (:value! (cons₂₀))
   :value! (:tail (cons₂₂)))
- (cons₂₄
-  :head (:result (apply1₁₉))
-  :tail (:value! (cons₂₅))
+ (cons₂₀
+  :head (:value! (add1₂₉))
+  :tail (:value! (cons₂₁))
   :value! (:tail (cons₂₃)))
- (cons₂₅
-  :head (:result (apply1₁₈))
-  :tail (:value! (cons₂₆))
-  :value! (:tail (cons₂₄)))
- (cons₂₆
-  :head (:result (apply1₁₇))
-  :tail (:value! (cons₂₇))
-  :value! (:tail (cons₂₅)))
- (cons₂₇
-  :head (:result (apply1₁₃))
-  :tail (:value! (cons₂₈))
-  :value! (:tail (cons₂₆)))
- (cons₂₈
-  :head (:result (apply1₁₂))
-  :tail (:value! (cons₂₉))
-  :value! (:tail (cons₂₇)))
- (cons₂₉
-  :head (:result (apply1₁₁))
-  :tail (:value! (cons₃₀))
-  :value! (:tail (cons₂₈)))
- (cons₃₀
-  :head (:result (apply1₇))
+ (cons₂₁
+  :head (:value! (add1₃₁))
+  :tail (:value! (cons₁₉))
+  :value! (:tail (cons₂₀)))
+ (cons₁₉
+  :head (:value! (add1₃₃))
+  :tail (:value! (cons₁₈))
+  :value! (:tail (cons₂₁)))
+ (cons₁₈
+  :head (:value! (add1₃₅))
+  :tail (:value! (cons₁₇))
+  :value! (:tail (cons₁₉)))
+ (cons₁₇
+  :head (:value! (add1₃₇))
+  :tail (:value! (cons₁₃))
+  :value! (:tail (cons₁₈)))
+ (cons₁₃
+  :head (:value! (add1₃₉))
+  :tail (:value! (cons₁₂))
+  :value! (:tail (cons₁₇)))
+ (cons₁₂
+  :head (:value! (add1₅))
   :tail (:value! (null₁))
-  :value! (:tail (cons₂₉)))
+  :value! (:tail (cons₁₃)))
  (null₁
-  :value! (:tail (cons₃₀)))
- (apply1₇
-  :target! add2
-  :arg (:value! (zero₄))
-  :result (:head (cons₃₀)))
+  :value! (:tail (cons₁₂)))
+ (add1₅
+  :prev (:value! (add1₆))
+  :value! (:head (cons₁₂)))
+ (add1₆
+  :prev (:value! (zero₄))
+  :value! (:prev (add1₅)))
  (zero₄
-  :value! (:arg (apply1₇)))
- (apply1₁₁
-  :target! add2
-  :arg (:value! (zero₃))
-  :result (:head (cons₂₉)))
+  :value! (:prev (add1₆)))
+ (add1₃₉
+  :prev (:value! (add1₃₈))
+  :value! (:head (cons₁₃)))
+ (add1₃₈
+  :prev (:value! (zero₃))
+  :value! (:prev (add1₃₉)))
  (zero₃
-  :value! (:arg (apply1₁₁)))
- (apply1₁₂
-  :target! add2
-  :arg (:value! (zero₂))
-  :result (:head (cons₂₈)))
+  :value! (:prev (add1₃₈)))
+ (add1₃₇
+  :prev (:value! (add1₃₆))
+  :value! (:head (cons₁₇)))
+ (add1₃₆
+  :prev (:value! (zero₂))
+  :value! (:prev (add1₃₇)))
  (zero₂
-  :value! (:arg (apply1₁₂)))
- (apply1₁₃
-  :target! add2
-  :arg (:value! (zero₁₀))
-  :result (:head (cons₂₇)))
+  :value! (:prev (add1₃₆)))
+ (add1₃₅
+  :prev (:value! (add1₃₄))
+  :value! (:head (cons₁₈)))
+ (add1₃₄
+  :prev (:value! (zero₁₀))
+  :value! (:prev (add1₃₅)))
  (zero₁₀
-  :value! (:arg (apply1₁₃)))
- (apply1₁₇
-  :target! add2
-  :arg (:value! (zero₉))
-  :result (:head (cons₂₆)))
+  :value! (:prev (add1₃₄)))
+ (add1₃₃
+  :prev (:value! (add1₃₂))
+  :value! (:head (cons₁₉)))
+ (add1₃₂
+  :prev (:value! (zero₉))
+  :value! (:prev (add1₃₃)))
  (zero₉
-  :value! (:arg (apply1₁₇)))
- (apply1₁₈
-  :target! add2
-  :arg (:value! (zero₈))
-  :result (:head (cons₂₅)))
+  :value! (:prev (add1₃₂)))
+ (add1₃₁
+  :prev (:value! (add1₃₀))
+  :value! (:head (cons₂₁)))
+ (add1₃₀
+  :prev (:value! (zero₈))
+  :value! (:prev (add1₃₁)))
  (zero₈
-  :value! (:arg (apply1₁₈)))
- (apply1₁₉
-  :target! add2
-  :arg (:value! (zero₁₆))
-  :result (:head (cons₂₄)))
+  :value! (:prev (add1₃₀)))
+ (add1₂₉
+  :prev (:value! (add1₂₈))
+  :value! (:head (cons₂₀)))
+ (add1₂₈
+  :prev (:value! (zero₁₆))
+  :value! (:prev (add1₂₉)))
  (zero₁₆
-  :value! (:arg (apply1₁₉)))
- (apply1₂₁
-  :target! add2
-  :arg (:value! (zero₁₅))
-  :result (:head (cons₂₃)))
+  :value! (:prev (add1₂₈)))
+ (add1₂₇
+  :prev (:value! (add1₂₆))
+  :value! (:head (cons₂₃)))
+ (add1₂₆
+  :prev (:value! (zero₁₅))
+  :value! (:prev (add1₂₇)))
  (zero₁₅
-  :value! (:arg (apply1₂₁)))
- (apply1₂₀
-  :target! add2
-  :arg (:value! (zero₁₄))
-  :result (:head (cons₂₂)))
+  :value! (:prev (add1₂₆)))
+ (add1₂₅
+  :prev (:value! (add1₂₄))
+  :value! (:head (cons₂₂)))
+ (add1₂₄
+  :prev (:value! (zero₁₄))
+  :value! (:prev (add1₂₅)))
  (zero₁₄
-  :value! (:arg (apply1₂₀))))
+  :value! (:prev (add1₂₄))))
 (net
- :root (cons₄₁)
- :node-count 19
- (cons₄₁
-  :head (:result (apply1₃₉))
-  :tail (:value! (cons₄₂))
+ :root (cons₅₀)
+ :node-count 10
+ (cons₅₀
+  :head 2
+  :tail (:value! (cons₅₁))
   :value! ____)
- (cons₄₂
-  :head (:result (apply1₄₀))
-  :tail (:value! (cons₄₃))
-  :value! (:tail (cons₄₁)))
- (cons₄₃
-  :head (:result (apply1₃₈))
-  :tail (:value! (cons₄₄))
-  :value! (:tail (cons₄₂)))
- (cons₄₄
-  :head (:result (apply1₃₇))
-  :tail (:value! (cons₄₅))
-  :value! (:tail (cons₄₃)))
- (cons₄₅
-  :head (:result (apply1₃₆))
-  :tail (:value! (cons₄₆))
-  :value! (:tail (cons₄₄)))
- (cons₄₆
-  :head (:result (apply1₃₅))
-  :tail (:value! (cons₄₇))
-  :value! (:tail (cons₄₅)))
- (cons₄₇
-  :head (:result (apply1₃₄))
+ (cons₅₁
+  :head 2
   :tail (:value! (cons₄₈))
-  :value! (:tail (cons₄₆)))
+  :value! (:tail (cons₅₀)))
  (cons₄₈
-  :head (:result (apply1₃₃))
+  :head 2
   :tail (:value! (cons₄₉))
-  :value! (:tail (cons₄₇)))
+  :value! (:tail (cons₅₁)))
  (cons₄₉
-  :head (:result (apply1₃₂))
-  :tail (:value! (null₆))
+  :head 2
+  :tail (:value! (cons₄₇))
   :value! (:tail (cons₄₈)))
- (null₆
+ (cons₄₇
+  :head 2
+  :tail (:value! (cons₄₆))
   :value! (:tail (cons₄₉)))
- (apply1₃₂
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₉)))
- (apply1₃₃
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₈)))
- (apply1₃₄
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₇)))
- (apply1₃₅
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₆)))
- (apply1₃₆
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₅)))
- (apply1₃₇
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₄)))
- (apply1₃₈
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₃)))
- (apply1₄₀
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₂)))
- (apply1₃₉
-  :target! iadd2
-  :arg 0
-  :result (:head (cons₄₁))))
+ (cons₄₆
+  :head 2
+  :tail (:value! (cons₄₅))
+  :value! (:tail (cons₄₇)))
+ (cons₄₅
+  :head 2
+  :tail (:value! (cons₄₄))
+  :value! (:tail (cons₄₆)))
+ (cons₄₄
+  :head 2
+  :tail (:value! (cons₄₃))
+  :value! (:tail (cons₄₅)))
+ (cons₄₃
+  :head 2
+  :tail (:value! (null₇))
+  :value! (:tail (cons₄₄)))
+ (null₇
+  :value! (:tail (cons₄₃))))
