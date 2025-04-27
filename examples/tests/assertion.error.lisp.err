@@ -1,0 +1,12 @@
+[x_assert] assertion fail
+(worker
+ :id 1
+ :task-deque-length 0
+ :task-deque
+ ()
+ :return-stack-length 0
+ :return-stack
+ ()
+ :value-stack-length 0
+ :value-stack
+ ())
