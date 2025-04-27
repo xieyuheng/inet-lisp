@@ -32,6 +32,11 @@ print_connected(worker_t *worker, value_t value, file_t *file) {
     fprintf(file, "\n");
 
     array_t *node_array = connected_node_array(node, node_neighborhood_hash);
+
+    fprintf(file, "%s", prefix);
+    fprintf(file, ":node-count %lu", array_length(node_array));
+    fprintf(file, "\n");
+
     for (size_t i = 0; i < array_length(node_array); i++) {
         node_t *node = array_get(node_array, i);
         node_neighborhood_t *node_neighborhood = hash_get(node_neighborhood_hash, node);

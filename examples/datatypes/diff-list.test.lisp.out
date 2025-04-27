@@ -1,5 +1,6 @@
 (net
  :root (diff₁)
+ :node-count 9
  (diff₁
   :front (:value! (cons₅))
   :back (:tail (cons₉))

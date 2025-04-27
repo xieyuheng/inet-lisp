@@ -1,5 +1,6 @@
 (net
  :root (add1₃₆)
+ :node-count 257
  (add1₃₆
   :prev (:value! (add1₄₆))
   :value! empty)

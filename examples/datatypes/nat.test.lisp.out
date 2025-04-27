@@ -1,5 +1,6 @@
 (net
  :root (add1₁₅)
+ :node-count 9
  (add1₁₅
   :prev (:value! (add1₇))
   :value! empty)
@@ -28,6 +29,7 @@
   :value! (:prev (add1₁₂))))
 (net
  :root (add1₁₀₂₅)
+ :node-count 5
  (add1₁₀₂₅
   :prev (:value! (add1₃₀₇₄))
   :value! empty)
@@ -44,6 +46,7 @@
   :value! (:prev (add1₂₁))))
 (net
  :root (add1₂₄)
+ :node-count 3
  (add1₂₄
   :prev (:value! (add1₂₆))
   :value! empty)
