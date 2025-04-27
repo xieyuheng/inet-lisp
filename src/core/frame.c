@@ -43,15 +43,8 @@ frame_fetch_opcode(frame_t *self) {
 
 void
 frame_print(const frame_t *self, file_t *file) {
-    fprintf(file, "<frame>\n");
-
-    fprintf(file, "<function>\n");
     function_print_with_cursor(self->function, file, self->cursor);
-    fprintf(file, "</function>\n");
-
-    fprintf(file, "</frame>\n");
 }
-
 
 value_t
 frame_get_variable(const frame_t *self, size_t index) {

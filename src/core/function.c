@@ -64,22 +64,28 @@ function_print_name(const function_t *self, file_t *file) {
 
 void
 function_print(const function_t *self, file_t *file) {
-    for (size_t i = 0; i < function_length(self); i++) {
+    fprintf(file, "(function ");
+    size_t length = function_length(self);
+    for (size_t i = 0; i < length; i++) {
         opcode_print(function_get_opcode(self, i), file);
-        fprintf(file, "\n");
+        if (i != length - 1) fprintf(file, " ");
     }
+    fprintf(file, ")");
 }
 
 void
 function_print_with_cursor(const function_t *self, file_t *file, size_t cursor) {
-    for (size_t i = 0; i < function_length(self); i++) {
+    fprintf(file, "(function ");
+    size_t length = function_length(self);
+    for (size_t i = 0; i < length; i++) {
         if (i == cursor) {
+            fprintf(file, "=> ");
             opcode_print(function_get_opcode(self, i), file);
-            fprintf(file, " <<<");
-            fprintf(file, "\n");
         } else {
             opcode_print(function_get_opcode(self, i), file);
-            fprintf(file, "\n");
         }
+
+        if (i != length - 1) fprintf(file, " ");
     }
+    fprintf(file, ")");
 }

@@ -55,6 +55,13 @@ worker_run_one_step(worker_t *worker) {
 
 void
 worker_run_until(worker_t *worker, size_t base_length) {
+#if DEBUG_STEP_LOG
+    file_lock(stdout);
+    worker_print(worker, stdout);
+    fprintf(stdout, "\n");
+    file_unlock(stdout);
+#endif
+
     while (stack_length(worker->return_stack) > base_length) {
         worker_run_one_step(worker);
 
@@ -62,7 +69,7 @@ worker_run_until(worker_t *worker, size_t base_length) {
         file_lock(stdout);
         worker_print(worker, stdout);
         fprintf(stdout, "\n");
-        file_unlock(stdout);        
+        file_unlock(stdout);
 #endif
     }
 }

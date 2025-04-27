@@ -1,6 +1,7 @@
 # printer
 
-`frame_print` -- pure lispy printer
+`worker_print` -- print worker id
+`frame_print` -- print local variables
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race
 
