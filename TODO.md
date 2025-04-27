@@ -1,5 +1,7 @@
 # bug
 
+[core] `collect_primitive_arg` -- use `node_principal_port_count` -- instead of primitive's `input_arity`
+
 primitive should not have `input_arity` and `output_arity` -- should only have `arity`
 `apply_n` as primitive node ctor
 support `(apply)`

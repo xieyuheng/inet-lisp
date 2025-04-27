@@ -33,3 +33,5 @@ size_t node_primitive_arg_count_fetch_add1(node_t *self);
 void node_lock(node_t *self);
 bool node_try_lock(node_t *self);
 void node_unlock(node_t *self);
+
+size_t node_principal_port_count(const node_t *self);

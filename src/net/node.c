@@ -130,3 +130,17 @@ void
 node_unlock(node_t *self) {
     mutex_unlock(self->mutex);
 }
+
+size_t
+node_principal_port_count(const node_t *self) {
+    assert(self->ctor);
+    size_t principal_port_count = 0;
+    for (size_t i = 0; i < self->ctor->arity; i++) {
+        port_info_t *port_info = node_get_port_info(self, i);
+        if (port_info->is_principal) {
+            principal_port_count++;
+        }
+    }
+
+    return principal_port_count;
+}

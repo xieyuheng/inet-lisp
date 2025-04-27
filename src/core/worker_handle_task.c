@@ -24,7 +24,6 @@ worker_handle_task_primitive(worker_t *worker, node_t *node) {
     for (size_t count = 0; count < primitive->input_arity; count++) {
         size_t index = count;
         value_t value = node_get_value(node, index);
-        assert(is_non_wire(value));
         stack_push(worker->value_stack, value);
     }
 
@@ -33,7 +32,9 @@ worker_handle_task_primitive(worker_t *worker, node_t *node) {
     size_t arity = primitive->input_arity + primitive->output_arity;
     for (size_t count = 0; count < primitive->output_arity; count++) {
         size_t index = arity - 1 - count;
-        wire_t *wire = as_wire(node_get_value(node, index));
+        value_t value = node_get_value(node, index);
+        // output position of a primitive node ctor must be wire.
+        wire_t *wire = as_wire(value);
         value_t result = stack_pop(worker->value_stack);
         fuze(wire, result);
     }
