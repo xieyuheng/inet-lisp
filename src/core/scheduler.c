@@ -46,18 +46,27 @@ scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker) {
 }
 
 void
-scheduler_start(scheduler_t *scheduler, thread_fn_t *worker_thread_fn) {
-    for (size_t i = 0; i < array_length(scheduler->worker_array); i++) {
-        worker_t *worker = array_get(scheduler->worker_array, i);
+scheduler_start(scheduler_t *self, thread_fn_t *worker_thread_fn) {
+    for (size_t i = 0; i < array_length(self->worker_array); i++) {
+        worker_t *worker = array_get(self->worker_array, i);
         tid_t tid = thread_start(worker_thread_fn, worker);
-        array_set(scheduler->worker_tid_array, i, (void *) (uint64_t) tid);
+        array_set(self->worker_tid_array, i, (void *) (uint64_t) tid);
     }
 }
 
 void
-scheduler_wait(scheduler_t *scheduler) {
-    for (size_t i = 0; i < array_length(scheduler->worker_tid_array); i++) {
-        tid_t tid = (tid_t) array_get(scheduler->worker_tid_array, i);
+scheduler_wait(scheduler_t *self) {
+    for (size_t i = 0; i < array_length(self->worker_tid_array); i++) {
+        tid_t tid = (tid_t) array_get(self->worker_tid_array, i);
         thread_wait(tid);
     }
+}
+
+bool
+scheduler_no_more_tasks(scheduler_t *self) {
+    size_t task_count = atomic_load_explicit(
+        &self->atomic_task_count,
+        memory_order_acquire);
+
+    return task_count == 0;
 }

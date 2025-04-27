@@ -15,5 +15,7 @@ size_t scheduler_worker_count(scheduler_t *self);
 worker_t *scheduler_get_worker(scheduler_t *self, size_t worker_id);
 void scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker);
 
-void scheduler_start(scheduler_t *scheduler, thread_fn_t *worker_thread_fn);
-void scheduler_wait(scheduler_t *scheduler);
+void scheduler_start(scheduler_t *self, thread_fn_t *worker_thread_fn);
+void scheduler_wait(scheduler_t *self);
+
+bool scheduler_no_more_tasks(scheduler_t *self);
