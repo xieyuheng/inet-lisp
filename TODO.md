@@ -1,7 +1,5 @@
 # printer
 
-`task_print` -- show args of primitive task
-
 `frame_print` -- pure lispy printer
 `worker_print` -- pure lispy printer
 

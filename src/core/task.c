@@ -54,7 +54,20 @@ task_print(const task_t *self, file_t *file) {
 
     case TASK_PRIMITIVE: {
         fprintf(file, "(task-primitive ");
-        node_print(self->primitive.node, file);
+        node_t *node = self->primitive.node;
+        fprintf(file, "(");
+        node_print_name(node, file);
+        fprintf(file, " ");
+        for (size_t i = 0; i < node->ctor->arity; i++) {
+            port_info_t *port_info = node_get_port_info(node, i);
+            if (port_info->is_principal) {
+                node_print_port_info(node, i, file);
+                fprintf(file, " ");
+                value_print(node_get_value(node, i), file);
+            }
+        }
+
+        fprintf(file, ")");
         fprintf(file, ")");
         return;
     }
