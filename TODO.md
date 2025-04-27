@@ -1,6 +1,8 @@
 # printer
-`node_print_port_info`
-`worker_print` -- pure lispy style printer
+
+`frame_print` -- pure lispy printer
+`task_print` -- pure lispy printer
+`worker_print` -- pure lispy printer
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests
 [bug] `DEBUG_TASK_LOG 1` can not pass tests
