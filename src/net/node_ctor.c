@@ -71,5 +71,5 @@ node_ctor_find_port_index(
 
 void
 node_ctor_print(const node_ctor_t *self, file_t *file) {
-    fprintf(file, "(%s)", self->name);
+    fprintf(file, "%s", self->name);
 }

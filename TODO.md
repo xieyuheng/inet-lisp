@@ -1,7 +1,5 @@
 # printer
 
-`node_ctor_t` should not print `()`
-
 `node_neighborhood_print` -- take `prefix` -- pure lispy style printer
 `worker_print` -- pure lispy style printer
 
