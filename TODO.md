@@ -1,6 +1,5 @@
 # printer
-
-`node_neighborhood_print` -- refactor
+`node_print_port_info`
 `worker_print` -- pure lispy style printer
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests

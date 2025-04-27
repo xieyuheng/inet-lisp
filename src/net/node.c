@@ -72,6 +72,19 @@ node_print(const node_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
+void
+node_print_port_info(const node_t *self, size_t index, file_t *file) {
+    if (self->ctor) {
+        port_info_t *port_info = node_get_port_info(self, index);
+        fprintf(file, ":%s", port_info->name);
+        if (port_info->is_principal) {
+            fprintf(file, "!");
+        }
+    } else {
+        fprintf(file, ":[%lu]", index);
+    }
+}
+
 bool
 node_has_wire(node_t *node, wire_t *wire) {
     for (size_t i = 0; i < node->ctor->arity; i++) {

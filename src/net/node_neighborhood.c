@@ -47,26 +47,17 @@ node_neighborhood_maybe_add_node(node_neighborhood_t *self, node_t *node) {
 
 static void
 node_neighbor_print_end_port(const node_neighbor_t *self, file_t *file) {
-    port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
-
-    if (end_port_info->is_principal) {
-        fprintf(file, "(:%s! ", end_port_info->name);
-    } else {
-        fprintf(file, "(:%s ", end_port_info->name);
-    }
-
+    fprintf(file, "(");
+    node_print_port_info(self->end_node, self->end_port_index, file);
+    fprintf(file, " ");
     node_print(self->end_node, file);
     fprintf(file, ")");
 }
 
 static void
 node_neighborhood_print_one(node_neighborhood_t *self, size_t i, file_t *file) {
-    port_info_t *port_info = node_get_port_info(self->node, i);
-    if (port_info->is_principal) {
-        fprintf(file, ":%s! ", port_info->name);
-    } else {
-        fprintf(file, ":%s ", port_info->name);
-    }
+    node_print_port_info(self->node, i, file);
+    fprintf(file, " ");
 
     node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
     if (node_neighbor) {
