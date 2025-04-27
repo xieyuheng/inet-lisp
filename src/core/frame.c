@@ -1,7 +1,5 @@
 #include "index.h"
 
-#define VARIABLE_ARRAY_SIZE 64
-
 struct frame_t {
     size_t cursor;
     const function_t *function;
@@ -13,7 +11,7 @@ frame_new(const function_t *function) {
     frame_t *self = new(frame_t);
     self->cursor = 0;
     self->function = function;
-    self->variable_array = array_new(VARIABLE_ARRAY_SIZE);
+    self->variable_array = array_new_auto();
     return self;
 }
 

@@ -1,4 +1,3 @@
-[frame] remove limit on local variable number
 [node] remove limit on arity
 
 # printer
