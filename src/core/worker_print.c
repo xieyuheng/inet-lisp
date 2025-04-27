@@ -43,9 +43,19 @@ worker_print_task_deque(const worker_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
+static void
+worker_print_id(const worker_t *self, file_t *file) {
+    if (worker_is_loader(self)) {
+        fprintf(file, " :id loader");
+    } else {
+        fprintf(file, " :id %lu", self->worker_id);
+    }
+}
+
 void
 worker_print(const worker_t *self, file_t *file) {
     fprintf(file, "(worker\n");
+    worker_print_id(self, file); fprintf(file, "\n");
     worker_print_task_deque(self, file); fprintf(file, "\n");
     worker_print_return_stack(self, file); fprintf(file, "\n");
     worker_print_value_stack(self, file); fprintf(file, ")");

@@ -1,6 +1,6 @@
 # printer
 
-`worker_print` -- print worker id
+`worker_run_until` -- print `:started-at`
 `frame_print` -- print local variables
 
 [bug] `DEBUG_STEP_LOG 1` can not pass tests -- data race
