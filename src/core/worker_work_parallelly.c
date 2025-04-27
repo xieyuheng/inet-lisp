@@ -10,7 +10,7 @@ worker_steal_task(worker_t *worker) {
                memory_order_acquire) > 0)
     {
         size_t victim_index = ++worker->victim_cursor % worker_count;
-        if (victim_index == worker->index)
+        if (victim_index == worker->worker_id)
             victim_index = ++worker->victim_cursor % worker_count;
 
         worker_t *victim = array_get(scheduler->worker_array, victim_index);

@@ -9,7 +9,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
     for (size_t i = 0; i < worker_count; i++) {
         worker_t *worker = worker_new(mod, node_allocator);
         worker->scheduler = self;
-        worker->index = i;
+        worker->worker_id = i;
         array_push(self->worker_array, worker);
     }
 
