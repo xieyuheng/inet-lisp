@@ -59,39 +59,47 @@ node_neighbor_print_end_port(const node_neighbor_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
+static void
+node_neighborhood_print_one(node_neighborhood_t *self, size_t i, file_t *file) {
+    port_info_t *port_info = node_get_port_info(self->node, i);
+    if (port_info->is_principal) {
+        fprintf(file, ":%s! ", port_info->name);
+    } else {
+        fprintf(file, ":%s ", port_info->name);
+    }
+
+    node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
+    if (node_neighbor) {
+        node_neighbor_print_end_port(node_neighbor, file);
+        return;
+    }
+
+    value_t value = node_get_value(self->node, i);
+    if (!value) {
+        fprintf(file, "empty");
+        return;
+    }
+
+    value = walk(value);
+    if (is_non_wire(value)) {
+        value_print(value, file);
+    } else {
+        fprintf(file, "empty");
+    }
+}
+
 void
 node_neighborhood_print(node_neighborhood_t *self, file_t *file, const char *prefix) {
     fprintf(file, "%s", prefix);
     fprintf(file, "(");
     node_print_name(self->node, file);
     fprintf(file, "\n");
+
     size_t length = self->node->ctor->arity;
     for (size_t i = 0; i < length; i++) {
         fprintf(file, "%s", prefix);
-        port_info_t *port_info = node_get_port_info(self->node, i);
-        if (port_info->is_principal) {
-            fprintf(file, " :%s! ", port_info->name);
-        } else {
-            fprintf(file, " :%s ", port_info->name);
-        }
-
-        node_neighbor_t *node_neighbor = array_get(self->node_neighbor_array, i);
-        if (node_neighbor) {
-            node_neighbor_print_end_port(node_neighbor, file);
-        } else {
-            value_t value = node_get_value(self->node, i);
-            if (!value) {
-                fprintf(file, "empty");
-            } else {
-                value = defuze(value);
-                if (is_non_wire(value)) {
-                    value_print(defuze(value), file);
-                } else {
-                    fprintf(file, "empty");
-                }
-            }
-        }
-
+        fprintf(file, " ");
+        node_neighborhood_print_one(self, i, file);
         if (i == length - 1) {
             fprintf(file, ")");
         } else {
