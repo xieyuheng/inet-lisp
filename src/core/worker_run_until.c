@@ -53,29 +53,30 @@ worker_run_one_step(worker_t *worker) {
     }
 }
 
-void
-worker_run_until(worker_t *worker, size_t return_stack_base) {
-#if DEBUG_STEP_LOG
-    size_t step = 0;
+static void
+worker_step_log(worker_t *worker, size_t return_stack_base, size_t step) {
     file_lock(stdout);
     who_printf("return-stack-base: %lu, step: %lu\n",
                return_stack_base,
                step);
     worker_print(worker, stdout); fprintf(stdout, "\n");
     file_unlock(stdout);
+}
+
+void
+worker_run_until(worker_t *worker, size_t return_stack_base) {
+#if DEBUG_STEP_LOG
+    size_t step = 0;
+    worker_step_log(worker, return_stack_base, step++);
+#else
+    (void) worker_step_log;
 #endif
 
     while (stack_length(worker->return_stack) > return_stack_base) {
         worker_run_one_step(worker);
 
 #if DEBUG_STEP_LOG
-        file_lock(stdout);
-        step++;
-        who_printf("return-stack-base: %lu, step: %lu\n",
-                   return_stack_base,
-                   step);
-        worker_print(worker, stdout); fprintf(stdout, "\n");
-        file_unlock(stdout);
+        worker_step_log(worker, return_stack_base, step++);
 #endif
     }
 }
