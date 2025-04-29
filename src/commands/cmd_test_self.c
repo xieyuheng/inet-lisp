@@ -3,16 +3,18 @@
 static int run(commander_t *commander);
 
 void
-default_version_command(commander_t *commander) {
-    command_t *command = command_new("version");
-    command->description = "print version";
+cmd_test_self(commander_t *commander) {
+    command_t *command = command_new("test-self");
+    command->description = "run self test";
     command->run = run;
     commander_add(commander, command);
 }
 
 int
 run(commander_t *commander) {
-    printf("%s\n", commander->version);
+    (void) commander;
+
+    test_node();
 
     return 0;
 }

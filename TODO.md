@@ -1,5 +1,7 @@
 # benchmark
 
+`cmd_benchmark`
+
 [benchmark] run-benchmarks.sh
 
 # deque
