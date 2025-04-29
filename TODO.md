@@ -1,10 +1,7 @@
 # bug
 
-`worker_connect` -- handle returned task -- i often forget handle the returned task
-
 `x_apply<n>` as primitive node ctor
 support explicit `(apply)`
-
 [bug] apply unfuzed wire
 
 ```
