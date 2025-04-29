@@ -3,39 +3,39 @@
  :node-count 10
  (cons₁₀₂₆
   :head 2
-  :tail (:value! (cons₁₀₂₈))
+  :tail (:value! (cons₁₁))
   :value! ____)
- (cons₁₀₂₈
+ (cons₁₁
   :head 2
   :tail (:value! (cons₂₀₅₀))
   :value! (:tail (cons₁₀₂₆)))
  (cons₂₀₅₀
   :head 2
-  :tail (:value! (cons₄₀₉₈))
-  :value! (:tail (cons₁₀₂₈)))
- (cons₄₀₉₈
+  :tail (:value! (cons₂₀₅₂))
+  :value! (:tail (cons₁₁)))
+ (cons₂₀₅₂
   :head 2
-  :tail (:value! (cons₁₀₂₇))
+  :tail (:value! (cons₂₀₅₄))
   :value! (:tail (cons₂₀₅₀)))
- (cons₁₀₂₇
+ (cons₂₀₅₄
   :head 2
-  :tail (:value! (cons₅₁₂₁))
-  :value! (:tail (cons₄₀₉₈)))
- (cons₅₁₂₁
+  :tail (:value! (cons₂₀₅₆))
+  :value! (:tail (cons₂₀₅₂)))
+ (cons₂₀₅₆
   :head 2
-  :tail (:value! (cons₈))
-  :value! (:tail (cons₁₀₂₇)))
- (cons₈
+  :tail (:value! (cons₂₀₅₅))
+  :value! (:tail (cons₂₀₅₄)))
+ (cons₂₀₅₅
   :head 2
-  :tail (:value! (cons₆₁₄₅))
-  :value! (:tail (cons₅₁₂₁)))
- (cons₆₁₄₅
+  :tail (:value! (cons₂₀₅₇))
+  :value! (:tail (cons₂₀₅₆)))
+ (cons₂₀₅₇
   :head 2
-  :tail (:value! (cons₁₁))
-  :value! (:tail (cons₈)))
- (cons₁₁
+  :tail (:value! (cons₂₀₅₁))
+  :value! (:tail (cons₂₀₅₅)))
+ (cons₂₀₅₁
   :head 2
   :tail (:value! (null₁))
-  :value! (:tail (cons₆₁₄₅)))
+  :value! (:tail (cons₂₀₅₇)))
  (null₁
-  :value! (:tail (cons₁₁))))
+  :value! (:tail (cons₂₀₅₁))))
