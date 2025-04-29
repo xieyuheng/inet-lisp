@@ -1,0 +1,41 @@
+(net
+ :root (cons₁₃)
+ :node-count 10
+ (cons₁₃
+  :head 2
+  :tail (:value! (cons₁₄))
+  :value! ____)
+ (cons₁₄
+  :head 2
+  :tail (:value! (cons₁₁))
+  :value! (:tail (cons₁₃)))
+ (cons₁₁
+  :head 2
+  :tail (:value! (cons₁₂))
+  :value! (:tail (cons₁₄)))
+ (cons₁₂
+  :head 2
+  :tail (:value! (cons₁₀))
+  :value! (:tail (cons₁₁)))
+ (cons₁₀
+  :head 2
+  :tail (:value! (cons₉))
+  :value! (:tail (cons₁₂)))
+ (cons₉
+  :head 2
+  :tail (:value! (cons₈))
+  :value! (:tail (cons₁₀)))
+ (cons₈
+  :head 2
+  :tail (:value! (cons₇))
+  :value! (:tail (cons₉)))
+ (cons₇
+  :head 2
+  :tail (:value! (cons₆))
+  :value! (:tail (cons₈)))
+ (cons₆
+  :head 2
+  :tail (:value! (null₁))
+  :value! (:tail (cons₇)))
+ (null₁
+  :value! (:tail (cons₆))))

@@ -1,0 +1,41 @@
+(net
+ :root (cons₁₀₂₆)
+ :node-count 10
+ (cons₁₀₂₆
+  :head 2
+  :tail (:value! (cons₁₀₂₈))
+  :value! ____)
+ (cons₁₀₂₈
+  :head 2
+  :tail (:value! (cons₂₀₅₀))
+  :value! (:tail (cons₁₀₂₆)))
+ (cons₂₀₅₀
+  :head 2
+  :tail (:value! (cons₄₀₉₈))
+  :value! (:tail (cons₁₀₂₈)))
+ (cons₄₀₉₈
+  :head 2
+  :tail (:value! (cons₁₀₂₇))
+  :value! (:tail (cons₂₀₅₀)))
+ (cons₁₀₂₇
+  :head 2
+  :tail (:value! (cons₅₁₂₁))
+  :value! (:tail (cons₄₀₉₈)))
+ (cons₅₁₂₁
+  :head 2
+  :tail (:value! (cons₈))
+  :value! (:tail (cons₁₀₂₇)))
+ (cons₈
+  :head 2
+  :tail (:value! (cons₆₁₄₅))
+  :value! (:tail (cons₅₁₂₁)))
+ (cons₆₁₄₅
+  :head 2
+  :tail (:value! (cons₁₁))
+  :value! (:tail (cons₈)))
+ (cons₁₁
+  :head 2
+  :tail (:value! (null₁))
+  :value! (:tail (cons₆₁₄₅)))
+ (null₁
+  :value! (:tail (cons₁₁))))
