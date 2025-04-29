@@ -18,7 +18,6 @@ import_prelude(mod_t *mod) {
     // value
 
     define_primitive_node_ctor_2(mod, "eq?", x_eq, (const char*[]) { "x!", "y!", "result" });
-    define_primitive_node_ctor(mod, "apply1", 2, 1, x_apply1, (const char*[]) { "target!", "arg", "result" });
 
     // testing
 

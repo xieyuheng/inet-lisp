@@ -1,11 +1,3 @@
-[core] `worker_apply_wire` -- apply unfuzed wire
-
-- remove `apply1` from prelude
-
-```
-./bin/inet-lisp run -p examples/datatypes/list-map.play.lisp
-```
-
 # example
 
 [example] more examples from the paper
