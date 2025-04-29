@@ -5,7 +5,7 @@ typedef enum {
     TASK_PRIMITIVE,
 } task_kind_t;
 
-struct task_t {
+struct [[nodiscard]] task_t {
     task_kind_t kind;
 #if DEBUG_TASK_LOCK
     mutex_t *mutex;
