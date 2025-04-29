@@ -40,7 +40,11 @@ run(commander_t *commander) {
         }
 
         double speedup = sequential_second / parallel_second;
-        printf("[benchmark] speedup: %.2f x, %s\n", speedup, arg);
+        printf("[benchmark] sequential: %.2f ms, parallel: %.2f ms, speedup: %.2f x, %s\n",
+               sequential_second * 1000,
+               parallel_second * 1000,
+               speedup,
+               arg);
     }
 
     return 0;

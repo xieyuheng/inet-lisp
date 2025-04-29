@@ -11,31 +11,31 @@
   :value! (:tail (cons₁₀₂₆)))
  (cons₁₀₂₉
   :head 2
-  :tail (:value! (cons₁₀₂₅))
+  :tail (:value! (cons₁₁))
   :value! (:tail (cons₁₀₂₈)))
- (cons₁₀₂₅
-  :head 2
-  :tail (:value! (cons₁₀₂₇))
-  :value! (:tail (cons₁₀₂₉)))
- (cons₁₀₂₇
+ (cons₁₁
   :head 2
   :tail (:value! (cons₉))
-  :value! (:tail (cons₁₀₂₅)))
+  :value! (:tail (cons₁₀₂₉)))
  (cons₉
   :head 2
-  :tail (:value! (cons₈))
-  :value! (:tail (cons₁₀₂₇)))
- (cons₈
+  :tail (:value! (cons₃₀₇₄))
+  :value! (:tail (cons₁₁)))
+ (cons₃₀₇₄
   :head 2
-  :tail (:value! (cons₇))
+  :tail (:value! (cons₃₀₇₆))
   :value! (:tail (cons₉)))
- (cons₇
+ (cons₃₀₇₆
   :head 2
-  :tail (:value! (cons₆))
-  :value! (:tail (cons₈)))
- (cons₆
+  :tail (:value! (cons₃₀₇₈))
+  :value! (:tail (cons₃₀₇₄)))
+ (cons₃₀₇₈
+  :head 2
+  :tail (:value! (cons₃₀₇₅))
+  :value! (:tail (cons₃₀₇₆)))
+ (cons₃₀₇₅
   :head 2
   :tail (:value! (null₁))
-  :value! (:tail (cons₇)))
+  :value! (:tail (cons₃₀₇₈)))
  (null₁
-  :value! (:tail (cons₆))))
+  :value! (:tail (cons₃₀₇₅))))

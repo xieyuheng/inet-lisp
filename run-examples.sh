@@ -3,7 +3,7 @@
 bin="./bin/inet-lisp run --print-top-level-exp"
 ext=lisp
 
-for example in $(find examples -name "*.${ext}" -not -name "*.test.${ext}" -not -name "*.error.${ext}" -not -name "*.play.${ext}" -not -name "*.benckmark.${ext}"); do
+for example in $(find examples -name "*.${ext}" -not -name "*.test.${ext}" -not -name "*.error.${ext}" -not -name "*.play.${ext}" -not -name "*.benchmark.${ext}"); do
     echo "[run] $example"
     ${bin} $example
 done
