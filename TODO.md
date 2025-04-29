@@ -1,11 +1,11 @@
-# bug
+[core] extract `primitive_set_node_ctor_<n>` -- remove `define_primitive_node`
 
-support explicit `(apply)` -- list-map.test.lisp use `(apply)`
+[core] fix `worker_apply` -- apply unfuzed wire
 
-[bug] apply unfuzed wire
+- remove `apply1` from prelude
 
 ```
-./bin/inet-lisp run -p -s examples/datatypes/list-map.play.lisp
+./bin/inet-lisp run -p examples/datatypes/list-map.play.lisp
 ```
 
 # example
