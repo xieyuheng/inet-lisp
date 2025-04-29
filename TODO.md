@@ -1,7 +1,7 @@
 # bug
 
-`x_apply<n>` as primitive node ctor
-support explicit `(apply)`
+support explicit `(apply)` -- list-map.test.lisp use `(apply)`
+
 [bug] apply unfuzed wire
 
 ```
