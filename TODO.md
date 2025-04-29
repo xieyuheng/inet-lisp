@@ -1,6 +1,6 @@
-# example
+# benchmark
 
-[example] more examples from the paper
+[benchmark] run-benchmarks.sh
 
 # deque
 

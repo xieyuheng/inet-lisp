@@ -31,14 +31,14 @@
  :root (add1₁₀₂₅)
  :node-count 5
  (add1₁₀₂₅
-  :prev (:value! (add1₃₀₇₄))
+  :prev (:value! (add1₄₀₉₇))
   :value! ____)
- (add1₃₀₇₄
+ (add1₄₀₉₇
   :prev (:value! (add1₁₈))
   :value! (:prev (add1₁₀₂₅)))
  (add1₁₈
   :prev (:value! (add1₂₁))
-  :value! (:prev (add1₃₀₇₄)))
+  :value! (:prev (add1₄₀₉₇)))
  (add1₂₁
   :prev (:value! (zero₁₉))
   :value! (:prev (add1₁₈)))
