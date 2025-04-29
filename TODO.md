@@ -1,10 +1,12 @@
+# benchmark
+
+[core] find a way to measure contention before optimization
+
+- [time] `time_passed_nanosecond`
+
 # deque
 
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
-
-# lang
-
-[lang] refactor `define_rule_star`
 
 # player
 
