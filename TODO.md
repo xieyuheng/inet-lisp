@@ -1,9 +1,3 @@
-# benchmark
-
-`cmd_benchmark`
-
-[benchmark] run-benchmarks.sh
-
 # deque
 
 [deque] `deque_t` -- use mod queue for real -- not just list + lock

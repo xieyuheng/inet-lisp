@@ -31,11 +31,11 @@
   :value! (:tail (cons₉)))
  (cons₇
   :head 2
-  :tail (:value! (cons₁₀₃₁))
+  :tail (:value! (cons₆))
   :value! (:tail (cons₈)))
- (cons₁₀₃₁
+ (cons₆
   :head 2
   :tail (:value! (null₁))
   :value! (:tail (cons₇)))
  (null₁
-  :value! (:tail (cons₁₀₃₁))))
+  :value! (:tail (cons₆))))
