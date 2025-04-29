@@ -1,3 +1,12 @@
+[core] `(if)` as special syntax
+
+[prelude] int-lt?
+[prelude] int-gt?
+[prelude] int-lteq?
+[prelude] int-gteq?
+
+iasm -- abstract assembly language for inet
+
 # benchmark
 
 [core] find a way to measure contention before optimization
