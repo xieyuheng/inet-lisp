@@ -1,6 +1,4 @@
-[core] extract `primitive_set_node_ctor`
-
-[core] fix `worker_apply` -- apply unfuzed wire
+[core] `worker_apply_wire` -- apply unfuzed wire
 
 - remove `apply1` from prelude
 

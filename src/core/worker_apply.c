@@ -22,14 +22,7 @@ worker_apply(worker_t *worker, value_t target, size_t arity) {
             worker_apply_primitive(worker, primitive);
         }
     } else if (is_wire(target)) {
-        value_t defuzed = defuze(target);
-        if (is_wire(defuzed)) {
-            assert(1 < arity && arity <= 4);
-            who_printf("can not apply unfuzed wire\n");
-            exit(1);
-        } else {
-            worker_apply(worker, defuzed, arity);
-        }
+        worker_apply_wire(worker, as_wire(target), arity);
     } else {
         who_printf("unknown target: ");
         value_print(target, stdout);
