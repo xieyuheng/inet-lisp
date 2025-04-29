@@ -5,7 +5,7 @@ define(mod_t *self, const char *name, value_t value) {
     assert(hash_set(self->value_hash, string_copy(name), value));
 }
 
-void
+static void
 define_rule(mod_t *self, const char *name, rule_t *rule) {
     value_t value = mod_find(self, name);
     node_ctor_t *node_ctor = as_node_ctor(value);
@@ -94,7 +94,7 @@ define_primitive_fn_4(mod_t *mod, const char *name, primitive_fn_4_t *primitive_
     define(mod, name, primitive_from_fn_4(name, primitive_fn_4));
 }
 
-void
+static void
 define_primitive_node(mod_t *mod, const char *name, const char *port_names[]) {
     value_t value = mod_find(mod, name);
     if (!is_primitive(value)) {
@@ -104,19 +104,7 @@ define_primitive_node(mod_t *mod, const char *name, const char *port_names[]) {
     }
 
     primitive_t *primitive = as_primitive(value);
-    size_t arity = primitive->input_arity + primitive->output_arity;
-    node_ctor_t *node_ctor = node_ctor_new(name, arity);
-    for (size_t i = 0; i < arity; i++) {
-        assert(port_names[i]);
-        node_ctor->port_infos[i] =
-            port_info_from_name(string_copy(port_names[i]));
-    }
-
-    assert(node_ctor_principal_port_count(node_ctor) <=
-           primitive->input_arity);
-
-    primitive->node_ctor = node_ctor;
-    node_ctor->primitive = primitive;
+    primitive_set_node_ctor(primitive, port_names);
 }
 
 void

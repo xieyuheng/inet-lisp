@@ -1,4 +1,4 @@
-[core] extract `primitive_set_node_ctor_<n>` -- remove `define_primitive_node`
+[core] extract `primitive_set_node_ctor`
 
 [core] fix `worker_apply` -- apply unfuzed wire
 
