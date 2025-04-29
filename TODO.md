@@ -2,10 +2,6 @@
 
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
-# core
-
-[core] `node_t` -- use `spinlock_t`
-
 # lang
 
 [lang] refactor `define_rule_star`

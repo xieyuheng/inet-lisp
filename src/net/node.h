@@ -2,7 +2,7 @@
 
 struct node_t {
     const node_ctor_t *ctor;
-    mutex_t *mutex;
+    fast_spinlock_t *fast_spinlock;
     void *locked_by_worker;
     size_t id;
     bool is_allocated;

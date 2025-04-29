@@ -3,7 +3,7 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
-    self->mutex = mutex_new();
+    self->fast_spinlock = fast_spinlock_new();
     self->value_array = array_new_auto();
     atomic_init(&self->atomic_primitive_arg_count, 0);
     return self;
@@ -15,7 +15,7 @@ node_destroy(node_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     node_t *self = *self_pointer;
-    mutex_destroy(&self->mutex);
+    fast_spinlock_destroy(&self->fast_spinlock);
     array_destroy(&self->value_array);
     free(self);
     *self_pointer = NULL;
@@ -118,17 +118,17 @@ node_primitive_arg_count_fetch_add1(node_t *self) {
 
 void
 node_lock(node_t *self) {
-    mutex_lock(self->mutex);
+    fast_spinlock_lock(self->fast_spinlock);
 }
 
 bool
 node_try_lock(node_t *self) {
-    return mutex_try_lock(self->mutex);
+    return fast_spinlock_try_lock(self->fast_spinlock);
 }
 
 void
 node_unlock(node_t *self) {
-    mutex_unlock(self->mutex);
+    fast_spinlock_unlock(self->fast_spinlock);
 }
 
 size_t
