@@ -53,7 +53,7 @@ test-self: bin/$(app)
 	./bin/$(app) test-self
 
 run-examples: bin/$(app)
-	sh run-examples.sh && sh run-examples-st.sh
+	sh scripts/run-examples.sh && sh scripts/run-examples-st.sh
 
 test: test-modules test-self run-examples
 
