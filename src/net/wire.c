@@ -22,17 +22,8 @@ wire_destroy(wire_t **self_pointer) {
     *self_pointer = NULL;
 }
 
-bool
-is_wire(value_t value) {
-    if (!is_xobject(value)) return false;
-    return as_object(value)->spec == &wire_object_spec;
-}
-
-wire_t *
-as_wire(value_t value) {
-    assert(is_wire(value));
-    return (wire_t *) value;
-}
+bool is_wire(value_t value);
+wire_t *as_wire(value_t value);
 
 value_t
 walk(value_t value) {

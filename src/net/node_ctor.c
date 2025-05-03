@@ -39,17 +39,8 @@ node_ctor_destroy(node_ctor_t **self_pointer) {
     *self_pointer = NULL;
 }
 
-bool
-is_node_ctor(value_t value) {
-    if (!is_xobject(value)) return false;
-    return as_object(value)->spec == &node_ctor_object_spec;
-}
-
-node_ctor_t *
-as_node_ctor(value_t value) {
-    assert(is_node_ctor(value));
-    return (node_ctor_t *) value;
-}
+bool is_node_ctor(value_t value);
+node_ctor_t *as_node_ctor(value_t value);
 
 size_t
 node_ctor_find_port_index(
