@@ -10,6 +10,10 @@ ifeq ($(TSAN), true)
 tsan_ldflags = -fsanitize=thread
 tsan_cflags= -fsanitize=thread
 endif
+ifeq ($(GPROF), true)
+gprof_ldflags = -pg
+gprof_cflags= -pg
+endif
 ldflags = \
 	-L/usr/local/lib \
 	-lm \
@@ -17,6 +21,7 @@ ldflags = \
 	-pthread \
 	$(static_ldflags) \
 	$(tsan_ldflags) \
+	$(gprof_ldflags) \
 	$(LDFLAGS)
 cflags = \
 	-g \
@@ -32,7 +37,8 @@ cflags = \
 	-D_TIME_BITS=64 \
 	-D_FILE_OFFSET_BITS=64 \
 	$(tsan_cflags) \
-	 $(CFLAGS)
+	$(gprof_cflags) \
+	$(CFLAGS)
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')
 lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))

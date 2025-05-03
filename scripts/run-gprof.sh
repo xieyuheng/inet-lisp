@@ -1,1 +1,1 @@
-gprof ./bin/inet-lisp tmp/gmon.out | gprof2dot | dot -Gdpi=200 -Tpng -o tmp/out.png
+gprof ./bin/inet-lisp gmon.out | gprof2dot | dot -Gdpi=200 -Tpng -o tmp/out.png
