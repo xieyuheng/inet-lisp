@@ -40,17 +40,24 @@ worker_run_one_step(worker_t *worker) {
 
     opcode_t *op = frame_fetch_opcode(frame);
 
+#if PROPER_TAIL_CALL_DISABLED
+    stack_push(worker->return_stack, frame);
+#else
     // proper tail-call = do not push finished frame.
     bool finished = frame_is_finished(frame);
     if (!finished) {
         stack_push(worker->return_stack, frame);
     }
+#endif
 
     worker_execute_opcode(worker, frame, op);
 
+#if PROPER_TAIL_CALL_DISABLED
+#else
     if (finished) {
         frame_destroy(&frame);
     }
+#endif
 }
 
 static void
