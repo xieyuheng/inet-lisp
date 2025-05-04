@@ -190,13 +190,6 @@ make test     # compile and run test
 make clean    # clean up compiled files
 ```
 
-Using [tsan (ThreadSanitizer)](https://github.com/google/sanitizers/wiki/threadsanitizercppmanual)
-to test data race in parallel program:
-
-```shell
-make clean && TSAN=true make -j
-```
-
 ## Implementations
 
 - [inet-cute](https://github.com/cicada-lang/inet-cute)

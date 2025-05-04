@@ -41,7 +41,7 @@ lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
 app = inet-lisp
 bin = bin/$(app)
 
-.PHONY: all run test-packages test-self run-examples test tsan static clean
+.PHONY: all run test-packages test-self run-examples test static tsan gprof clean
 
 all: bin/$(app)
 
@@ -64,6 +64,9 @@ static:
 
 tsan:
 	make clean && TSAN=true make -j
+
+gprof:
+	make clean && GPROF=true make -j
 
 bin/$(app): $(lib) lib/$(app).o
 	mkdir -p $(dir $@); $(cc) $^ $(ldflags) -o $@
