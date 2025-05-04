@@ -151,10 +151,6 @@ For more examples, please see the [examples/](examples/) directory.
 
 ## Install
 
-Dependencies:
-
-- debian/ubuntu: `sudo apt install libx11-dev`
-
 Compile:
 
 ```
@@ -172,10 +168,9 @@ inet-lisp 0.1.0
 
 commands:
   run -- run files
-  play -- play files
   info -- print system info
   test-self -- run self test
-  test-packages -- run test for modules
+  test-packages -- run test for packages
   version -- print version
   help -- print help message
 ```

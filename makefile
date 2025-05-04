@@ -1,10 +1,7 @@
 cc = cc
 ifeq ($(STATIC), true)
 static_ldflags = \
-	-static \
-	-lxcb \
-	-lXau \
-	-lXdmcp
+	-static
 endif
 ifeq ($(TSAN), true)
 tsan_ldflags = -fsanitize=thread
@@ -17,7 +14,6 @@ endif
 ldflags = \
 	-L/usr/local/lib \
 	-lm \
-	-lX11 \
 	-pthread \
 	$(static_ldflags) \
 	$(tsan_ldflags) \
