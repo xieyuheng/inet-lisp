@@ -8,6 +8,8 @@ use c11 thread instead of pthread -- for the identity of c11 thread is better de
 
 - https://en.cppreference.com/w/c/thread
 
+`thread_pool_t` -- one level of indirect, with `thread_id_t` starting from 0
+
 # lock
 
 [lock] `mutex` -- use c mtx instead of posix mutex
