@@ -1,29 +1,40 @@
+# lock
+
+extract lock module
+
+# thread
+
+use c11 thread instead of pthread -- for the identity of c11 thread is better defined
+
+- https://en.cppreference.com/w/c/thread
+
+# lock
+
+[lock] `mutex` -- use c mtx instead of posix mutex
+
+# memory
+
+[config] `CACHE_LINE_SIZE`
+[memory] `set_cache_line_size` to `CACHE_LINE_SIZE` -- in `inet-lisp.c`
+[memory] `allocate_cache_aligned`
+[memory] `new_cache_aligned`
+
+# counter
+
+`stats_counter_t`
+
+# deque
+
+[deque] `deque_t` -- use mod queue for real -- not just list + lock
+
+# tak
+
 [core] `(if)` as special syntax
 
 [prelude] int-lt?
 [prelude] int-gt?
 [prelude] int-lteq?
 [prelude] int-gteq?
-
-iasm -- abstract assembly language for inet
-
-# benchmark
-
-[core] find a way to measure contention before optimization
-
-- [time] `time_passed_nanosecond`
-
-# deque
-
-[deque] `deque_t` -- use mod queue for real -- not just list + lock
-
-# player
-
-[player] bring back player
-[player] use real physics force
-[player] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
-[player] remove `node_physics_fake_simulate`
-[player] `draw_net` -- print non-wire value -- test by `list-map.play.lisp`
 
 # arity checker
 
@@ -41,3 +52,11 @@ improve undefined-node.error.lisp
 # testing
 
 [testing] `(assert)` report position
+
+# player
+
+[player] bring back player
+[player] use real physics force
+[player] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
+[player] remove `node_physics_fake_simulate`
+[player] `draw_net` -- print non-wire value -- test by `list-map.play.lisp`
