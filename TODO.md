@@ -1,3 +1,5 @@
+update packages/
+
 [core] `(if)` as special syntax
 
 [prelude] int-lt?

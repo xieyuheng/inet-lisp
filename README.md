@@ -175,7 +175,7 @@ commands:
   play -- play files
   info -- print system info
   test-self -- run self test
-  test-modules -- run test for modules
+  test-packages -- run test for modules
   version -- print version
   help -- print help message
 ```
