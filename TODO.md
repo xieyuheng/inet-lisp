@@ -21,7 +21,9 @@ use c11 thread instead of pthread -- for the identity of c11 thread is better de
 
 # counter
 
-`stats_counter_t`
+`stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.
+`limit_counter_t`
+`zero_counter_t`
 
 # deque
 
