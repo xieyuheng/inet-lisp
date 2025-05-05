@@ -5,6 +5,7 @@ bool pointer_is_8_bytes_aligned(void *pointer);
 // clear memory to zero
 void *allocate(size_t size);
 void *allocate_pointers(size_t size);
+void destroy(void **value_pointer);
 
 // clear new memory to zero
 void *reallocate(void *pointer, size_t old_size, size_t new_size);

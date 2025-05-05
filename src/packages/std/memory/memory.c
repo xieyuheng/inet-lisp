@@ -22,6 +22,16 @@ allocate_pointers(size_t size) {
     return allocate(size * sizeof(void *));
 }
 
+void
+destroy(void **value_pointer) {
+    assert(value_pointer);
+    if (*value_pointer) {
+        void *value = *value_pointer;
+        free(value);
+        *value_pointer = NULL;
+    }
+}
+
 void *
 reallocate(void *pointer, size_t old_size, size_t new_size) {
     void *new_pointer = realloc(pointer, new_size);
