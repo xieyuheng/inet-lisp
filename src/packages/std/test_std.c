@@ -23,7 +23,7 @@ test_std(void) {
     test_sexp();
     test_time();
     test_thread();
-    // test_lock();
+    test_lock();
     test_queue();
     test_deque();
     test_allocator();

@@ -25,7 +25,7 @@ thread_fn(void *arg) {
 }
 
 void
-test_thread_mutex(void) {
+test_mutex(void) {
     test_start();
 
     mutex_t *mutex = mutex_new();
