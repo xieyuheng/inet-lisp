@@ -16,7 +16,7 @@ counter_read(void) {
 }
 
 void
-test_thread_counter_atomic(void) {
+test_counter_atomic(void) {
     test_start();
     double start_second = time_second();
 

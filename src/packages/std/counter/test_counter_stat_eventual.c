@@ -42,7 +42,7 @@ counter_read(void) {
 }
 
 void
-test_thread_counter_stat_eventual(void) {
+test_counter_stat_eventual(void) {
     test_start();
     double start_second = time_second();
 

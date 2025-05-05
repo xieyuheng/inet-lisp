@@ -24,6 +24,7 @@ test_std(void) {
     test_time();
     test_thread();
     test_lock();
+    test_counter();
     test_queue();
     test_deque();
     test_allocator();

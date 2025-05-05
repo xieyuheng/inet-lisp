@@ -1,3 +1,10 @@
+# memory
+
+[config] `CACHE_LINE_SIZE`
+[memory] `set_cache_line_size` to `CACHE_LINE_SIZE` -- in `inet-lisp.c`
+[memory] `allocate_cache_aligned`
+[memory] `new_cache_aligned`
+
 # thread
 
 use c11 thread instead of pthread -- for the identity of c11 thread is better defined
@@ -10,18 +17,11 @@ use c11 thread instead of pthread -- for the identity of c11 thread is better de
 
 [lock] `mutex` -- use c mtx instead of posix mutex
 
-# memory
-
-[config] `CACHE_LINE_SIZE`
-[memory] `set_cache_line_size` to `CACHE_LINE_SIZE` -- in `inet-lisp.c`
-[memory] `allocate_cache_aligned`
-[memory] `new_cache_aligned`
-
 # counter
 
-`stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.
-`limit_counter_t`
-`zero_counter_t`
+[counter] `stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.
+[counter] `limit_counter_t`
+[counter] `zero_counter_t`
 
 # deque
 
