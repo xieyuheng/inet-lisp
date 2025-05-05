@@ -5,7 +5,6 @@ test_thread(void) {
     test_start();
 
     test_thread_start();
-    test_thread_mutex();
 
     test_thread_counter_non_atomic();
     test_thread_counter_atomic();

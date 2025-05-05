@@ -1,6 +1,6 @@
 # lock
 
-extract lock module
+[lock] setup `test_lock`
 
 # thread
 
