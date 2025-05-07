@@ -39,3 +39,12 @@ thread_pool_join(thread_pool_t *self, thread_id_t id) {
     thread_join(thread);
     array_set(self->thread_array, id, NULL);
 }
+
+void
+thread_pool_join_all(thread_pool_t *self) {
+    size_t length = array_length(self->thread_array);
+    for (size_t i = 0; i < length; i++) {
+        thread_t *thread = array_get(self->thread_array, i);
+        if (thread) thread_join(thread);
+    }
+}

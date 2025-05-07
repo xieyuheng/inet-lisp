@@ -1,4 +1,3 @@
-[thread] `thread_pool_join_all`
 [core] `scheduler_t` -- has `thread_pool`
 
 # counter
