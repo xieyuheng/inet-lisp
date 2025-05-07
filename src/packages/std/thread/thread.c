@@ -2,6 +2,8 @@
 
 struct thread_t {
     pthread_t pthread;
+    bool is_in_pool;
+    size_t id;
 };
 
 thread_t *
@@ -9,6 +11,8 @@ thread_start(thread_fn_t *thread_fn, void *arg) {
     thread_t *self = new(thread_t);
     int ok = pthread_create(&self->pthread, NULL, thread_fn, arg);
     assert(ok == 0);
+    self->is_in_pool = false;
+    self->id = 0;
     return self;
 }
 

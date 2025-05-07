@@ -1,9 +1,10 @@
 # thread
 
-[thread] `thread_t` -- has `id` -- for `thread_pool_t` only
 [thread] `thread_is_in_pool`
 [thread] `thread_id` -- get id only when the thread is in pool
 [thread] `thread_pool_t` -- one level of indirect
+[thread] `thread_pool_start`
+[thread] `thread_pool_join`
 
 # counter
 
