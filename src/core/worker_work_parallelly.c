@@ -34,7 +34,7 @@ worker_thread_fn(thread_t *thread) {
         if (!task) return;
 
         worker_handle_task(worker, task);
-        scheduler_task_count_sub1(scheduler);
+        scheduler_task_count_sub1(scheduler, thread->id);
     }
 }
 
@@ -46,7 +46,7 @@ scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = scheduler_get_worker(scheduler, index);
         deque_push_back(worker->task_deque, task);
-        scheduler_task_count_add1(scheduler);
+        scheduler_task_count_add1(scheduler, worker->worker_id);
         cursor++;
     }
 }

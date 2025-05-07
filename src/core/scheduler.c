@@ -59,7 +59,8 @@ scheduler_wait(scheduler_t *self) {
 }
 
 void
-scheduler_task_count_add1(scheduler_t *self) {
+scheduler_task_count_add1(scheduler_t *self, thread_id_t id) {
+    (void) id;
     atomic_fetch_add_explicit(
         &self->atomic_task_count,
         1,
@@ -67,7 +68,8 @@ scheduler_task_count_add1(scheduler_t *self) {
 }
 
 void
-scheduler_task_count_sub1(scheduler_t *self) {
+scheduler_task_count_sub1(scheduler_t *self, thread_id_t id) {
+    (void) id;
     atomic_fetch_sub_explicit(
         &self->atomic_task_count,
         1,
@@ -76,7 +78,7 @@ scheduler_task_count_sub1(scheduler_t *self) {
 
 bool
 scheduler_no_more_tasks(scheduler_t *self) {
-    size_t task_count = atomic_load_explicit(
+        size_t task_count = atomic_load_explicit(
         &self->atomic_task_count,
         memory_order_acquire);
 

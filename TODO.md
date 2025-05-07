@@ -1,3 +1,8 @@
+# core
+
+[core] ` scheduler_task_count_add1` & `scheduler_task_count_sub1` -- take `thread_id`
+[core] remove `thread_id_t`
+
 # counter
 
 [counter] `limit_counter_t`
