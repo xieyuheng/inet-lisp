@@ -1,6 +1,12 @@
 # counter
 
+[counter] remove `test_counter_stat_eventual`
 [counter] `stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.
+[counter] `stats_counter_new`
+[counter] `stats_counter_destroy`
+[counter] `stats_counter_per_thread_add1`
+[counter] `stats_counter_per_thread_sub1`
+
 [counter] `limit_counter_t`
 [counter] `zero_counter_t`
 
