@@ -1,7 +1,10 @@
 #pragma once
 
+struct thread_t {
+    pthread_t pthread;
+    thread_pool_t *thread_pool;
+    thread_id_t id;
+};
+
 thread_t *thread_start(thread_fn_t *thread_fn, void *arg);
 void *thread_join(thread_t *self);
-
-bool thread_is_in_pool(thread_t *self);
-size_t thread_id(thread_t *self);

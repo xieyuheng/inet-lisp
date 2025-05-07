@@ -1,8 +1,3 @@
-# thread
-
-[thread] `thread_pool_start`
-[thread] `thread_pool_join`
-
 # counter
 
 [counter] `stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.
