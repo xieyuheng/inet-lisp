@@ -25,6 +25,7 @@ test_stats_counter(void) {
     thread_pool_join_all(thread_pool);
 
     size_t total = stats_counter_total(stats_counter);
+    assert(total == THREAD_COUNT * PER_THREAD_COUNT_LIMIT);
     who_printf("total: %lu\n", total);
 
     thread_pool_destroy(&thread_pool);
