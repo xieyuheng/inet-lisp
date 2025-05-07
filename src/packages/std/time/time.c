@@ -22,6 +22,12 @@ time_nanosecond(void) {
     return nanosecond;
 }
 
+uint64_t
+time_passed_nanosecond(uint64_t start_nanosecond) {
+    uint64_t end_nanosecond = time_nanosecond();
+    return end_nanosecond - start_nanosecond;
+}
+
 bool
 time_sleep_nanosecond(long nanosecond) {
     struct timespec ts = {

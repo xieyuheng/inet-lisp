@@ -3,7 +3,10 @@
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_LOCK
+    bool contention_occurred = false;
+    uint64_t start_nanosecond = time_nanosecond();
     while (!node_try_lock(node)) {
+        contention_occurred = true;
         file_lock(stdout);
         who_printf("lock contention! ");
         printf("worker id: #%lu, ", worker->id);
@@ -12,6 +15,14 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         printf("\n");
         file_unlock(stdout);
     }
+
+    if (contention_occurred) {
+        uint64_t passed_nanosecond = time_passed_nanosecond(start_nanosecond);
+        file_lock(stdout);
+        who_printf("lock contention time: %lu ns\n", passed_nanosecond);
+        file_unlock(stdout);
+    }
+
 #else
     node_lock(node);
 #endif
