@@ -10,3 +10,4 @@ struct stats_counter_t {
 };
 
 stats_counter_t *stats_counter_new(size_t size);
+void stats_counter_destroy(stats_counter_t **self_pointer);
