@@ -3,7 +3,8 @@
 #define LENGTH 10000000
 
 static void
-uint_producer(deque_t *deque) {
+uint_producer(thread_t *thread) {
+    deque_t *deque = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -14,7 +15,8 @@ uint_producer(deque_t *deque) {
 }
 
 static void
-uint_consumer(deque_t *deque) {
+uint_consumer(thread_t *thread) {
+    deque_t *deque = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -34,10 +36,8 @@ test_deque_throughput(void) {
 
     double start_second = time_second();
 
-    thread_t *producer_thread =
-        thread_start((thread_fn_t *) uint_producer, deque);
-    thread_t *consumer_thread =
-        thread_start((thread_fn_t *) uint_consumer, deque);
+    thread_t *producer_thread = thread_start(uint_producer, deque);
+    thread_t *consumer_thread = thread_start(uint_consumer, deque);
 
     thread_join(producer_thread);
     thread_join(consumer_thread);

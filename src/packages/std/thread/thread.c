@@ -3,7 +3,7 @@
 static void *
 pthread_start_fn(void *arg) {
     thread_t *thread = arg;
-    thread->thread_fn(thread->arg);
+    thread->thread_fn(thread);
     return NULL;
 }
 

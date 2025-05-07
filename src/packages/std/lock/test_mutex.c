@@ -4,8 +4,8 @@ static size_t loop_count = 10000;
 static uint64_t global_count = 0;
 
 static void
-thread_fn(void *arg) {
-    mutex_t *mutex = arg;
+thread_fn(thread_t *thread) {
+    mutex_t *mutex = thread->arg;
     size_t count = 0;
     while (count < loop_count) {
         {

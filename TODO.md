@@ -1,5 +1,3 @@
-[thread] `thread_fn_t` -- take `thread` instead of `arg`
-
 # counter
 
 [counter] `limit_counter_t`

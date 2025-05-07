@@ -4,8 +4,8 @@
 #define REPEATION_COUNT 10000
 
 static void
-thread_fn(void *arg) {
-    node_allocator_t *node_allocator = arg;
+thread_fn(thread_t *thread) {
+    node_allocator_t *node_allocator = thread->arg;
     stack_t *stack = stack_new();
 
     stack_t *allocated_stack = stack_new();

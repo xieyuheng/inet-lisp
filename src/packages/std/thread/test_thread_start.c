@@ -1,8 +1,8 @@
 #include "index.h"
 
 static void
-thread_fn(void *arg) {
-    char *message = arg;
+thread_fn(thread_t *thread) {
+    char *message = thread->arg;
     printf("[thread_fn] %s\n", message);
 }
 
@@ -15,6 +15,6 @@ test_thread_start(void) {
 
     who_printf("thread created: %p\n", (void *) thread);
     thread_join(thread);
-    
+
     test_end();
 }

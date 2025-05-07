@@ -4,7 +4,8 @@
 #define LENGTH 10000000
 
 static void
-uint_producer(queue_t *queue) {
+uint_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -17,7 +18,8 @@ uint_producer(queue_t *queue) {
 }
 
 static void
-uint_consumer(queue_t *queue) {
+uint_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -37,10 +39,8 @@ test_queue_throughput(void) {
 
     double start_second = time_second();
 
-    thread_t *producer_thread =
-        thread_start((thread_fn_t *) uint_producer, queue);
-    thread_t *consumer_thread =
-        thread_start((thread_fn_t *) uint_consumer, queue);
+    thread_t *producer_thread = thread_start(uint_producer, queue);
+    thread_t *consumer_thread = thread_start(uint_consumer, queue);
 
     thread_join(producer_thread);
     thread_join(consumer_thread);

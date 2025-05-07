@@ -19,8 +19,8 @@ worker_steal_task(worker_t *worker) {
 }
 
 static void
-worker_thread_fn(void *arg) {
-    worker_t *worker = arg;
+worker_thread_fn(thread_t *thread) {
+    worker_t *worker = thread->arg;
     scheduler_t *scheduler = worker->scheduler;
 
     while (!scheduler_no_more_tasks(scheduler)) {

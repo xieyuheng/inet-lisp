@@ -4,7 +4,8 @@
 #define LENGTH 1000000
 
 static void
-uint_producer(queue_t *queue) {
+uint_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -17,7 +18,8 @@ uint_producer(queue_t *queue) {
 }
 
 static void
-uint_consumer(queue_t *queue) {
+uint_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -30,7 +32,8 @@ uint_consumer(queue_t *queue) {
 
 }
 static void
-string_producer(queue_t *queue) {
+string_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -43,7 +46,8 @@ string_producer(queue_t *queue) {
 }
 
 static void
-string_consumer(queue_t *queue) {
+string_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
         if (count == LENGTH) return;
@@ -68,10 +72,8 @@ test_queue_multi_thread(void) {
     {
         who_printf("uint_producer vs. uint_consumer\n");
 
-        thread_t *producer_thread =
-            thread_start((thread_fn_t *) uint_producer, queue);
-        thread_t *consumer_thread =
-            thread_start((thread_fn_t *) uint_consumer, queue);
+        thread_t *producer_thread = thread_start(uint_producer, queue);
+        thread_t *consumer_thread = thread_start(uint_consumer, queue);
 
         thread_join(producer_thread);
         thread_join(consumer_thread);
@@ -80,10 +82,8 @@ test_queue_multi_thread(void) {
     {
         who_printf("string_producer vs. string_consumer\n");
 
-        thread_t *producer_thread =
-            thread_start((thread_fn_t *) string_producer, queue);
-        thread_t *consumer_thread =
-            thread_start((thread_fn_t *) string_consumer, queue);
+        thread_t *producer_thread = thread_start(string_producer, queue);
+        thread_t *consumer_thread = thread_start(string_consumer, queue);
 
         thread_join(producer_thread);
         thread_join(consumer_thread);

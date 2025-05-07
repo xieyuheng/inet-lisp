@@ -6,10 +6,9 @@
 static stats_counter_t *stats_counter = NULL;
 
 static void
-thread_fn(void *arg) {
-    size_t id = (size_t) arg;
+thread_fn(thread_t *thread) {
     for (size_t i = 0; i < PER_THREAD_COUNT_LIMIT; i++) {
-        stats_counter_per_thread_add1(stats_counter, id);
+        stats_counter_per_thread_add1(stats_counter, thread->id);
     }
 }
 
@@ -20,7 +19,7 @@ test_stats_counter(void) {
     stats_counter = stats_counter_new(THREAD_COUNT);
     thread_pool_t *thread_pool = thread_pool_new();
     for (size_t i = 0; i < THREAD_COUNT; i++) {
-        thread_pool_start(thread_pool, thread_fn, (void *) i);
+        thread_pool_start(thread_pool, thread_fn, NULL);
     }
 
     thread_pool_join_all(thread_pool);
