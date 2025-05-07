@@ -75,3 +75,15 @@ void
 memory_clear(void *pointer, size_t size) {
     memset(pointer, 0, size);
 }
+
+static size_t cache_line_size = 0;
+
+size_t
+get_cache_line_size(void) {
+    return cache_line_size;
+}
+
+void
+set_cache_line_size(size_t size) {
+    cache_line_size = size;
+}

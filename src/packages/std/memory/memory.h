@@ -17,3 +17,6 @@ bool pointer_is_page_aligned(void *pointer);
 void *allocate_page_aligned(size_t size);
 
 void memory_clear(void *pointer, size_t size);
+
+size_t get_cache_line_size(void);
+void set_cache_line_size(size_t size);

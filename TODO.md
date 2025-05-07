@@ -1,6 +1,5 @@
 # memory
 
-[memory] `get_cache_line_size`
 [memory] `set_cache_line_size` to `CACHE_LINE_SIZE` -- in `inet-lisp.c`
 [memory] `allocate_cache_aligned`
 [memory] `new_cache_aligned`
