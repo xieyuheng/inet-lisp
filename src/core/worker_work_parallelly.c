@@ -18,7 +18,7 @@ worker_steal_task(worker_t *worker) {
     return NULL;
 }
 
-static void *
+static void
 worker_thread_fn(void *arg) {
     worker_t *worker = arg;
     scheduler_t *scheduler = worker->scheduler;
@@ -31,13 +31,11 @@ worker_thread_fn(void *arg) {
 #else
         if (!task) task = worker_steal_task(worker);
 #endif
-        if (!task) return NULL;
+        if (!task) return;
 
         worker_handle_task(worker, task);
         scheduler_task_count_sub1(scheduler);
     }
-
-    return NULL;
 }
 
 static void

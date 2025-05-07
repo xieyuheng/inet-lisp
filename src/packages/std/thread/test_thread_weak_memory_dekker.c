@@ -3,24 +3,20 @@
 static int x, y;
 static int a, b;
 
-static void *
+static void
 thread_fn_1(void *arg) {
     (void) arg;
 
     x = 1;
     a = y;
-
-    return NULL;
 }
 
-static void *
+static void
 thread_fn_2(void *arg) {
     (void) arg;
 
     y = 1;
     b = x;
-
-    return NULL;
 }
 
 void

@@ -3,16 +3,14 @@
 #define CACHE_SIZE 1000
 #define REPEATION_COUNT 1000
 
-static void *
+static void
 thread_fn(void *arg) {
-    size_t value_count = 0;
     allocator_t *allocator = arg;
     stack_t *stack = stack_new();
 
     stack_t *allocated_stack = stack_new();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         size_t batch_size = (size_t) rand() % (CACHE_SIZE * 2);
-        value_count += batch_size;
 
         for (size_t i = 0; i < batch_size; i++) {
             char *abc = allocator_allocate(allocator, stack);
@@ -36,8 +34,6 @@ thread_fn(void *arg) {
             allocator_recycle(allocator, stack, (void **) &abc);
         }
     }
-
-    return (void *) value_count;
 }
 
 void
@@ -50,8 +46,6 @@ test_allocator_thread_safe(void) {
         stack_push(allocator->stack, string_copy("abc"));
     }
 
-    double start_second = time_second();
-
     size_t thread_count = 10;
     array_t *thread_array = array_new_auto();
     for (size_t i = 0; i < thread_count; i++) {
@@ -59,16 +53,13 @@ test_allocator_thread_safe(void) {
         array_push(thread_array, T);
     }
 
-    size_t value_count = 0;
     for (size_t i = 0; i < thread_count; i++) {
         thread_t *T = array_pop(thread_array);
-        value_count += (size_t) thread_join(T);
+        thread_join(T);
     }
 
 
     who_printf("thread_count: %lu\n", thread_count);
-    double throughput = value_count / 1000 / time_passed_second(start_second);
-    who_printf("throughput: %.f k/s\n", throughput);
 
     allocator_destroy(&allocator);
 

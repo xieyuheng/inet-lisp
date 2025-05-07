@@ -3,24 +3,20 @@
 static atomic_int x, y;
 static atomic_int a, b;
 
-static void *
+static void
 thread_fn_1(void *arg) {
     (void) arg;
 
     atomic_store(&x, 1);
     atomic_store(&a, atomic_load(&y));
-
-    return NULL;
 }
 
-static void *
+static void
 thread_fn_2(void *arg) {
     (void) arg;
 
     atomic_store(&y, 1);
     atomic_store(&b, atomic_load(&x));
-
-    return NULL;
 }
 
 void

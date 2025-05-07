@@ -3,11 +3,11 @@
 #define QUEUE_SIZE 4
 #define LENGTH 1000000
 
-static void *
+static void
 uint_producer(queue_t *queue) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_full(queue)) {}
 
@@ -16,11 +16,11 @@ uint_producer(queue_t *queue) {
     }
 }
 
-static void *
+static void
 uint_consumer(queue_t *queue) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_empty(queue)) {}
 
@@ -29,11 +29,11 @@ uint_consumer(queue_t *queue) {
     }
 
 }
-static void *
+static void
 string_producer(queue_t *queue) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_full(queue)) {}
 
@@ -42,11 +42,11 @@ string_producer(queue_t *queue) {
     }
 }
 
-static void *
+static void
 string_consumer(queue_t *queue) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_empty(queue)) {}
 

@@ -3,7 +3,7 @@
 #define BATCH_SIZE 1000
 #define REPEATION_COUNT 10000
 
-static void *
+static void
 thread_fn(void *arg) {
     node_allocator_t *node_allocator = arg;
     stack_t *stack = stack_new();
@@ -20,8 +20,6 @@ thread_fn(void *arg) {
             node_allocator_recycle(node_allocator, stack, &node);
         }
     }
-
-    return NULL;
 }
 
 void

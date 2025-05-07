@@ -1,11 +1,10 @@
 #include "index.h"
 
-static void *
+static void
 counter_add1(atomic_size_t *count_pointer) {
     size_t count = relaxed_load(count_pointer);
     sleep(0); // let other threads run
     relaxed_store(count_pointer, count + 1);
-    return NULL;
 }
 
 #define THREAD_NUMBER 1000

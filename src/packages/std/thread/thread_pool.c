@@ -32,11 +32,10 @@ thread_pool_start(thread_pool_t *self, thread_fn_t *thread_fn, void *arg) {
     return id;
 }
 
-void *
+void
 thread_pool_join(thread_pool_t *self, thread_id_t id) {
     thread_t *thread = array_get(self->thread_array, id);
     assert(thread);
-    void *result = thread_join(thread);
+    thread_join(thread);
     array_set(self->thread_array, id, NULL);
-    return result;
 }

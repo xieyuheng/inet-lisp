@@ -2,12 +2,11 @@
 
 static atomic_size_t global_count = 0;
 
-static void *
+static void
 counter_add1(void *arg) {
     (void) arg;
     atomic_fetch_add(&global_count, 1);
     sleep(0); // let other threads run
-    return NULL;
 }
 
 static size_t
@@ -22,9 +21,8 @@ test_counter_atomic(void) {
 
     list_t *list = list_new();
 
-    thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
     for (size_t i = 0; i < 1000; i++) {
-        thread_t *T = thread_start(thread_fn, NULL);
+        thread_t *T = thread_start(counter_add1, NULL);
         list_push(list, T);
     }
 

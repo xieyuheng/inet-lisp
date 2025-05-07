@@ -1,11 +1,10 @@
 #include "index.h"
 
-static void *
+static void
 counter_add1(atomic_size_t *count_pointer) {
     size_t count = relaxed_load(count_pointer);
     sleep(0); // let other threads run
     relaxed_store(count_pointer, count + 1);
-    return NULL;
 }
 
 #define THREAD_NUMBER 1000
@@ -16,13 +15,13 @@ static atomic_size_t global_count = 0;
 static atomic_bool eventual_run_p = false;
 static atomic_bool eventual_stop_p = false;
 
-static void *
+static void
 eventual(void *arg) {
     (void) arg;
 
     while (true) {
         if (relaxed_load(&eventual_stop_p)) {
-            return NULL;
+            return;
         }
 
         if (relaxed_load(&eventual_run_p)) {

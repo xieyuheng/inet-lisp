@@ -3,7 +3,7 @@
 static size_t loop_count = 10000;
 static uint64_t global_count = 0;
 
-static void *
+static void
 thread_fn(void *arg) {
     mutex_t *mutex = arg;
     size_t count = 0;
@@ -20,8 +20,6 @@ thread_fn(void *arg) {
         sleep(0);
         count++;
     }
-
-    return NULL;
 }
 
 void

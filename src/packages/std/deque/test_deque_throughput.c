@@ -2,22 +2,22 @@
 
 #define LENGTH 10000000
 
-static void *
+static void
 uint_producer(deque_t *deque) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         deque_push_back(deque, (void *) count);
         count++;
     }
 }
 
-static void *
+static void
 uint_consumer(deque_t *deque) {
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (deque_is_empty(deque)) {}
 
