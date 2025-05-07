@@ -1,15 +1,22 @@
 #include "index.h"
 
+inline static size_t
+get_victim_id(worker_t *worker, size_t worker_count) {
+    while (true) {
+        size_t victim_id = rand() % worker_count;
+        if (victim_id != worker->id) {
+            return victim_id;
+        }
+    }
+}
+
 inline static task_t *
 worker_steal_task(worker_t *worker) {
     scheduler_t *scheduler = worker->scheduler;
     size_t worker_count = scheduler_worker_count(scheduler);
 
     while (!scheduler_no_more_tasks(scheduler)) {
-        size_t victim_id = ++worker->victim_cursor % worker_count;
-        if (victim_id == worker->id)
-            victim_id = ++worker->victim_cursor % worker_count;
-
+        size_t victim_id = get_victim_id(worker, worker_count);
         worker_t *victim = scheduler_get_worker(scheduler, victim_id);
         task_t *task = worker_offer_task(victim);
         if (task) {
