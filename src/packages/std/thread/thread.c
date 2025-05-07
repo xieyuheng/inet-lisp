@@ -29,3 +29,9 @@ bool
 thread_is_in_pool(thread_t *self) {
     return self->is_in_pool;
 }
+
+size_t
+thread_id(thread_t *self) {
+    assert(thread_is_in_pool(self));
+    return self->id;
+}
