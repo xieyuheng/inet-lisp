@@ -1,6 +1,9 @@
 # thread
 
-[thread] `thread_pool_t` -- one level of indirect, with `thread_id_t` starting from 0
+[thread] `thread_t` -- has `id` -- for `thread_pool_t` only
+[thread] `thread_is_in_pool`
+[thread] `thread_id` -- get id only when the thread is in pool
+[thread] `thread_pool_t` -- one level of indirect
 
 # counter
 
