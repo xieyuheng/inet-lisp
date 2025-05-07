@@ -1,10 +1,11 @@
 # thread
 
-use c11 thread instead of pthread -- for the identity of c11 thread is better defined
+[thread] extract `thread_t` -- hide `tid` for now
+[thread] use c11 thread instead of pthread -- for the identity of c11 thread is better defined
 
 - https://en.cppreference.com/w/c/thread
 
-`thread_pool_t` -- one level of indirect, with `thread_id_t` starting from 0
+[thread] `thread_pool_t` -- one level of indirect, with `thread_id_t` starting from 0
 
 # lock
 
