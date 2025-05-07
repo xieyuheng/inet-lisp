@@ -1,22 +1,22 @@
 #include "index.h"
 
-static int x, y;
-static int a, b;
+static atomic_int x, y;
+static atomic_int a, b;
 
 static void
 thread_fn_1(void *arg) {
     (void) arg;
 
-    x = 1;
-    a = y;
+    relaxed_store(&x, 1);
+    relaxed_store(&a, relaxed_load(&y));
 }
 
 static void
 thread_fn_2(void *arg) {
     (void) arg;
 
-    y = 1;
-    b = x;
+    relaxed_store(&y, 1);
+    relaxed_store(&b, relaxed_load(&x));
 }
 
 void
@@ -32,8 +32,8 @@ test_thread_weak_memory_dekker(void) {
     size_t count = 0;
 
     do {
-        x = 0;
-        y = 0;
+        relaxed_store(&x, 0);
+        relaxed_store(&y, 0);
 
         thread_t *T1 = thread_start(thread_fn_1, NULL);
         thread_t *T2 = thread_start(thread_fn_2, NULL);
@@ -42,7 +42,7 @@ test_thread_weak_memory_dekker(void) {
         thread_join(T2);
 
         count++;
-    } while (a != 0 || b != 0);
+    } while (relaxed_load(&a) != 0 || relaxed_load(&b) != 0);
 
     who_printf("count: %lu\n", count);
 
