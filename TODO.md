@@ -1,7 +1,5 @@
 # thread
 
-[thread] `thread_pool_new`
-[thread] `thread_pool_destroy`
 [thread] `thread_pool_start`
 [thread] `thread_pool_join`
 
