@@ -24,3 +24,8 @@ thread_join(thread_t *self) {
     free(self);
     return result;
 }
+
+bool
+thread_is_in_pool(thread_t *self) {
+    return self->is_in_pool;
+}
