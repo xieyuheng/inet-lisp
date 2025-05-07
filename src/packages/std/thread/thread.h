@@ -5,4 +5,4 @@ struct thread_t {
 };
 
 tid_t thread_start(thread_fn_t *thread_fn, void *arg);
-void *thread_wait(tid_t tid);
+void *thread_join(tid_t tid);

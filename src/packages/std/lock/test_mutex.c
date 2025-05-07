@@ -33,8 +33,8 @@ test_mutex(void) {
     tid_t T1 = thread_start(thread_fn, mutex);
     tid_t T2 = thread_start(thread_fn, mutex);
 
-    thread_wait(T1);
-    thread_wait(T2);
+    thread_join(T1);
+    thread_join(T2);
 
     assert(global_count == loop_count * 2);
 

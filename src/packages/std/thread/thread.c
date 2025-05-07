@@ -9,7 +9,7 @@ thread_start(thread_fn_t *thread_fn, void *arg) {
 }
 
 void *
-thread_wait(tid_t tid) {
+thread_join(tid_t tid) {
     void *result;
     int ok = pthread_join(tid, &result);
     assert(ok == 0);

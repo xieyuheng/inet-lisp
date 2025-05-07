@@ -58,7 +58,7 @@ void
 scheduler_wait(scheduler_t *self) {
     for (size_t i = 0; i < array_length(self->worker_tid_array); i++) {
         tid_t tid = (tid_t) array_get(self->worker_tid_array, i);
-        thread_wait(tid);
+        thread_join(tid);
     }
 }
 

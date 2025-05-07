@@ -15,7 +15,7 @@ test_thread_start(void) {
     tid_t tid = thread_start(thread_fn, message);
 
     who_printf("thread created: %lu\n", (uint64_t) tid);
-    size_t length = (size_t) thread_wait(tid);
+    size_t length = (size_t) thread_join(tid);
     who_printf("thread returned: %lu\n", length);
 
     test_end();

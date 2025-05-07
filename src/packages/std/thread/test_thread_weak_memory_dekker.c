@@ -42,8 +42,8 @@ test_thread_weak_memory_dekker(void) {
         tid_t T1 = thread_start(thread_fn_1, NULL);
         tid_t T2 = thread_start(thread_fn_2, NULL);
 
-        thread_wait(T1);
-        thread_wait(T2);
+        thread_join(T1);
+        thread_join(T2);
 
         count++;
     } while (a != 0 || b != 0);

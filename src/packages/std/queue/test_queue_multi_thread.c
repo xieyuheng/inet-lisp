@@ -73,8 +73,8 @@ test_queue_multi_thread(void) {
         tid_t consumer_id =
             thread_start((thread_fn_t *) uint_consumer, queue);
 
-        thread_wait(producer_id);
-        thread_wait(consumer_id);
+        thread_join(producer_id);
+        thread_join(consumer_id);
     }
 
     {
@@ -85,8 +85,8 @@ test_queue_multi_thread(void) {
         tid_t consumer_id =
             thread_start((thread_fn_t *) string_consumer, queue);
 
-        thread_wait(producer_id);
-        thread_wait(consumer_id);
+        thread_join(producer_id);
+        thread_join(consumer_id);
     }
 
     queue_destroy(&queue);

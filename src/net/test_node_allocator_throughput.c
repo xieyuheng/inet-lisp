@@ -41,7 +41,7 @@ test_node_allocator_throughput(void) {
 
     for (size_t i = 0; i < thread_count; i++) {
         tid_t tid = (tid_t) array_pop(thread_array);
-        thread_wait(tid);
+        thread_join(tid);
     }
 
     node_allocator_destroy(&node_allocator);

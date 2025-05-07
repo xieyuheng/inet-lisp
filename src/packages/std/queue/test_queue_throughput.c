@@ -42,8 +42,8 @@ test_queue_throughput(void) {
     tid_t consumer_id =
         thread_start((thread_fn_t *) uint_consumer, queue);
 
-    thread_wait(producer_id);
-    thread_wait(consumer_id);
+    thread_join(producer_id);
+    thread_join(consumer_id);
 
     double throughput = LENGTH / 1000 / time_passed_second(start_second);
     who_printf("throughput: %.f k/s\n", throughput);

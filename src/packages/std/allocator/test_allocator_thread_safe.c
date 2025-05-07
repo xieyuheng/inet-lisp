@@ -62,7 +62,7 @@ test_allocator_thread_safe(void) {
     size_t value_count = 0;
     for (size_t i = 0; i < thread_count; i++) {
         tid_t tid = (tid_t) array_pop(thread_array);
-        value_count += (size_t) thread_wait(tid);
+        value_count += (size_t) thread_join(tid);
     }
 
 

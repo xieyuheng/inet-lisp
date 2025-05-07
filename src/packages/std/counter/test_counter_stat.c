@@ -37,7 +37,7 @@ test_counter_stat(void) {
 
     while (!list_is_empty(list)) {
         tid_t tid = (tid_t) list_pop(list);
-        thread_wait(tid);
+        thread_join(tid);
     }
 
     list_destroy(&list);

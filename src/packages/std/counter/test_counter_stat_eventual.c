@@ -62,7 +62,7 @@ test_counter_stat_eventual(void) {
 
     while (!list_is_empty(list)) {
         tid_t tid = (tid_t) list_pop(list);
-        thread_wait(tid);
+        thread_join(tid);
     }
 
     relaxed_store(&eventual_run_p, true);
@@ -71,7 +71,7 @@ test_counter_stat_eventual(void) {
     relaxed_store(&eventual_run_p, false);
 
     relaxed_store(&eventual_stop_p, true);
-    thread_wait(eventual_tid);
+    thread_join(eventual_tid);
 
     list_destroy(&list);
 
