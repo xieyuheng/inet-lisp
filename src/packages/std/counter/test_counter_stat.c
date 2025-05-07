@@ -31,13 +31,13 @@ test_counter_stat(void) {
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
     for (size_t i = 0; i < THREAD_NUMBER; i++) {
-        tid_t tid = thread_start(thread_fn, &counts[i]);
-        list_push(list, (void *) tid);
+        thread_t *T = thread_start(thread_fn, &counts[i]);
+        list_push(list, T);
     }
 
     while (!list_is_empty(list)) {
-        tid_t tid = (tid_t) list_pop(list);
-        thread_join(tid);
+        thread_t *T = list_pop(list);
+        thread_join(T);
     }
 
     list_destroy(&list);

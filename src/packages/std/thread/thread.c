@@ -1,17 +1,24 @@
 #include "index.h"
 
-tid_t
-thread_start(thread_fn_t *thread_fn, void *arg) {
+typedef pthread_t tid_t;
+
+struct thread_t {
     tid_t tid;
-    int ok = pthread_create(&tid, NULL, thread_fn, arg);
+};
+
+thread_t *
+thread_start(thread_fn_t *thread_fn, void *arg) {
+    thread_t *self = new(thread_t);
+    int ok = pthread_create(&self->tid, NULL, thread_fn, arg);
     assert(ok == 0);
-    return tid;
+    return self;
 }
 
 void *
-thread_join(tid_t tid) {
+thread_join(thread_t *self) {
     void *result;
-    int ok = pthread_join(tid, &result);
+    int ok = pthread_join(self->tid, &result);
     assert(ok == 0);
+    free(self);
     return result;
 }

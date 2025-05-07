@@ -38,8 +38,8 @@ test_thread_weak_memory_dekker_atomic(void) {
         atomic_store(&x, 0);
         atomic_store(&y, 0);
 
-        tid_t T1 = thread_start(thread_fn_1, NULL);
-        tid_t T2 = thread_start(thread_fn_2, NULL);
+        thread_t *T1 = thread_start(thread_fn_1, NULL);
+        thread_t *T2 = thread_start(thread_fn_2, NULL);
 
         thread_join(T1);
         thread_join(T2);

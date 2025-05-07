@@ -34,13 +34,13 @@ test_deque_throughput(void) {
 
     double start_second = time_second();
 
-    tid_t producer_id =
+    thread_t *producer_thread =
         thread_start((thread_fn_t *) uint_producer, deque);
-    tid_t consumer_id =
+    thread_t *consumer_thread =
         thread_start((thread_fn_t *) uint_consumer, deque);
 
-    thread_join(producer_id);
-    thread_join(consumer_id);
+    thread_join(producer_thread);
+    thread_join(consumer_thread);
 
     double throughput = LENGTH / 1000 / time_passed_second(start_second);
     who_printf("throughput: %.f k/s\n", throughput);

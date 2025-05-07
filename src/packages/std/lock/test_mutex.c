@@ -30,8 +30,8 @@ test_mutex(void) {
 
     mutex_t *mutex = mutex_new();
 
-    tid_t T1 = thread_start(thread_fn, mutex);
-    tid_t T2 = thread_start(thread_fn, mutex);
+    thread_t *T1 = thread_start(thread_fn, mutex);
+    thread_t *T2 = thread_start(thread_fn, mutex);
 
     thread_join(T1);
     thread_join(T2);
