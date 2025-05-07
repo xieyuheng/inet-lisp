@@ -5,7 +5,7 @@ struct thread_t {
     thread_fn_t *thread_fn;
     void *arg;
     thread_pool_t *thread_pool;
-    thread_id_t id;
+    size_t id;
 };
 
 thread_t *thread_start(thread_fn_t *thread_fn, void *arg);

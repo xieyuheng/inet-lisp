@@ -1,7 +1,6 @@
 # core
 
-[core] ` scheduler_task_count_add1` & `scheduler_task_count_sub1` -- take `thread_id`
-[core] remove `thread_id_t`
+[core] `scheduler_t` -- use `stats_counter`
 
 # counter
 

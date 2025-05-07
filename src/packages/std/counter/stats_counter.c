@@ -30,14 +30,14 @@ stats_counter_destroy(stats_counter_t **self_pointer) {
 }
 
 void
-stats_counter_per_thread_add1(stats_counter_t *self, thread_id_t id) {
+stats_counter_per_thread_add1(stats_counter_t *self, size_t id) {
     atomic_size_t *counter = array_get(self->counter_array, id);
     size_t count = relaxed_load(counter);
     relaxed_store(counter, count + 1);
 }
 
 void
-stats_counter_per_thread_sub1(stats_counter_t *self, thread_id_t id) {
+stats_counter_per_thread_sub1(stats_counter_t *self, size_t id) {
     atomic_size_t *counter = array_get(self->counter_array, id);
     size_t count = relaxed_load(counter);
     assert(count > 0);
