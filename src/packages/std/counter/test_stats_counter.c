@@ -1,7 +1,7 @@
 #include "index.h"
 
 #define THREAD_COUNT 1000
-#define PER_THREAD_COUNT_LIMIT 1000
+#define PER_THREAD_COUNT_LIMIT 10000
 
 static stats_counter_t *stats_counter = NULL;
 
@@ -22,11 +22,18 @@ test_stats_counter(void) {
         thread_pool_start(thread_pool, thread_fn, NULL);
     }
 
+    {
+        size_t total = stats_counter_total(stats_counter);
+        who_printf("current total: %lu\n", total);
+    }
+
     thread_pool_join_all(thread_pool);
 
-    size_t total = stats_counter_total(stats_counter);
-    assert(total == THREAD_COUNT * PER_THREAD_COUNT_LIMIT);
-    who_printf("total: %lu\n", total);
+    {
+        size_t total = stats_counter_total(stats_counter);
+        assert(total == THREAD_COUNT * PER_THREAD_COUNT_LIMIT);
+        who_printf("final total: %lu\n", total);
+    }
 
     thread_pool_destroy(&thread_pool);
     stats_counter_destroy(&stats_counter);

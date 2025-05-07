@@ -12,6 +12,7 @@ stats_counter_new(size_t size) {
     self->counter_array = array_new_with(size, destroy);
     for (size_t i = 0; i < size; i++) {
         atomic_size_t *counter = new_cache_aligned(atomic_size_t);
+        atomic_init(counter, 0);
         array_push(self->counter_array, counter);
     }
 
@@ -32,16 +33,13 @@ stats_counter_destroy(stats_counter_t **self_pointer) {
 void
 stats_counter_per_thread_add1(stats_counter_t *self, size_t id) {
     atomic_size_t *counter = array_get(self->counter_array, id);
-    size_t count = relaxed_load(counter);
-    relaxed_store(counter, count + 1);
+    atomic_fetch_add_explicit(counter, 1, memory_order_relaxed);
 }
 
 void
 stats_counter_per_thread_sub1(stats_counter_t *self, size_t id) {
     atomic_size_t *counter = array_get(self->counter_array, id);
-    size_t count = relaxed_load(counter);
-    assert(count > 0);
-    relaxed_store(counter, count - 1);
+    atomic_fetch_sub_explicit(counter, 1, memory_order_relaxed);
 }
 
 size_t

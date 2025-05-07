@@ -52,7 +52,7 @@ worker_handle_task(worker_t *worker, task_t *task) {
     while (!mutex_try_lock(task->mutex)) {
         file_lock(stdout);
         who_printf("lock contention! ");
-        printf("worker #%ld, ", worker->index);
+        printf("worker #%ld, ", worker->id);
         printf("task: "); task_print(task, stdout);
         printf("\n");
         file_unlock(stdout);

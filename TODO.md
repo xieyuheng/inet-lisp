@@ -1,7 +1,3 @@
-# core
-
-[core] `scheduler_t` -- use `stats_counter`
-
 # counter
 
 [counter] `limit_counter_t`

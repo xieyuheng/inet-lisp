@@ -5,7 +5,7 @@ struct scheduler_t {
     node_allocator_t *node_allocator;
     array_t *worker_array;
     thread_pool_t *worker_thread_pool;
-    atomic_size_t atomic_task_count;
+    stats_counter_t *stats_counter;
 };
 
 scheduler_t *scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count);
