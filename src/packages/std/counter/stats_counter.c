@@ -43,3 +43,28 @@ stats_counter_per_thread_sub1(stats_counter_t *self, thread_id_t id) {
     assert(count > 0);
     relaxed_store(counter, count - 1);
 }
+
+size_t
+stats_counter_total(stats_counter_t *self) {
+    size_t total = 0;
+    for (size_t i = 0; i < self->size; i++) {
+        atomic_size_t *counter = array_get(self->counter_array, i);
+        size_t count = relaxed_load(counter);
+        total += count;
+    }
+
+    return total;
+}
+
+bool
+stats_counter_total_is_zero(stats_counter_t *self) {
+    for (size_t i = 0; i < self->size; i++) {
+        atomic_size_t *counter = array_get(self->counter_array, i);
+        size_t count = relaxed_load(counter);
+        if (count != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}

@@ -1,8 +1,5 @@
 # counter
 
-[counter] `stats_counter_total`
-[counter] `stats_counter_total_is_zero`
-
 [counter] `test_stats_counter`
 
 [counter] `limit_counter_t`
