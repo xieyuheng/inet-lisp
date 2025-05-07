@@ -11,7 +11,7 @@ worker_steal_task(worker_t *worker) {
             victim_id = ++worker->victim_cursor % worker_count;
 
         worker_t *victim = scheduler_get_worker(scheduler, victim_id);
-        task_t *task = deque_pop_front(victim->task_deque);
+        task_t *task = worker_offer_task(victim);
         if (task) {
             return task;
         }
