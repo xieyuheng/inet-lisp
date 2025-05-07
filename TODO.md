@@ -1,6 +1,6 @@
-# counter
+[thread] `thread_fn_t` -- take `thread` instead of `arg`
 
-[counter] `test_stats_counter`
+# counter
 
 [counter] `limit_counter_t`
 [counter] `zero_counter_t`
