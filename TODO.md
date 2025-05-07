@@ -1,5 +1,3 @@
-[core] `scheduler_t` -- has `thread_pool`
-
 # counter
 
 [counter] `stats_counter_t` -- to provide statistics to human, fast per-thread write, slow summary read.

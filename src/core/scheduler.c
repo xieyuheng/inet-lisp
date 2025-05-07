@@ -13,7 +13,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
         array_push(self->worker_array, worker);
     }
 
-    self->worker_thread_array = array_new_auto();
+    self->worker_thread_pool = thread_pool_new();
     atomic_init(&self->atomic_task_count, 0);
     return self;
 }
@@ -25,7 +25,7 @@ scheduler_destroy(scheduler_t **self_pointer) {
 
     scheduler_t *self = *self_pointer;
     array_destroy(&self->worker_array);
-    array_destroy(&self->worker_thread_array);
+    thread_pool_destroy(&self->worker_thread_pool);
     free(self);
     *self_pointer = NULL;
 }
@@ -49,17 +49,13 @@ void
 scheduler_start(scheduler_t *self, thread_fn_t *worker_thread_fn) {
     for (size_t i = 0; i < array_length(self->worker_array); i++) {
         worker_t *worker = array_get(self->worker_array, i);
-        thread_t *T = thread_start(worker_thread_fn, worker);
-        array_set(self->worker_thread_array, i, T);
+        thread_pool_start(self->worker_thread_pool, worker_thread_fn, worker);
     }
 }
 
 void
 scheduler_wait(scheduler_t *self) {
-    for (size_t i = 0; i < array_length(self->worker_thread_array); i++) {
-        thread_t *T = array_get(self->worker_thread_array, i);
-        thread_join(T);
-    }
+    thread_pool_join_all(self->worker_thread_pool);
 }
 
 void
