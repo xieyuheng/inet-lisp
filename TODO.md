@@ -1,7 +1,3 @@
-# memory
-
-[memory] `new_cache_aligned`
-
 # thread
 
 use c11 thread instead of pthread -- for the identity of c11 thread is better defined
