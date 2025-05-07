@@ -6,7 +6,7 @@
 
 #define NODE_ALLOCATOR_BATCH_SIZE 1024
 #define NODE_ALLOCATOR_CACHE_SIZE (64 * 1024)
-// #define WORKER_TASK_QUEUE_SIZE (1024 * 1024)
+#define WORKER_TASK_QUEUE_SIZE (1024 * 1024)
 
 // In a normal build, all debug flag should be off.
 

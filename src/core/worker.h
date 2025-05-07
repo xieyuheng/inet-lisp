@@ -4,7 +4,8 @@
 
 struct worker_t {
     mod_t *mod;
-    deque_t *task_deque;
+    queue_t *task_queue;
+    fast_spinlock_t *task_queue_front_lock;
     stack_t *value_stack;
     stack_t *return_stack;
     node_allocator_t *node_allocator;

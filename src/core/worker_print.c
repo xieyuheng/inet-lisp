@@ -31,13 +31,13 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 }
 
 static void
-worker_print_task_deque(const worker_t *self, file_t *file) {
-    size_t length = deque_length(self->task_deque);
-    fprintf(file, " :task-deque-length %lu\n", length);
-    fprintf(file, " :task-deque\n");
+worker_print_task_queue(const worker_t *self, file_t *file) {
+    size_t length = queue_length(self->task_queue);
+    fprintf(file, " :task-queue-length %lu\n", length);
+    fprintf(file, " :task-queue\n");
     fprintf(file, " (");
     for (size_t i = 0; i < length; i++) {
-        task_t *task = deque_get(self->task_deque, i);
+        task_t *task = queue_get(self->task_queue, i);
         if (i > 0) fprintf(file, "  ");
         task_print(task, file);
         if (i != length - 1) fprintf(file, "\n");
@@ -58,7 +58,7 @@ void
 worker_print(const worker_t *self, file_t *file) {
     fprintf(file, "(worker\n");
     worker_print_id(self, file); fprintf(file, "\n");
-    worker_print_task_deque(self, file); fprintf(file, "\n");
+    worker_print_task_queue(self, file); fprintf(file, "\n");
     worker_print_return_stack(self, file); fprintf(file, "\n");
     worker_print_value_stack(self, file); fprintf(file, ")");
 }

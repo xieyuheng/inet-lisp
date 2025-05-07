@@ -1,7 +1,3 @@
-# core
-
-[core] `worker_t` -- use `queue_t` instead of `deque_t`
-
 # counter
 
 [counter] `limit_counter_t`
