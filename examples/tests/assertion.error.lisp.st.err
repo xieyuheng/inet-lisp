@@ -1,8 +1,8 @@
 [x_assert] assertion fail
 (worker
  :id loader
- :task-deque-length 0
- :task-deque
+ :task-queue-length 0
+ :task-queue
  ()
  :return-stack-length 0
  :return-stack

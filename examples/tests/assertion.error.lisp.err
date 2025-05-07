@@ -1,8 +1,8 @@
 [x_assert] assertion fail
 (worker
- :id 0
- :task-deque-length 0
- :task-deque
+ :id 2
+ :task-queue-length 0
+ :task-queue
  ()
  :return-stack-length 0
  :return-stack
