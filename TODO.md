@@ -1,10 +1,10 @@
 # counter
 
-[counter] `stats_counter_new`
 [counter] `stats_counter_destroy`
 [counter] `stats_counter_per_thread_add1`
 [counter] `stats_counter_per_thread_sub1`
 [counter] `stats_counter_total`
+[counter] `stats_counter_total_is_zero`
 
 [counter] `test_stats_counter`
 
