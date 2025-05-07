@@ -26,7 +26,7 @@ worker_thread_fn(thread_t *thread) {
     scheduler_t *scheduler = worker->scheduler;
 
     while (!scheduler_no_more_tasks(scheduler)) {
-        task_t *task = deque_pop_front(worker->task_deque);
+        task_t *task = worker_next_task(worker);
 
 #if DEBUG_WORK_STEALING_DISABLED
         (void) worker_steal_task;
@@ -41,14 +41,14 @@ worker_thread_fn(thread_t *thread) {
 }
 
 static void
-scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
+scheduler_prepare(scheduler_t *scheduler, worker_t *loader_worker) {
     size_t cursor = 0;
-    while (!deque_is_empty(init_task_deque)) {
-        task_t *task = deque_pop_front(init_task_deque);
+    while (true) {
+        task_t *task = worker_next_task(loader_worker);
+        if (!task) return;
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = scheduler_get_worker(scheduler, index);
-        deque_push_back(worker->task_deque, task);
-        scheduler_task_count_add1(scheduler, worker->id);
+        worker_add_task(worker, task);
         cursor++;
     }
 }
@@ -58,7 +58,7 @@ worker_work_parallelly(worker_t *worker) {
     size_t processor_count = sysconf(_SC_NPROCESSORS_ONLN);
     size_t worker_count = processor_count - 1;
     scheduler_t *scheduler = scheduler_new(worker->mod, worker->node_allocator, worker_count);
-    scheduler_prepare(scheduler, worker->task_deque);
+    scheduler_prepare(scheduler, worker);
     scheduler_start(scheduler, worker_thread_fn);
     scheduler_wait(scheduler);
     scheduler_destroy(&scheduler);

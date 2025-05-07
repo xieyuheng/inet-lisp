@@ -27,6 +27,7 @@ void worker_recycle_node(worker_t* self, node_t *node);
 
 void worker_connect(worker_t *worker, value_t left, value_t right);
 void worker_add_task(worker_t *worker, task_t *task);
+task_t *worker_next_task(worker_t *worker);
 void worker_handle_task(worker_t *worker, task_t *task);
 void worker_disconnect_node(worker_t *worker, node_t *node);
 void worker_reconnect_node(worker_t *worker, node_t *node, size_t arity);
