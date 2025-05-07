@@ -1,6 +1,5 @@
 # memory
 
-[memory] `allocate_cache_aligned`
 [memory] `new_cache_aligned`
 
 # thread

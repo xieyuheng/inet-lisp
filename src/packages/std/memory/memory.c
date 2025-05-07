@@ -87,3 +87,23 @@ void
 set_cache_line_size(size_t size) {
     cache_line_size = size;
 }
+
+bool
+pointer_is_cache_aligned(void *pointer) {
+    size_t cache_line_size = get_cache_line_size();
+    assert(cache_line_size > 0);
+    return (((uintptr_t) pointer) % cache_line_size) == 0;
+}
+
+void *
+allocate_cache_aligned(size_t size) {
+    size_t cache_line_size = get_cache_line_size();
+    assert(cache_line_size > 0);
+    size_t real_size = ((size / cache_line_size) + 1) * cache_line_size;
+    void *pointer = aligned_alloc(cache_line_size, real_size);
+    memory_clear(pointer, real_size);
+    assert(pointer);
+    assert(pointer_is_8_bytes_aligned(pointer));
+    assert(pointer_is_cache_aligned(pointer));
+    return pointer;
+}
