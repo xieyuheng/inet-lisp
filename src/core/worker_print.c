@@ -50,7 +50,7 @@ worker_print_id(const worker_t *self, file_t *file) {
     if (worker_is_loader(self)) {
         fprintf(file, " :id loader");
     } else {
-        fprintf(file, " :id %lu", self->worker_id);
+        fprintf(file, " :id %lu", self->id);
     }
 }
 

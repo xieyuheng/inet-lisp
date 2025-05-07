@@ -10,7 +10,7 @@ struct worker_t {
     node_allocator_t *node_allocator;
     stack_t *free_node_stack;
     scheduler_t *scheduler;
-    size_t worker_id;
+    size_t id;
     size_t victim_cursor;
 };
 

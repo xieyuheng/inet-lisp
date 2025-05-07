@@ -7,7 +7,7 @@ worker_steal_task(worker_t *worker) {
 
     while (!scheduler_no_more_tasks(scheduler)) {
         size_t victim_id = ++worker->victim_cursor % worker_count;
-        if (victim_id == worker->worker_id)
+        if (victim_id == worker->id)
             victim_id = ++worker->victim_cursor % worker_count;
 
         worker_t *victim = scheduler_get_worker(scheduler, victim_id);
@@ -46,7 +46,7 @@ scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = scheduler_get_worker(scheduler, index);
         deque_push_back(worker->task_deque, task);
-        scheduler_task_count_add1(scheduler, worker->worker_id);
+        scheduler_task_count_add1(scheduler, worker->id);
         cursor++;
     }
 }

@@ -61,7 +61,7 @@ worker_handle_task(worker_t *worker, task_t *task) {
 
 #if DEBUG_TASK_LOG
     file_lock(stdout);
-    who_printf("worker_id %ld, ", worker->worker_id);
+    who_printf("id %ld, ", worker->id);
     printf("task: "); task_print(task, stdout);
     printf("\n");
     file_unlock(stdout);

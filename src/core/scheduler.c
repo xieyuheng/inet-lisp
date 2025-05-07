@@ -9,7 +9,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
     for (size_t i = 0; i < worker_count; i++) {
         worker_t *worker = worker_new(mod, node_allocator);
         worker->scheduler = self;
-        worker->worker_id = i;
+        worker->id = i;
         array_push(self->worker_array, worker);
     }
 
@@ -36,13 +36,13 @@ scheduler_worker_count(scheduler_t *self) {
 }
 
 worker_t *
-scheduler_get_worker(scheduler_t *self, size_t worker_id) {
-    return array_get(self->worker_array, worker_id);
+scheduler_get_worker(scheduler_t *self, size_t id) {
+    return array_get(self->worker_array, id);
 }
 
 void
-scheduler_set_worker(scheduler_t *self, size_t worker_id, worker_t *worker) {
-    array_set(self->worker_array, worker_id, worker);
+scheduler_set_worker(scheduler_t *self, size_t id, worker_t *worker) {
+    array_set(self->worker_array, id, worker);
 }
 
 void

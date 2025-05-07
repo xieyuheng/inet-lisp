@@ -6,8 +6,8 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
     while (!node_try_lock(node)) {
         file_lock(stdout);
         who_printf("lock contention! ");
-        printf("worker id: #%lu, ", worker->worker_id);
-        printf("locked by: #%lu, ", ((worker_t *) node->locked_by_worker)->worker_id);
+        printf("worker id: #%lu, ", worker->id);
+        printf("locked by: #%lu, ", ((worker_t *) node->locked_by_worker)->id);
         printf("node: "); node_print(node, stdout);
         printf("\n");
         file_unlock(stdout);
