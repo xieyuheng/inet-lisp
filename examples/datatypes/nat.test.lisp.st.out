@@ -31,27 +31,27 @@
  :root (add1₁₇)
  :node-count 5
  (add1₁₇
-  :prev (:value! (add1₂₀))
-  :value! ____)
- (add1₂₀
   :prev (:value! (add1₈))
-  :value! (:prev (add1₁₇)))
- (add1₈
-  :prev (:value! (add1₂))
-  :value! (:prev (add1₂₀)))
- (add1₂
-  :prev (:value! (zero₉))
-  :value! (:prev (add1₈)))
- (zero₉
-  :value! (:prev (add1₂))))
-(net
- :root (add1₁₈)
- :node-count 3
- (add1₁₈
-  :prev (:value! (add1₂₁))
   :value! ____)
- (add1₂₁
-  :prev (:value! (zero₁))
-  :value! (:prev (add1₁₈)))
- (zero₁
-  :value! (:prev (add1₂₁))))
+ (add1₈
+  :prev (:value! (add1₂₀))
+  :value! (:prev (add1₁₇)))
+ (add1₂₀
+  :prev (:value! (add1₉))
+  :value! (:prev (add1₈)))
+ (add1₉
+  :prev (:value! (zero₁₆))
+  :value! (:prev (add1₂₀)))
+ (zero₁₆
+  :value! (:prev (add1₉))))
+(net
+ :root (add1₄)
+ :node-count 3
+ (add1₄
+  :prev (:value! (add1₁₈))
+  :value! ____)
+ (add1₁₈
+  :prev (:value! (zero₅))
+  :value! (:prev (add1₄)))
+ (zero₅
+  :value! (:prev (add1₁₈))))

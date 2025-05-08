@@ -31,19 +31,19 @@
  :root (add1₁₀₂₅)
  :node-count 5
  (add1₁₀₂₅
-  :prev (:value! (add1₄₀₉₇))
-  :value! ____)
- (add1₄₀₉₇
   :prev (:value! (add1₁₈))
-  :value! (:prev (add1₁₀₂₅)))
+  :value! ____)
  (add1₁₈
-  :prev (:value! (add1₂₁))
-  :value! (:prev (add1₄₀₉₇)))
- (add1₂₁
-  :prev (:value! (zero₁₉))
+  :prev (:value! (add1₄₀₉₇))
+  :value! (:prev (add1₁₀₂₅)))
+ (add1₄₀₉₇
+  :prev (:value! (add1₅₁₂₂))
   :value! (:prev (add1₁₈)))
- (zero₁₉
-  :value! (:prev (add1₂₁))))
+ (add1₅₁₂₂
+  :prev (:value! (zero₂₂))
+  :value! (:prev (add1₄₀₉₇)))
+ (zero₂₂
+  :value! (:prev (add1₅₁₂₂))))
 (net
  :root (add1₂₄)
  :node-count 3
