@@ -7,10 +7,16 @@
 (define (n256) (square (square (square (two)))))
 
 (nat-to-int
- (add (n256)
-      (add (n256)
-           (add (n256)
-                (add (n256)
-                     (add (n256)
-                          (add (n256)
-                               (n256))))))))
+ (add
+  (n256)
+  (add
+   (n256)
+   (add
+    (n256)
+    (add
+     (n256)
+     (add
+      (n256)
+      (add
+       (n256)
+       (n256))))))))

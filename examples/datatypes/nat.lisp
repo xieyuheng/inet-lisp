@@ -12,6 +12,12 @@
 (define (two) (add1 (one)))
 (define (three) (add1 (two)))
 (define (four) (add1 (three)))
+(define (five) (add1 (four)))
+(define (six) (add1 (five)))
+(define (seven) (add1 (six)))
+(define (eight) (add1 (seven)))
+(define (nine) (add1 (eight)))
+(define (ten) (add1 (nine)))
 
 ;; to define `mul`, we first need `nat-erase` and `nat-dup`
 
@@ -39,8 +45,8 @@
 
 (define-rule (mul (add1 prev) mulend result)
   (= mulend-first mulend-second (nat-dup mulend))
-  (add (mul mulend-second prev)
-       mulend-first
+  (add mulend-first
+       (mul mulend-second prev)
        result))
 
 ;; to define `nat-max`, we need `nat-max-add1`
