@@ -13,8 +13,17 @@ struct function_t {
 function_t *function_new(size_t arity);
 void function_destroy(function_t **self_pointer);
 
-bool is_function(value_t value);
-function_t *as_function(value_t value);
+inline bool
+is_function(value_t value) {
+    if (!is_xobject(value)) return false;
+    return as_object(value)->spec == &function_object_spec;
+}
+
+inline function_t *
+as_function(value_t value) {
+    assert(is_function(value));
+    return (function_t *) value;
+}
 
 size_t function_length(const function_t *self);
 

@@ -1,5 +1,9 @@
 # counter
 
+[counter] `eventual_counter_t`
+
+[core] `scheduler_t` -- try `eventual_counter_t`
+
 [counter] `limit_counter_t`
 [counter] `zero_counter_t`
 
