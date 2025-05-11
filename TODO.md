@@ -1,3 +1,5 @@
+stable benchmark speed
+
 # counter
 
 [counter] `eventual_counter_t`
