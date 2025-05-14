@@ -42,7 +42,7 @@ Define three nodes `(zero)`, `(add1)` and `(add)`:
 ```
 
 ```
-value!   value!        value
+value!   value!        result
   |        |             |
 (zero)   (add1)        (add)
            |           /   \
@@ -57,7 +57,7 @@ The rule between `(add1)` and `(add)`:
 ```
 
 ```
-     value             value            value
+     result            result           result
        |                 |                |
      (add)      =>                =>    (add1)
      /   \                 \              |
@@ -74,7 +74,7 @@ The rule between `(zero)` and `(add)`:
 ```
 
 ```
-     value          value         value
+     result         result        result
        |              |             |
      (add)     =>             =>    |
      /   \              \            \
