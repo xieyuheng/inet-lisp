@@ -154,7 +154,7 @@ For more examples, please see the [examples/](examples/) directory.
 Compile:
 
 ```
-git clone https://github.com/cicada-lang/inet-lisp
+git clone https://github.com/xieyuheng/inet-lisp
 cd inet-lisp
 make -j
 make test
@@ -192,11 +192,11 @@ make clean    # clean up compiled files
 
 ## Implementations
 
-- [inet-cute](https://github.com/cicada-lang/inet-cute)
-- [inet-js](https://github.com/cicada-lang/inet-js)
-- [inet-forth](https://github.com/cicada-lang/inet-forth)
-- [inet-lisp-st](https://github.com/cicada-lang/inet-lisp-st)
-- [inet-lisp](https://github.com/cicada-lang/inet-lisp)
+- [inet-cute](https://github.com/xieyuheng/inet-cute)
+- [inet-js](https://github.com/xieyuheng/inet-js)
+- [inet-forth](https://github.com/xieyuheng/inet-forth)
+- [inet-lisp-st](https://github.com/xieyuheng/inet-lisp-st)
+- [inet-lisp](https://github.com/xieyuheng/inet-lisp)
 
 ## References
 
