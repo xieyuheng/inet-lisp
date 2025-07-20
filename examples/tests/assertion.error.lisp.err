@@ -1,6 +1,6 @@
 [x_assert] assertion fail
 (worker
- :id 2
+ :id 0
  :task-queue-length 0
  :task-queue
  ()
