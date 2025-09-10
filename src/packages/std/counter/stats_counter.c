@@ -13,7 +13,7 @@ stats_counter_new(size_t size) {
     self->size = size;
     self->counter_array = array_new_with(size, destroy);
     for (size_t i = 0; i < size; i++) {
-        atomic_int64_t *counter = new_cache_aligned(atomic_int64_t);
+        atomic_int64_t *counter = new_page_aligned(atomic_int64_t);
         atomic_init(counter, 0);
         array_push(self->counter_array, counter);
     }

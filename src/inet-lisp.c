@@ -6,8 +6,6 @@ main(int argc, char *argv[]) {
     file_disable_buffer(stdout);
     file_disable_buffer(stderr);
 
-    set_cache_line_size(CACHE_LINE_SIZE);
-
     commander_t *commander = commander_new("inet-lisp", INET_LISP_ST_VERSION, argc, argv);
 
     commander_use(commander, cmd_run);
