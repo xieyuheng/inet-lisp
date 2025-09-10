@@ -68,7 +68,7 @@ tsan:
 gprof:
 	make clean && GPROF=true make -j
 
-bin/$(app): $(lib) lib/$(app).o
+bin/$(app): $(lib)
 	mkdir -p $(dir $@); $(cc) $^ $(ldflags) -o $@
 
 lib/%.o: src/%.c $(headers)
