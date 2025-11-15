@@ -41,15 +41,15 @@ lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
 app = inet-lisp
 bin = bin/$(app)
 
-.PHONY: all run test-packages test-self run-examples test static tsan gprof clean
+.PHONY: all run test-helpers test-self run-examples test static tsan gprof clean
 
 all: bin/$(app)
 
 run: bin/$(app)
 	./bin/$(app)
 
-test-packages: bin/$(app)
-	./bin/$(app) test-packages
+test-helpers: bin/$(app)
+	./bin/$(app) test-helpers
 
 test-self: bin/$(app)
 	./bin/$(app) test-self
@@ -57,7 +57,7 @@ test-self: bin/$(app)
 run-examples: bin/$(app)
 	sh scripts/run-examples.sh && sh scripts/run-examples-st.sh
 
-test: test-packages test-self run-examples
+test: test-helpers test-self run-examples
 
 static:
 	make clean && STATIC=true make -j
