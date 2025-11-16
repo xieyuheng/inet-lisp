@@ -4,7 +4,7 @@ static task_t *
 task_new(void) {
     task_t *self = new(task_t);
 #if DEBUG_TASK_LOCK
-    self->mutex = mutex_new();
+    self->mutex = make_mutex();
 #endif
     return self;
 }

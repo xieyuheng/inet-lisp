@@ -4,7 +4,7 @@ struct fast_spinlock_t {
     atomic_bool atomic_is_locked;
 };
 
-fast_spinlock_t *fast_spinlock_new(void);
+fast_spinlock_t *make_fast_spinlock(void);
 void fast_spinlock_destroy(fast_spinlock_t **self_pointer);
 
 inline void

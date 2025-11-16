@@ -20,7 +20,7 @@ parse_ap(sexp_t *sexp) {
     list_t *sexp_list = sexp_sexp_list(sexp);
     assert(!list_is_empty(sexp_list));
     exp_t *target = parse_exp(list_first(sexp_list));
-    list_t *arg_list = exp_list_new();
+    list_t *arg_list = exp_make_list();
     sexp_t *arg_sexp = list_next(sexp_list);
     while (arg_sexp) {
         list_push(arg_list, parse_exp(arg_sexp));
@@ -34,7 +34,7 @@ static exp_t *
 parse_assign(sexp_t *sexp) {
     list_t *sexp_list = sexp_sexp_list(sexp);
     (void) list_first(sexp_list);
-    list_t *name_list = string_list_new();
+    list_t *name_list = string_make_list();
     sexp_t *name_sexp = list_next(sexp_list);
     exp_t *exp = NULL;
     while (name_sexp) {

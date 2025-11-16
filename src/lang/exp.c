@@ -43,8 +43,8 @@ exp_float(double target) {
 }
 
 list_t *
-exp_list_new(void) {
-    return list_new_with((destroy_fn_t *) exp_destroy);
+exp_make_list(void) {
+    return make_list_with((destroy_fn_t *) exp_destroy);
 }
 
 void

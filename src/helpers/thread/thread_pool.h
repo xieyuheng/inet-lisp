@@ -1,6 +1,6 @@
 #pragma once
 
-thread_pool_t *thread_pool_new(void);
+thread_pool_t *make_thread_pool(void);
 void thread_pool_destroy(thread_pool_t **self_pointer);
 
 size_t thread_pool_start(thread_pool_t *self, thread_fn_t *thread_fn, void *arg);

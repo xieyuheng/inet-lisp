@@ -12,7 +12,7 @@ load_mod(path_t *path) {
     }
 
     if (!global_node_allocator) {
-        global_node_allocator = node_allocator_new();
+        global_node_allocator = node_make_allocator();
      }
 
     mod_t *found_mod = hash_get(global_mod_cache, path_string(path));
@@ -57,6 +57,6 @@ clear_global_mod_cache(void) {
 
     if (global_node_allocator) {
         node_allocator_destroy(&global_node_allocator);
-        global_node_allocator = node_allocator_new();
+        global_node_allocator = node_make_allocator();
      }
 }

@@ -4,7 +4,7 @@ static int run(commander_t *commander);
 
 void
 cmd_benchmark(commander_t *runner) {
-    command_t *command = command_new("benchmark");
+    command_t *command = make_command("benchmark");
     command->description = "benchmark files";
     command->run = run;
     commander_add(runner, command);
@@ -22,7 +22,7 @@ run(commander_t *commander) {
         {
             single_threaded_flag = true;
             double start_second = time_second();
-            path_t *path = path_new_cwd();
+            path_t *path = make_path_cwd();
             path_resolve(path, arg);
             load_mod(path);
             sequential_second = time_passed_second(start_second);
@@ -33,7 +33,7 @@ run(commander_t *commander) {
         {
             single_threaded_flag = false;
             double start_second = time_second();
-            path_t *path = path_new_cwd();
+            path_t *path = make_path_cwd();
             path_resolve(path, arg);
             load_mod(path);
             parallel_second = time_passed_second(start_second);

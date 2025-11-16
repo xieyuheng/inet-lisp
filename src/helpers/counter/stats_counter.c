@@ -8,10 +8,10 @@ struct stats_counter_t {
 };
 
 stats_counter_t *
-stats_counter_new(size_t size) {
+make_stats_counter(size_t size) {
     stats_counter_t *self = new(stats_counter_t);
     self->size = size;
-    self->counter_array = array_new_with(size, destroy);
+    self->counter_array = make_array_with(size, destroy);
     for (size_t i = 0; i < size; i++) {
         atomic_int64_t *counter = new_page_aligned(atomic_int64_t);
         atomic_init(counter, 0);

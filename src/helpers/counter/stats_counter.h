@@ -4,7 +4,7 @@
 // fast per-thread write,
 // slow total read.
 
-stats_counter_t *stats_counter_new(size_t size);
+stats_counter_t *make_stats_counter(size_t size);
 void stats_counter_destroy(stats_counter_t **self_pointer);
 
 void stats_counter_per_thread_add1(stats_counter_t *self, size_t id);

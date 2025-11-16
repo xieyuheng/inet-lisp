@@ -9,7 +9,7 @@ node_neighborhood_t *
 node_neighborhood_new(node_t *node) {
     node_neighborhood_t *self = new(node_neighborhood_t);
     self->node = node;
-    self->node_neighbor_array = array_new_auto_with((destroy_fn_t *) node_neighbor_destroy);
+    self->node_neighbor_array = make_array_auto_with((destroy_fn_t *) node_neighbor_destroy);
     return self;
 }
 
@@ -101,7 +101,7 @@ node_neighborhood_print(node_neighborhood_t *self, const char *prefix, file_t *f
 
 hash_t *
 build_node_neighborhood_hash(node_allocator_t *node_allocator) {
-    hash_t *node_neighborhood_hash = hash_new();
+    hash_t *node_neighborhood_hash = make_hash();
     hash_set_destroy_fn(node_neighborhood_hash, (destroy_fn_t *) node_neighborhood_destroy);
 
     array_t *node_array = allocated_node_array(node_allocator);

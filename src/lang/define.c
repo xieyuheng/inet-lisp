@@ -18,7 +18,7 @@ define_rule_star(worker_t *worker, list_t *node_pattern_list, list_t *exp_list) 
     node_pattern_t *left_node_pattern = list_first(node_pattern_list);
     node_pattern_t *right_node_pattern = list_next(node_pattern_list);
 
-    list_t *local_name_list = list_new();
+    list_t *local_name_list = make_list();
 
     for (size_t i = 0; i < left_node_pattern->ctor->arity; i++) {
         port_info_t *port_info = left_node_pattern->port_infos[i];

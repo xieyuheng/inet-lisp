@@ -4,13 +4,13 @@ worker_t *
 worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     worker_t *self = new(worker_t);
     self->mod = mod;
-    self->task_queue = queue_new(WORKER_TASK_QUEUE_SIZE);
-    self->task_queue_front_lock = fast_spinlock_new();
+    self->task_queue = make_queue(WORKER_TASK_QUEUE_SIZE);
+    self->task_queue_front_lock = make_fast_spinlock();
     // TODO We should use value_destroy to create value_stack.
-    self->value_stack = stack_new();
-    self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
+    self->value_stack = make_stack();
+    self->return_stack = make_stack_with((destroy_fn_t *) frame_destroy);
     self->node_allocator = node_allocator;
-    self->free_node_stack = stack_new();
+    self->free_node_stack = make_stack();
     return self;
 }
 

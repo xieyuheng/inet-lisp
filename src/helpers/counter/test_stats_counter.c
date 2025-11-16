@@ -16,8 +16,8 @@ void
 test_stats_counter(void) {
     test_start();
 
-    stats_counter = stats_counter_new(THREAD_COUNT);
-    thread_pool_t *thread_pool = thread_pool_new();
+    stats_counter = make_stats_counter(THREAD_COUNT);
+    thread_pool_t *thread_pool = make_thread_pool();
     for (size_t i = 0; i < THREAD_COUNT; i++) {
         thread_pool_start(thread_pool, thread_fn, NULL);
     }

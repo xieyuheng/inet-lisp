@@ -3,8 +3,8 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
-    self->fast_spinlock = fast_spinlock_new();
-    self->value_array = array_new_auto();
+    self->fast_spinlock = make_fast_spinlock();
+    self->value_array = make_array_auto();
     atomic_init(&self->atomic_primitive_arg_count, 0);
     return self;
 }

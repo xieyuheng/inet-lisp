@@ -6,7 +6,7 @@ parse_define_node(sexp_t *sexp) {
     (void) list_first(sexp_list);
     sexp_t *name_sexp = list_next(sexp_list);
     char *name = string_copy(sexp_string(name_sexp));
-    list_t *port_name_list = string_list_new();
+    list_t *port_name_list = string_make_list();
     sexp_t *port_name_sexp = list_next(sexp_list);
     while (port_name_sexp) {
         list_push(port_name_list, string_copy(sexp_string(port_name_sexp)));
@@ -40,14 +40,14 @@ parse_define_function(sexp_t *sexp) {
     sexp_t *first_name_sexp = list_first(name_sexp_list);
     char *name = string_copy(sexp_string(first_name_sexp));
 
-    list_t *arg_name_list = string_list_new();
+    list_t *arg_name_list = string_make_list();
     sexp_t *name_sexp = list_next(name_sexp_list);
     while (name_sexp) {
         list_push(arg_name_list, string_copy(sexp_string(name_sexp)));
         name_sexp = list_next(name_sexp_list);
     }
 
-    list_t *exp_list = exp_list_new();
+    list_t *exp_list = exp_make_list();
     sexp_t *exp_sexp = list_next(sexp_list);
     while (exp_sexp) {
         list_push(exp_list, parse_exp(exp_sexp));
@@ -74,7 +74,7 @@ parse_define_rule(sexp_t *sexp) {
 
     exp_t *pattern_exp = parse_exp(list_next(sexp_list));
 
-    list_t *exp_list = exp_list_new();
+    list_t *exp_list = exp_make_list();
     sexp_t *exp_sexp = list_next(sexp_list);
     while (exp_sexp) {
         list_push(exp_list, parse_exp(exp_sexp));
@@ -89,7 +89,7 @@ parse_define_rule_star(sexp_t *sexp) {
     list_t *sexp_list = sexp_sexp_list(sexp);
     (void) list_first(sexp_list);
 
-    list_t *pattern_exp_list = exp_list_new();
+    list_t *pattern_exp_list = exp_make_list();
     list_t *pattern_exp_sexp_list = sexp_sexp_list(list_next(sexp_list));
     sexp_t *pattern_exp_sexp = list_first(pattern_exp_sexp_list);
     while (pattern_exp_sexp) {
@@ -97,7 +97,7 @@ parse_define_rule_star(sexp_t *sexp) {
         pattern_exp_sexp = list_next(pattern_exp_sexp_list);
     }
 
-    list_t *exp_list = exp_list_new();
+    list_t *exp_list = exp_make_list();
     sexp_t *exp_sexp = list_next(sexp_list);
     while (exp_sexp) {
         list_push(exp_list, parse_exp(exp_sexp));
@@ -116,12 +116,12 @@ static stmt_t *
 parse_import(sexp_t *sexp) {
     list_t *sexp_list = sexp_sexp_list(sexp);
     (void) list_first(sexp_list);
-    list_t *name_list = string_list_new();
+    list_t *name_list = string_make_list();
     sexp_t *name_sexp = list_next(sexp_list);
     path_t *path = NULL;
     while (name_sexp) {
         if (list_cursor_is_end(sexp_list))
-            path = path_new(sexp_token(name_sexp)->string);
+            path = make_path(sexp_token(name_sexp)->string);
         else
             list_push(name_list, string_copy(sexp_string(name_sexp)));
 
@@ -150,7 +150,7 @@ parse_stmt(sexp_t *sexp) {
 
 list_t *
 parse_stmt_list(list_t *sexp_list) {
-    list_t *stmt_list = list_new_with((destroy_fn_t *) stmt_destroy);
+    list_t *stmt_list = make_list_with((destroy_fn_t *) stmt_destroy);
     sexp_t *sexp = list_first(sexp_list);
     while (sexp) {
         list_push(stmt_list, parse_stmt(sexp));

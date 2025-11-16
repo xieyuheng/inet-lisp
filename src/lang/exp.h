@@ -29,7 +29,7 @@ exp_t *exp_assign(list_t *name_list, exp_t *exp);
 exp_t *exp_int(int64_t target);
 exp_t *exp_float(double target);
 
-list_t *exp_list_new(void);
+list_t *exp_make_list(void);
 
 void exp_destroy(exp_t **self_pointer);
 

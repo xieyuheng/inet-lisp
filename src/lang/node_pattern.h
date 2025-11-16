@@ -8,7 +8,7 @@ struct node_pattern_t {
 node_pattern_t *node_pattern_new(const node_ctor_t *ctor);
 void node_pattern_destroy(node_pattern_t **self_pointer);
 
-list_t *node_pattern_list_new(void);
+list_t *node_pattern_make_list(void);
 
 // check principal port agree with ctor.
 bool node_pattern_set_port_info(node_pattern_t *self, size_t index, port_info_t *port_info);

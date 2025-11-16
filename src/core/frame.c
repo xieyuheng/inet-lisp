@@ -11,7 +11,7 @@ frame_new(const function_t *function) {
     frame_t *self = new(frame_t);
     self->cursor = 0;
     self->function = function;
-    self->variable_array = array_new_auto();
+    self->variable_array = make_array_auto();
     return self;
 }
 

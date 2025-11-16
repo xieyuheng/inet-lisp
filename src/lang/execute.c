@@ -33,7 +33,7 @@ build_node_pattern(worker_t *worker, exp_t *pattern_exp) {
 static list_t *
 build_node_pattern_list(worker_t *worker, list_t *pattern_exp_list) {
     list_t *node_pattern_list =
-        list_new_with((destroy_fn_t *) node_pattern_destroy);
+        make_list_with((destroy_fn_t *) node_pattern_destroy);
     exp_t *pattern_exp = list_first(pattern_exp_list);
     while (pattern_exp) {
         list_push(node_pattern_list, build_node_pattern(worker, pattern_exp));
@@ -57,7 +57,7 @@ translate_pattern_arg_list(
     list_t *arg_list,
     list_t *pattern_exp_list
 ) {
-    list_t *new_arg_list = exp_list_new();
+    list_t *new_arg_list = exp_make_list();
     exp_t *arg_exp = list_first(arg_list);
     while (arg_exp) {
         if (arg_exp->kind == EXP_VAR) {
@@ -92,7 +92,7 @@ static list_t *
 translate_pattern_tree(worker_t *worker, exp_t *pattern_exp) {
     assert(pattern_exp->kind == EXP_AP);
     exp_t *target = exp_copy(pattern_exp->ap.target);
-    list_t *pattern_exp_list = exp_list_new();
+    list_t *pattern_exp_list = exp_make_list();
     list_t *arg_list = translate_pattern_arg_list(worker, pattern_exp->ap.arg_list, pattern_exp_list);
     list_unshift(pattern_exp_list, exp_ap(target, arg_list));
     return pattern_exp_list;

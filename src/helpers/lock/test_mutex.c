@@ -26,7 +26,7 @@ void
 test_mutex(void) {
     test_start();
 
-    mutex_t *mutex = mutex_new();
+    mutex_t *mutex = make_mutex();
 
     thread_t *T1 = thread_start(thread_fn, mutex);
     thread_t *T2 = thread_start(thread_fn, mutex);

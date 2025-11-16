@@ -13,7 +13,7 @@ function_new(size_t arity) {
     // to use apply instead of call.
     self->arity = arity;
     self->local_index_hash = hash_of_string_key();
-    self->opcode_array = array_new_auto_with((destroy_fn_t *) opcode_destroy);
+    self->opcode_array = make_array_auto_with((destroy_fn_t *) opcode_destroy);
     return self;
 }
 
