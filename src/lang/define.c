@@ -37,7 +37,7 @@ define_rule_star(worker_t *worker, list_t *node_pattern_list, list_t *exp_list) 
     size_t arity = list_length(local_name_list);
     function_t *function = function_new(arity);
 
-    compile_set_variable_list(worker, function, local_name_list);
+    compile_put_variable_list(worker, function, local_name_list);
     compile_exp_list(worker, function, exp_list);
 
     rule_t *rule = rule_new(left_node_pattern->ctor, right_node_pattern->ctor, function);
@@ -104,7 +104,7 @@ define_primitive_node(mod_t *mod, const char *name, const char *port_names[]) {
     }
 
     primitive_t *primitive = as_primitive(value);
-    primitive_set_node_ctor(primitive, port_names);
+    primitive_put_node_ctor(primitive, port_names);
 }
 
 void

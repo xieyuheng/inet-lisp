@@ -1,26 +1,26 @@
 #include "index.h"
 
 static void
-compile_set_variable(worker_t *worker, function_t *function, const char *name) {
+compile_put_variable(worker_t *worker, function_t *function, const char *name) {
     (void) worker;
 
     size_t index = hash_length(function->local_index_hash);
     if (hash_has(function->local_index_hash, name)) {
         size_t old_index = (size_t) hash_get(function->local_index_hash, name);
-        function_add_opcode(function, opcode_set_variable(old_index));
+        function_add_opcode(function, opcode_put_variable(old_index));
     } else {
         assert(hash_set(function->local_index_hash, string_copy(name), (void *) index));
-        function_add_opcode(function, opcode_set_variable(index));
+        function_add_opcode(function, opcode_put_variable(index));
     }
 }
 
 void
-compile_set_variable_list(worker_t *worker, function_t *function, list_t *name_list) {
+compile_put_variable_list(worker_t *worker, function_t *function, list_t *name_list) {
     (void) worker;
 
     char *name = list_last(name_list);
     while (name) {
-        compile_set_variable(worker, function, name);
+        compile_put_variable(worker, function, name);
         name = list_prev(name_list);
     }
 }
@@ -77,7 +77,7 @@ compile_exp(worker_t *worker, function_t *function, exp_t *exp) {
 
     case EXP_ASSIGN: {
         compile_exp(worker, function, exp->assign.exp);
-        compile_set_variable_list(worker, function, exp->assign.name_list);
+        compile_put_variable_list(worker, function, exp->assign.name_list);
         return;
     }
 

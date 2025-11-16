@@ -95,7 +95,7 @@ frame_get_variable(const frame_t *self, size_t index) {
 }
 
 void
-frame_set_variable(frame_t *self, size_t index, value_t value) {
+frame_put_variable(frame_t *self, size_t index, value_t value) {
     value_t found = array_get(self->variable_array, index);
     // NOTE be linear like this:
     if (found) {

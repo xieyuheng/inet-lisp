@@ -15,16 +15,16 @@ initialize_apply_primitives(void) {
     if (is_initialized) return;
 
     apply_primitives[0] = primitive_from_fn("apply1", 2, 1, x_apply1);
-    primitive_set_node_ctor(apply_primitives[0], (const char*[]) { "target!", "arg1", "result" });
+    primitive_put_node_ctor(apply_primitives[0], (const char*[]) { "target!", "arg1", "result" });
 
     apply_primitives[1] = primitive_from_fn("apply2", 3, 1, x_apply2);
-    primitive_set_node_ctor(apply_primitives[1], (const char*[]) { "target!", "arg1", "arg2", "result" });
+    primitive_put_node_ctor(apply_primitives[1], (const char*[]) { "target!", "arg1", "arg2", "result" });
 
     apply_primitives[2] = primitive_from_fn("apply3", 4, 1, x_apply3);
-    primitive_set_node_ctor(apply_primitives[2], (const char*[]) { "target!", "arg1", "arg2", "arg3", "result" });
+    primitive_put_node_ctor(apply_primitives[2], (const char*[]) { "target!", "arg1", "arg2", "arg3", "result" });
 
     apply_primitives[3] = primitive_from_fn("apply4", 5, 1, x_apply4);
-    primitive_set_node_ctor(apply_primitives[3], (const char*[]) { "target!", "arg1", "arg2", "arg3", "arg4", "result" });
+    primitive_put_node_ctor(apply_primitives[3], (const char*[]) { "target!", "arg1", "arg2", "arg3", "arg4", "result" });
 
     is_initialized = true;
 }

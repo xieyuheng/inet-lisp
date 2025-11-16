@@ -42,7 +42,7 @@ scheduler_get_worker(scheduler_t *self, size_t id) {
 }
 
 void
-scheduler_set_worker(scheduler_t *self, size_t id, worker_t *worker) {
+scheduler_put_worker(scheduler_t *self, size_t id, worker_t *worker) {
     array_set(self->worker_array, id, worker);
 }
 

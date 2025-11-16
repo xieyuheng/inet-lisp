@@ -9,4 +9,4 @@ void frame_print(const frame_t *self, file_t *file);
 void frame_print_within_worker(const frame_t *self, const worker_t *worker, file_t *file);
 
 value_t frame_get_variable(const frame_t *self, size_t index);
-void frame_set_variable(frame_t *self, size_t index, value_t value);
+void frame_put_variable(frame_t *self, size_t index, value_t value);

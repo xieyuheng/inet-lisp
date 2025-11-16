@@ -31,7 +31,7 @@ node_pattern_make_list(void) {
 }
 
 bool
-node_pattern_set_port_info(node_pattern_t *self, size_t index, port_info_t *port_info) {
+node_pattern_put_port_info(node_pattern_t *self, size_t index, port_info_t *port_info) {
     if (port_info->is_principal != self->ctor->port_infos[index]->is_principal)
         return false;
 

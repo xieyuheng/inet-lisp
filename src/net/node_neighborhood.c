@@ -102,7 +102,7 @@ node_neighborhood_print(node_neighborhood_t *self, const char *prefix, file_t *f
 hash_t *
 build_node_neighborhood_hash(node_allocator_t *node_allocator) {
     hash_t *node_neighborhood_hash = make_hash();
-    hash_set_destroy_fn(node_neighborhood_hash, (destroy_fn_t *) node_neighborhood_destroy);
+    hash_put_destroy_fn(node_neighborhood_hash, (destroy_fn_t *) node_neighborhood_destroy);
 
     array_t *node_array = allocated_node_array(node_allocator);
     size_t length = array_length(node_array);

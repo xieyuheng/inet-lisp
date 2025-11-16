@@ -117,7 +117,7 @@ exp_copy(const exp_t *self) {
 }
 
 list_t *exp_list_copy(list_t *exp_list) {
-    list_set_copy_fn(exp_list, (copy_fn_t *) exp_copy);
+    list_put_copy_fn(exp_list, (copy_fn_t *) exp_copy);
     return list_copy(exp_list);
 }
 

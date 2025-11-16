@@ -37,13 +37,13 @@
   :prev (:value! (add1₃₀₇₄))
   :value! (:prev (add1₁₀₂₅)))
  (add1₃₀₇₄
-  :prev (:value! (add1₄₀₉₇))
+  :prev (:value! (add1₃₀₇₆))
   :value! (:prev (add1₁₈)))
- (add1₄₀₉₇
+ (add1₃₀₇₆
   :prev (:value! (zero₂₂))
   :value! (:prev (add1₃₀₇₄)))
  (zero₂₂
-  :value! (:prev (add1₄₀₉₇))))
+  :value! (:prev (add1₃₀₇₆))))
 (net
  :root (add1₂₄)
  :node-count 3

@@ -98,7 +98,7 @@ as_primitive(value_t value) {
 }
 
 void
-primitive_set_node_ctor(primitive_t *self, const char *port_names[]) {
+primitive_put_node_ctor(primitive_t *self, const char *port_names[]) {
     size_t arity = self->input_arity + self->output_arity;
     node_ctor_t *node_ctor = node_ctor_new(self->name, arity);
     for (size_t i = 0; i < arity; i++) {
